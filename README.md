@@ -68,7 +68,10 @@ using a built-in Pakistan travel dataset — **no API keys or backend required y
 
 ### Built-in data (editable in `src/lib/data.ts`)
 
-- **10 starting cities** — Karachi, Lahore, Islamabad, Peshawar, Quetta, etc.
+- **60 starting cities** across every province — Karachi, Lahore, Islamabad,
+  Peshawar, Quetta plus 50 more (Gujranwala, Sialkot, Bahawalpur, Multan, Larkana,
+  Mardan, Abbottabad, Gwadar, Mirpur AJK, and many others), grouped by province in
+  the planner dropdown.
 - **15 destinations** — Murree, Naran, Swat, Neelum, Hunza, Skardu, Gilgit, Chitral,
   Fairy Meadows, Deosai, Khunjerab, Gorakh Hill, Kund Malir and more, each tagged with
   region, budget tier, cost factor, scenic score, best season and attractions.
@@ -122,12 +125,18 @@ npm start
 | `npm run build` | Create an optimized production build |
 | `npm start` | Serve the production build |
 | `npm run lint` | Run ESLint |
+| `npm run gen:distances` | Regenerate `DISTANCES.md` + `data/distances.csv` from the dataset |
 
 ---
 
 ## 📂 Project Structure
 
 ```
+DISTANCES.md                # Reference: one-way road km, every city → destination
+data/
+└── distances.csv           # Same data, machine-readable (900 routes)
+scripts/
+└── generate-distances.ts   # Regenerates the two files above (npx tsx)
 src/
 ├── app/
 │   ├── layout.tsx          # Root layout, fonts, navbar + footer

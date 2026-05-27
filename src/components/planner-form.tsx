@@ -110,6 +110,19 @@ export function PlannerForm() {
     [vehicleClass],
   );
 
+  const originsByProvince = useMemo(() => {
+    const groups = new Map<string, typeof ORIGINS>();
+    for (const o of ORIGINS) {
+      const list = groups.get(o.province) ?? [];
+      list.push(o);
+      groups.set(o.province, list);
+    }
+    for (const list of groups.values()) {
+      list.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    return [...groups.entries()];
+  }, []);
+
   const handleClassChange = (cls: VehicleClass) => {
     setVehicleClass(cls);
     const first = VEHICLES.find((v) => v.class === cls)!;
@@ -212,10 +225,14 @@ export function PlannerForm() {
               onChange={(e) => setOriginId(e.target.value)}
               className="h-11 w-full cursor-pointer rounded-xl border border-line bg-surface px-3 text-sm font-medium text-ink outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-200"
             >
-              {ORIGINS.map((o) => (
-                <option key={o.id} value={o.id}>
-                  {o.name} — {o.province}
-                </option>
+              {originsByProvince.map(([province, cities]) => (
+                <optgroup key={province} label={province}>
+                  {cities.map((o) => (
+                    <option key={o.id} value={o.id}>
+                      {o.name}
+                    </option>
+                  ))}
+                </optgroup>
               ))}
             </select>
           </div>

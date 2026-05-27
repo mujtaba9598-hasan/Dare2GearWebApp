@@ -1,0 +1,901 @@
+origin_id,origin,province,dest_id,destination,one_way_km,round_trip_km
+karachi,Karachi,Sindh,murree,Murree,1594,3188
+karachi,Karachi,Sindh,nathiagali,Nathia Gali,1614,3228
+karachi,Karachi,Sindh,naran,Naran & Kaghan,1931,3862
+karachi,Karachi,Sindh,swat,Swat & Kalam,1946,3892
+karachi,Karachi,Sindh,neelum,Neelum Valley,2095,4190
+karachi,Karachi,Sindh,gorakh,Gorakh Hill,365,730
+karachi,Karachi,Sindh,kundmalir,Kund Malir & Hingol,227,454
+karachi,Karachi,Sindh,hunza,Hunza (Karimabad),1982,3964
+karachi,Karachi,Sindh,skardu,Skardu,2138,4276
+karachi,Karachi,Sindh,gilgit,Gilgit,1909,3818
+karachi,Karachi,Sindh,chitral,Chitral & Kalash,2153,4306
+karachi,Karachi,Sindh,astore,Astore Valley,2294,4588
+karachi,Karachi,Sindh,fairymeadows,Fairy Meadows,2273,4546
+karachi,Karachi,Sindh,deosai,Deosai Plains,2285,4570
+karachi,Karachi,Sindh,khunjerab,Khunjerab Pass,2099,4198
+hyderabad,Hyderabad,Sindh,murree,Murree,1436,2872
+hyderabad,Hyderabad,Sindh,nathiagali,Nathia Gali,1457,2914
+hyderabad,Hyderabad,Sindh,naran,Naran & Kaghan,1760,3520
+hyderabad,Hyderabad,Sindh,swat,Swat & Kalam,1789,3578
+hyderabad,Hyderabad,Sindh,neelum,Neelum Valley,1902,3804
+hyderabad,Hyderabad,Sindh,gorakh,Gorakh Hill,316,632
+hyderabad,Hyderabad,Sindh,kundmalir,Kund Malir & Hingol,388,776
+hyderabad,Hyderabad,Sindh,hunza,Hunza (Karimabad),1828,3656
+hyderabad,Hyderabad,Sindh,skardu,Skardu,1954,3908
+hyderabad,Hyderabad,Sindh,gilgit,Gilgit,1756,3512
+hyderabad,Hyderabad,Sindh,chitral,Chitral & Kalash,1993,3986
+hyderabad,Hyderabad,Sindh,astore,Astore Valley,2098,4196
+hyderabad,Hyderabad,Sindh,fairymeadows,Fairy Meadows,2080,4160
+hyderabad,Hyderabad,Sindh,deosai,Deosai Plains,2081,4162
+hyderabad,Hyderabad,Sindh,khunjerab,Khunjerab Pass,1942,3884
+sukkur,Sukkur,Sindh,murree,Murree,1099,2198
+sukkur,Sukkur,Sindh,nathiagali,Nathia Gali,1119,2238
+sukkur,Sukkur,Sindh,naran,Naran & Kaghan,1382,2764
+sukkur,Sukkur,Sindh,swat,Swat & Kalam,1402,2804
+sukkur,Sukkur,Sindh,neelum,Neelum Valley,1491,2982
+sukkur,Sukkur,Sindh,gorakh,Gorakh Hill,300,600
+sukkur,Sukkur,Sindh,kundmalir,Kund Malir & Hingol,557,1114
+sukkur,Sukkur,Sindh,hunza,Hunza (Karimabad),1487,2974
+sukkur,Sukkur,Sindh,skardu,Skardu,1590,3180
+sukkur,Sukkur,Sindh,gilgit,Gilgit,1415,2830
+sukkur,Sukkur,Sindh,chitral,Chitral & Kalash,1563,3126
+sukkur,Sukkur,Sindh,astore,Astore Valley,1689,3378
+sukkur,Sukkur,Sindh,fairymeadows,Fairy Meadows,1669,3338
+sukkur,Sukkur,Sindh,deosai,Deosai Plains,1682,3364
+sukkur,Sukkur,Sindh,khunjerab,Khunjerab Pass,1604,3208
+lahore,Lahore,Punjab,murree,Murree,379,758
+lahore,Lahore,Punjab,nathiagali,Nathia Gali,402,804
+lahore,Lahore,Punjab,naran,Naran & Kaghan,574,1148
+lahore,Lahore,Punjab,swat,Swat & Kalam,707,1414
+lahore,Lahore,Punjab,neelum,Neelum Valley,567,1134
+lahore,Lahore,Punjab,gorakh,Gorakh Hill,1420,2840
+lahore,Lahore,Punjab,kundmalir,Kund Malir & Hingol,1474,2948
+lahore,Lahore,Punjab,hunza,Hunza (Karimabad),721,1442
+lahore,Lahore,Punjab,skardu,Skardu,654,1308
+lahore,Lahore,Punjab,gilgit,Gilgit,661,1322
+lahore,Lahore,Punjab,chitral,Chitral & Kalash,886,1772
+lahore,Lahore,Punjab,astore,Astore Valley,710,1420
+lahore,Lahore,Punjab,fairymeadows,Fairy Meadows,711,1422
+lahore,Lahore,Punjab,deosai,Deosai Plains,653,1306
+lahore,Lahore,Punjab,khunjerab,Khunjerab Pass,811,1622
+faisalabad,Faisalabad,Punjab,murree,Murree,370,740
+faisalabad,Faisalabad,Punjab,nathiagali,Nathia Gali,395,790
+faisalabad,Faisalabad,Punjab,naran,Naran & Kaghan,581,1162
+faisalabad,Faisalabad,Punjab,swat,Swat & Kalam,678,1356
+faisalabad,Faisalabad,Punjab,neelum,Neelum Valley,588,1176
+faisalabad,Faisalabad,Punjab,gorakh,Gorakh Hill,1261,2522
+faisalabad,Faisalabad,Punjab,kundmalir,Kund Malir & Hingol,1344,2688
+faisalabad,Faisalabad,Punjab,hunza,Hunza (Karimabad),754,1508
+faisalabad,Faisalabad,Punjab,skardu,Skardu,730,1460
+faisalabad,Faisalabad,Punjab,gilgit,Gilgit,687,1374
+faisalabad,Faisalabad,Punjab,chitral,Chitral & Kalash,833,1666
+faisalabad,Faisalabad,Punjab,astore,Astore Valley,765,1530
+faisalabad,Faisalabad,Punjab,fairymeadows,Fairy Meadows,756,1512
+faisalabad,Faisalabad,Punjab,deosai,Deosai Plains,734,1468
+faisalabad,Faisalabad,Punjab,khunjerab,Khunjerab Pass,858,1716
+multan,Multan,Punjab,murree,Murree,611,1222
+multan,Multan,Punjab,nathiagali,Nathia Gali,633,1266
+multan,Multan,Punjab,naran,Naran & Kaghan,847,1694
+multan,Multan,Punjab,swat,Swat & Kalam,902,1804
+multan,Multan,Punjab,neelum,Neelum Valley,893,1786
+multan,Multan,Punjab,gorakh,Gorakh Hill,914,1828
+multan,Multan,Punjab,kundmalir,Kund Malir & Hingol,1060,2120
+multan,Multan,Punjab,hunza,Hunza (Karimabad),1004,2008
+multan,Multan,Punjab,skardu,Skardu,1033,2066
+multan,Multan,Punjab,gilgit,Gilgit,933,1866
+multan,Multan,Punjab,chitral,Chitral & Kalash,1045,2090
+multan,Multan,Punjab,astore,Astore Valley,1085,2170
+multan,Multan,Punjab,fairymeadows,Fairy Meadows,1069,2138
+multan,Multan,Punjab,deosai,Deosai Plains,1068,2136
+multan,Multan,Punjab,khunjerab,Khunjerab Pass,1116,2232
+islamabad,Islamabad,Capital,murree,Murree,54,108
+islamabad,Islamabad,Capital,nathiagali,Nathia Gali,72,144
+islamabad,Islamabad,Capital,naran,Naran & Kaghan,221,442
+islamabad,Islamabad,Capital,swat,Swat & Kalam,308,616
+islamabad,Islamabad,Capital,neelum,Neelum Valley,211,422
+islamabad,Islamabad,Capital,gorakh,Gorakh Hill,1552,3104
+islamabad,Islamabad,Capital,kundmalir,Kund Malir & Hingol,1571,3142
+islamabad,Islamabad,Capital,hunza,Hunza (Karimabad),442,884
+islamabad,Islamabad,Capital,skardu,Skardu,446,892
+islamabad,Islamabad,Capital,gilgit,Gilgit,370,740
+islamabad,Islamabad,Capital,chitral,Chitral & Kalash,441,882
+islamabad,Islamabad,Capital,astore,Astore Valley,413,826
+islamabad,Islamabad,Capital,fairymeadows,Fairy Meadows,389,778
+islamabad,Islamabad,Capital,deosai,Deosai Plains,429,858
+islamabad,Islamabad,Capital,khunjerab,Khunjerab Pass,557,1114
+rawalpindi,Rawalpindi,Punjab,murree,Murree,69,138
+rawalpindi,Rawalpindi,Punjab,nathiagali,Nathia Gali,89,178
+rawalpindi,Rawalpindi,Punjab,naran,Naran & Kaghan,241,482
+rawalpindi,Rawalpindi,Punjab,swat,Swat & Kalam,327,654
+rawalpindi,Rawalpindi,Punjab,neelum,Neelum Valley,232,464
+rawalpindi,Rawalpindi,Punjab,gorakh,Gorakh Hill,1531,3062
+rawalpindi,Rawalpindi,Punjab,kundmalir,Kund Malir & Hingol,1555,3110
+rawalpindi,Rawalpindi,Punjab,hunza,Hunza (Karimabad),459,918
+rawalpindi,Rawalpindi,Punjab,skardu,Skardu,461,922
+rawalpindi,Rawalpindi,Punjab,gilgit,Gilgit,388,776
+rawalpindi,Rawalpindi,Punjab,chitral,Chitral & Kalash,459,918
+rawalpindi,Rawalpindi,Punjab,astore,Astore Valley,432,864
+rawalpindi,Rawalpindi,Punjab,fairymeadows,Fairy Meadows,410,820
+rawalpindi,Rawalpindi,Punjab,deosai,Deosai Plains,446,892
+rawalpindi,Rawalpindi,Punjab,khunjerab,Khunjerab Pass,574,1148
+peshawar,Peshawar,KPK,murree,Murree,233,466
+peshawar,Peshawar,KPK,nathiagali,Nathia Gali,232,464
+peshawar,Peshawar,KPK,naran,Naran & Kaghan,328,656
+peshawar,Peshawar,KPK,swat,Swat & Kalam,286,572
+peshawar,Peshawar,KPK,neelum,Neelum Valley,376,752
+peshawar,Peshawar,KPK,gorakh,Gorakh Hill,1477,2954
+peshawar,Peshawar,KPK,kundmalir,Kund Malir & Hingol,1497,2994
+peshawar,Peshawar,KPK,hunza,Hunza (Karimabad),516,1032
+peshawar,Peshawar,KPK,skardu,Skardu,603,1206
+peshawar,Peshawar,KPK,gilgit,Gilgit,446,892
+peshawar,Peshawar,KPK,chitral,Chitral & Kalash,339,678
+peshawar,Peshawar,KPK,astore,Astore Valley,561,1122
+peshawar,Peshawar,KPK,fairymeadows,Fairy Meadows,525,1050
+peshawar,Peshawar,KPK,deosai,Deosai Plains,614,1228
+peshawar,Peshawar,KPK,khunjerab,Khunjerab Pass,638,1276
+quetta,Quetta,Balochistan,murree,Murree,989,1978
+quetta,Quetta,Balochistan,nathiagali,Nathia Gali,1002,2004
+quetta,Quetta,Balochistan,naran,Naran & Kaghan,1226,2452
+quetta,Quetta,Balochistan,swat,Swat & Kalam,1184,2368
+quetta,Quetta,Balochistan,neelum,Neelum Valley,1344,2688
+quetta,Quetta,Balochistan,gorakh,Gorakh Hill,616,1232
+quetta,Quetta,Balochistan,kundmalir,Kund Malir & Hingol,726,1452
+quetta,Quetta,Balochistan,hunza,Hunza (Karimabad),1332,2664
+quetta,Quetta,Balochistan,skardu,Skardu,1484,2968
+quetta,Quetta,Balochistan,gilgit,Gilgit,1262,2524
+quetta,Quetta,Balochistan,chitral,Chitral & Kalash,1277,2554
+quetta,Quetta,Balochistan,astore,Astore Valley,1543,3086
+quetta,Quetta,Balochistan,fairymeadows,Fairy Meadows,1512,3024
+quetta,Quetta,Balochistan,deosai,Deosai Plains,1572,3144
+quetta,Quetta,Balochistan,khunjerab,Khunjerab Pass,1454,2908
+gujranwala,Gujranwala,Punjab,murree,Murree,281,562
+gujranwala,Gujranwala,Punjab,nathiagali,Nathia Gali,304,608
+gujranwala,Gujranwala,Punjab,naran,Naran & Kaghan,464,928
+gujranwala,Gujranwala,Punjab,swat,Swat & Kalam,598,1196
+gujranwala,Gujranwala,Punjab,neelum,Neelum Valley,447,894
+gujranwala,Gujranwala,Punjab,gorakh,Gorakh Hill,1471,2942
+gujranwala,Gujranwala,Punjab,kundmalir,Kund Malir & Hingol,1515,3030
+gujranwala,Gujranwala,Punjab,hunza,Hunza (Karimabad),626,1252
+gujranwala,Gujranwala,Punjab,skardu,Skardu,560,1120
+gujranwala,Gujranwala,Punjab,gilgit,Gilgit,564,1128
+gujranwala,Gujranwala,Punjab,chitral,Chitral & Kalash,769,1538
+gujranwala,Gujranwala,Punjab,astore,Astore Valley,597,1194
+gujranwala,Gujranwala,Punjab,fairymeadows,Fairy Meadows,595,1190
+gujranwala,Gujranwala,Punjab,deosai,Deosai Plains,548,1096
+gujranwala,Gujranwala,Punjab,khunjerab,Khunjerab Pass,720,1440
+sialkot,Sialkot,Punjab,murree,Murree,255,510
+sialkot,Sialkot,Punjab,nathiagali,Nathia Gali,276,552
+sialkot,Sialkot,Punjab,naran,Naran & Kaghan,420,840
+sialkot,Sialkot,Punjab,swat,Swat & Kalam,567,1134
+sialkot,Sialkot,Punjab,neelum,Neelum Valley,396,792
+sialkot,Sialkot,Punjab,gorakh,Gorakh Hill,1550,3100
+sialkot,Sialkot,Punjab,kundmalir,Kund Malir & Hingol,1580,3160
+sialkot,Sialkot,Punjab,hunza,Hunza (Karimabad),574,1148
+sialkot,Sialkot,Punjab,skardu,Skardu,492,984
+sialkot,Sialkot,Punjab,gilgit,Gilgit,515,1030
+sialkot,Sialkot,Punjab,chitral,Chitral & Kalash,743,1486
+sialkot,Sialkot,Punjab,astore,Astore Valley,529,1058
+sialkot,Sialkot,Punjab,fairymeadows,Fairy Meadows,531,1062
+sialkot,Sialkot,Punjab,deosai,Deosai Plains,474,948
+sialkot,Sialkot,Punjab,khunjerab,Khunjerab Pass,663,1326
+bahawalpur,Bahawalpur,Punjab,murree,Murree,712,1424
+bahawalpur,Bahawalpur,Punjab,nathiagali,Nathia Gali,735,1470
+bahawalpur,Bahawalpur,Punjab,naran,Naran & Kaghan,961,1922
+bahawalpur,Bahawalpur,Punjab,swat,Swat & Kalam,1025,2050
+bahawalpur,Bahawalpur,Punjab,neelum,Neelum Valley,1014,2028
+bahawalpur,Bahawalpur,Punjab,gorakh,Gorakh Hill,851,1702
+bahawalpur,Bahawalpur,Punjab,kundmalir,Kund Malir & Hingol,1008,2016
+bahawalpur,Bahawalpur,Punjab,hunza,Hunza (Karimabad),1104,2208
+bahawalpur,Bahawalpur,Punjab,skardu,Skardu,1130,2260
+bahawalpur,Bahawalpur,Punjab,gilgit,Gilgit,1034,2068
+bahawalpur,Bahawalpur,Punjab,chitral,Chitral & Kalash,1185,2370
+bahawalpur,Bahawalpur,Punjab,astore,Astore Valley,1201,2402
+bahawalpur,Bahawalpur,Punjab,fairymeadows,Fairy Meadows,1187,2374
+bahawalpur,Bahawalpur,Punjab,deosai,Deosai Plains,1175,2350
+bahawalpur,Bahawalpur,Punjab,khunjerab,Khunjerab Pass,1213,2426
+sargodha,Sargodha,Punjab,murree,Murree,288,576
+sargodha,Sargodha,Punjab,nathiagali,Nathia Gali,312,624
+sargodha,Sargodha,Punjab,naran,Naran & Kaghan,491,982
+sargodha,Sargodha,Punjab,swat,Swat & Kalam,569,1138
+sargodha,Sargodha,Punjab,neelum,Neelum Valley,497,994
+sargodha,Sargodha,Punjab,gorakh,Gorakh Hill,1290,2580
+sargodha,Sargodha,Punjab,kundmalir,Kund Malir & Hingol,1363,2726
+sargodha,Sargodha,Punjab,hunza,Hunza (Karimabad),681,1362
+sargodha,Sargodha,Punjab,skardu,Skardu,675,1350
+sargodha,Sargodha,Punjab,gilgit,Gilgit,611,1222
+sargodha,Sargodha,Punjab,chitral,Chitral & Kalash,704,1408
+sargodha,Sargodha,Punjab,astore,Astore Valley,689,1378
+sargodha,Sargodha,Punjab,fairymeadows,Fairy Meadows,673,1346
+sargodha,Sargodha,Punjab,deosai,Deosai Plains,675,1350
+sargodha,Sargodha,Punjab,khunjerab,Khunjerab Pass,792,1584
+sahiwal,Sahiwal,Punjab,murree,Murree,488,976
+sahiwal,Sahiwal,Punjab,nathiagali,Nathia Gali,512,1024
+sahiwal,Sahiwal,Punjab,naran,Naran & Kaghan,711,1422
+sahiwal,Sahiwal,Punjab,swat,Swat & Kalam,808,1616
+sahiwal,Sahiwal,Punjab,neelum,Neelum Valley,730,1460
+sahiwal,Sahiwal,Punjab,gorakh,Gorakh Hill,1170,2340
+sahiwal,Sahiwal,Punjab,kundmalir,Kund Malir & Hingol,1269,2538
+sahiwal,Sahiwal,Punjab,hunza,Hunza (Karimabad),869,1738
+sahiwal,Sahiwal,Punjab,skardu,Skardu,849,1698
+sahiwal,Sahiwal,Punjab,gilgit,Gilgit,803,1606
+sahiwal,Sahiwal,Punjab,chitral,Chitral & Kalash,972,1944
+sahiwal,Sahiwal,Punjab,astore,Astore Valley,903,1806
+sahiwal,Sahiwal,Punjab,fairymeadows,Fairy Meadows,895,1790
+sahiwal,Sahiwal,Punjab,deosai,Deosai Plains,865,1730
+sahiwal,Sahiwal,Punjab,khunjerab,Khunjerab Pass,971,1942
+sheikhupura,Sheikhupura,Punjab,murree,Murree,338,676
+sheikhupura,Sheikhupura,Punjab,nathiagali,Nathia Gali,362,724
+sheikhupura,Sheikhupura,Punjab,naran,Naran & Kaghan,535,1070
+sheikhupura,Sheikhupura,Punjab,swat,Swat & Kalam,659,1318
+sheikhupura,Sheikhupura,Punjab,neelum,Neelum Valley,528,1056
+sheikhupura,Sheikhupura,Punjab,gorakh,Gorakh Hill,1394,2788
+sheikhupura,Sheikhupura,Punjab,kundmalir,Kund Malir & Hingol,1452,2904
+sheikhupura,Sheikhupura,Punjab,hunza,Hunza (Karimabad),696,1392
+sheikhupura,Sheikhupura,Punjab,skardu,Skardu,641,1282
+sheikhupura,Sheikhupura,Punjab,gilgit,Gilgit,633,1266
+sheikhupura,Sheikhupura,Punjab,chitral,Chitral & Kalash,829,1658
+sheikhupura,Sheikhupura,Punjab,astore,Astore Valley,684,1368
+sheikhupura,Sheikhupura,Punjab,fairymeadows,Fairy Meadows,681,1362
+sheikhupura,Sheikhupura,Punjab,deosai,Deosai Plains,636,1272
+sheikhupura,Sheikhupura,Punjab,khunjerab,Khunjerab Pass,791,1582
+rahimyarkhan,Rahim Yar Khan,Punjab,murree,Murree,915,1830
+rahimyarkhan,Rahim Yar Khan,Punjab,nathiagali,Nathia Gali,936,1872
+rahimyarkhan,Rahim Yar Khan,Punjab,naran,Naran & Kaghan,1182,2364
+rahimyarkhan,Rahim Yar Khan,Punjab,swat,Swat & Kalam,1223,2446
+rahimyarkhan,Rahim Yar Khan,Punjab,neelum,Neelum Valley,1265,2530
+rahimyarkhan,Rahim Yar Khan,Punjab,gorakh,Gorakh Hill,567,1134
+rahimyarkhan,Rahim Yar Khan,Punjab,kundmalir,Kund Malir & Hingol,775,1550
+rahimyarkhan,Rahim Yar Khan,Punjab,hunza,Hunza (Karimabad),1307,2614
+rahimyarkhan,Rahim Yar Khan,Punjab,skardu,Skardu,1373,2746
+rahimyarkhan,Rahim Yar Khan,Punjab,gilgit,Gilgit,1236,2472
+rahimyarkhan,Rahim Yar Khan,Punjab,chitral,Chitral & Kalash,1383,2766
+rahimyarkhan,Rahim Yar Khan,Punjab,astore,Astore Valley,1459,2918
+rahimyarkhan,Rahim Yar Khan,Punjab,fairymeadows,Fairy Meadows,1442,2884
+rahimyarkhan,Rahim Yar Khan,Punjab,deosai,Deosai Plains,1442,2884
+rahimyarkhan,Rahim Yar Khan,Punjab,khunjerab,Khunjerab Pass,1421,2842
+jhang,Jhang,Punjab,murree,Murree,419,838
+jhang,Jhang,Punjab,nathiagali,Nathia Gali,442,884
+jhang,Jhang,Punjab,naran,Naran & Kaghan,635,1270
+jhang,Jhang,Punjab,swat,Swat & Kalam,705,1410
+jhang,Jhang,Punjab,neelum,Neelum Valley,657,1314
+jhang,Jhang,Punjab,gorakh,Gorakh Hill,1144,2288
+jhang,Jhang,Punjab,kundmalir,Kund Malir & Hingol,1246,2492
+jhang,Jhang,Punjab,hunza,Hunza (Karimabad),812,1624
+jhang,Jhang,Punjab,skardu,Skardu,816,1632
+jhang,Jhang,Punjab,gilgit,Gilgit,741,1482
+jhang,Jhang,Punjab,chitral,Chitral & Kalash,845,1690
+jhang,Jhang,Punjab,astore,Astore Valley,847,1694
+jhang,Jhang,Punjab,fairymeadows,Fairy Meadows,832,1664
+jhang,Jhang,Punjab,deosai,Deosai Plains,829,1658
+jhang,Jhang,Punjab,khunjerab,Khunjerab Pass,922,1844
+gujrat,Gujrat,Punjab,murree,Murree,218,436
+gujrat,Gujrat,Punjab,nathiagali,Nathia Gali,241,482
+gujrat,Gujrat,Punjab,naran,Naran & Kaghan,394,788
+gujrat,Gujrat,Punjab,swat,Swat & Kalam,529,1058
+gujrat,Gujrat,Punjab,neelum,Neelum Valley,371,742
+gujrat,Gujrat,Punjab,gorakh,Gorakh Hill,1508,3016
+gujrat,Gujrat,Punjab,kundmalir,Kund Malir & Hingol,1544,3088
+gujrat,Gujrat,Punjab,hunza,Hunza (Karimabad),566,1132
+gujrat,Gujrat,Punjab,skardu,Skardu,503,1006
+gujrat,Gujrat,Punjab,gilgit,Gilgit,503,1006
+gujrat,Gujrat,Punjab,chitral,Chitral & Kalash,695,1390
+gujrat,Gujrat,Punjab,astore,Astore Valley,526,1052
+gujrat,Gujrat,Punjab,fairymeadows,Fairy Meadows,522,1044
+gujrat,Gujrat,Punjab,deosai,Deosai Plains,484,968
+gujrat,Gujrat,Punjab,khunjerab,Khunjerab Pass,663,1326
+kasur,Kasur,Punjab,murree,Murree,440,880
+kasur,Kasur,Punjab,nathiagali,Nathia Gali,463,926
+kasur,Kasur,Punjab,naran,Naran & Kaghan,642,1284
+kasur,Kasur,Punjab,swat,Swat & Kalam,774,1548
+kasur,Kasur,Punjab,neelum,Neelum Valley,642,1284
+kasur,Kasur,Punjab,gorakh,Gorakh Hill,1391,2782
+kasur,Kasur,Punjab,kundmalir,Kund Malir & Hingol,1450,2900
+kasur,Kasur,Punjab,hunza,Hunza (Karimabad),781,1562
+kasur,Kasur,Punjab,skardu,Skardu,716,1432
+kasur,Kasur,Punjab,gilgit,Gilgit,721,1442
+kasur,Kasur,Punjab,chitral,Chitral & Kalash,959,1918
+kasur,Kasur,Punjab,astore,Astore Valley,782,1564
+kasur,Kasur,Punjab,fairymeadows,Fairy Meadows,784,1568
+kasur,Kasur,Punjab,deosai,Deosai Plains,721,1442
+kasur,Kasur,Punjab,khunjerab,Khunjerab Pass,869,1738
+okara,Okara,Punjab,murree,Murree,465,930
+okara,Okara,Punjab,nathiagali,Nathia Gali,489,978
+okara,Okara,Punjab,naran,Naran & Kaghan,684,1368
+okara,Okara,Punjab,swat,Swat & Kalam,790,1580
+okara,Okara,Punjab,neelum,Neelum Valley,696,1392
+okara,Okara,Punjab,gorakh,Gorakh Hill,1229,2458
+okara,Okara,Punjab,kundmalir,Kund Malir & Hingol,1318,2636
+okara,Okara,Punjab,hunza,Hunza (Karimabad),839,1678
+okara,Okara,Punjab,skardu,Skardu,807,1614
+okara,Okara,Punjab,gilgit,Gilgit,774,1548
+okara,Okara,Punjab,chitral,Chitral & Kalash,959,1918
+okara,Okara,Punjab,astore,Astore Valley,863,1726
+okara,Okara,Punjab,fairymeadows,Fairy Meadows,857,1714
+okara,Okara,Punjab,deosai,Deosai Plains,820,1640
+okara,Okara,Punjab,khunjerab,Khunjerab Pass,938,1876
+dgkhan,Dera Ghazi Khan,Punjab,murree,Murree,676,1352
+dgkhan,Dera Ghazi Khan,Punjab,nathiagali,Nathia Gali,697,1394
+dgkhan,Dera Ghazi Khan,Punjab,naran,Naran & Kaghan,913,1826
+dgkhan,Dera Ghazi Khan,Punjab,swat,Swat & Kalam,946,1892
+dgkhan,Dera Ghazi Khan,Punjab,neelum,Neelum Valley,974,1948
+dgkhan,Dera Ghazi Khan,Punjab,gorakh,Gorakh Hill,800,1600
+dgkhan,Dera Ghazi Khan,Punjab,kundmalir,Kund Malir & Hingol,964,1928
+dgkhan,Dera Ghazi Khan,Punjab,hunza,Hunza (Karimabad),1066,2132
+dgkhan,Dera Ghazi Khan,Punjab,skardu,Skardu,1120,2240
+dgkhan,Dera Ghazi Khan,Punjab,gilgit,Gilgit,994,1988
+dgkhan,Dera Ghazi Khan,Punjab,chitral,Chitral & Kalash,1078,2156
+dgkhan,Dera Ghazi Khan,Punjab,astore,Astore Valley,1172,2344
+dgkhan,Dera Ghazi Khan,Punjab,fairymeadows,Fairy Meadows,1152,2304
+dgkhan,Dera Ghazi Khan,Punjab,deosai,Deosai Plains,1165,2330
+dgkhan,Dera Ghazi Khan,Punjab,khunjerab,Khunjerab Pass,1182,2364
+chiniot,Chiniot,Punjab,murree,Murree,332,664
+chiniot,Chiniot,Punjab,nathiagali,Nathia Gali,357,714
+chiniot,Chiniot,Punjab,naran,Naran & Kaghan,540,1080
+chiniot,Chiniot,Punjab,swat,Swat & Kalam,631,1262
+chiniot,Chiniot,Punjab,neelum,Neelum Valley,545,1090
+chiniot,Chiniot,Punjab,gorakh,Gorakh Hill,1276,2552
+chiniot,Chiniot,Punjab,kundmalir,Kund Malir & Hingol,1355,2710
+chiniot,Chiniot,Punjab,hunza,Hunza (Karimabad),721,1442
+chiniot,Chiniot,Punjab,skardu,Skardu,702,1404
+chiniot,Chiniot,Punjab,gilgit,Gilgit,652,1304
+chiniot,Chiniot,Punjab,chitral,Chitral & Kalash,779,1558
+chiniot,Chiniot,Punjab,astore,Astore Valley,728,1456
+chiniot,Chiniot,Punjab,fairymeadows,Fairy Meadows,716,1432
+chiniot,Chiniot,Punjab,deosai,Deosai Plains,703,1406
+chiniot,Chiniot,Punjab,khunjerab,Khunjerab Pass,827,1654
+mianwali,Mianwali,Punjab,murree,Murree,305,610
+mianwali,Mianwali,Punjab,nathiagali,Nathia Gali,321,642
+mianwali,Mianwali,Punjab,naran,Naran & Kaghan,485,970
+mianwali,Mianwali,Punjab,swat,Swat & Kalam,505,1010
+mianwali,Mianwali,Punjab,neelum,Neelum Valley,515,1030
+mianwali,Mianwali,Punjab,gorakh,Gorakh Hill,1253,2506
+mianwali,Mianwali,Punjab,kundmalir,Kund Malir & Hingol,1324,2648
+mianwali,Mianwali,Punjab,hunza,Hunza (Karimabad),679,1358
+mianwali,Mianwali,Punjab,skardu,Skardu,724,1448
+mianwali,Mianwali,Punjab,gilgit,Gilgit,607,1214
+mianwali,Mianwali,Punjab,chitral,Chitral & Kalash,600,1200
+mianwali,Mianwali,Punjab,astore,Astore Valley,717,1434
+mianwali,Mianwali,Punjab,fairymeadows,Fairy Meadows,691,1382
+mianwali,Mianwali,Punjab,deosai,Deosai Plains,735,1470
+mianwali,Mianwali,Punjab,khunjerab,Khunjerab Pass,798,1596
+bhakkar,Bhakkar,Punjab,murree,Murree,450,900
+bhakkar,Bhakkar,Punjab,nathiagali,Nathia Gali,468,936
+bhakkar,Bhakkar,Punjab,naran,Naran & Kaghan,654,1308
+bhakkar,Bhakkar,Punjab,swat,Swat & Kalam,677,1354
+bhakkar,Bhakkar,Punjab,neelum,Neelum Valley,696,1392
+bhakkar,Bhakkar,Punjab,gorakh,Gorakh Hill,1067,2134
+bhakkar,Bhakkar,Punjab,kundmalir,Kund Malir & Hingol,1175,2350
+bhakkar,Bhakkar,Punjab,hunza,Hunza (Karimabad),832,1664
+bhakkar,Bhakkar,Punjab,skardu,Skardu,881,1762
+bhakkar,Bhakkar,Punjab,gilgit,Gilgit,760,1520
+bhakkar,Bhakkar,Punjab,chitral,Chitral & Kalash,782,1564
+bhakkar,Bhakkar,Punjab,astore,Astore Valley,897,1794
+bhakkar,Bhakkar,Punjab,fairymeadows,Fairy Meadows,874,1748
+bhakkar,Bhakkar,Punjab,deosai,Deosai Plains,905,1810
+bhakkar,Bhakkar,Punjab,khunjerab,Khunjerab Pass,951,1902
+jhelum,Jhelum,Punjab,murree,Murree,151,302
+jhelum,Jhelum,Punjab,nathiagali,Nathia Gali,175,350
+jhelum,Jhelum,Punjab,naran,Naran & Kaghan,328,656
+jhelum,Jhelum,Punjab,swat,Swat & Kalam,454,908
+jhelum,Jhelum,Punjab,neelum,Neelum Valley,303,606
+jhelum,Jhelum,Punjab,gorakh,Gorakh Hill,1516,3032
+jhelum,Jhelum,Punjab,kundmalir,Kund Malir & Hingol,1549,3098
+jhelum,Jhelum,Punjab,hunza,Hunza (Karimabad),519,1038
+jhelum,Jhelum,Punjab,skardu,Skardu,473,946
+jhelum,Jhelum,Punjab,gilgit,Gilgit,453,906
+jhelum,Jhelum,Punjab,chitral,Chitral & Kalash,609,1218
+jhelum,Jhelum,Punjab,astore,Astore Valley,477,954
+jhelum,Jhelum,Punjab,fairymeadows,Fairy Meadows,467,934
+jhelum,Jhelum,Punjab,deosai,Deosai Plains,452,904
+jhelum,Jhelum,Punjab,khunjerab,Khunjerab Pass,622,1244
+attock,Attock,Punjab,murree,Murree,130,260
+attock,Attock,Punjab,nathiagali,Nathia Gali,136,272
+attock,Attock,Punjab,naran,Naran & Kaghan,261,522
+attock,Attock,Punjab,swat,Swat & Kalam,289,578
+attock,Attock,Punjab,neelum,Neelum Valley,279,558
+attock,Attock,Punjab,gorakh,Gorakh Hill,1503,3006
+attock,Attock,Punjab,kundmalir,Kund Malir & Hingol,1527,3054
+attock,Attock,Punjab,hunza,Hunza (Karimabad),475,950
+attock,Attock,Punjab,skardu,Skardu,517,1034
+attock,Attock,Punjab,gilgit,Gilgit,403,806
+attock,Attock,Punjab,chitral,Chitral & Kalash,392,784
+attock,Attock,Punjab,astore,Astore Valley,478,956
+attock,Attock,Punjab,fairymeadows,Fairy Meadows,448,896
+attock,Attock,Punjab,deosai,Deosai Plains,513,1026
+attock,Attock,Punjab,khunjerab,Khunjerab Pass,595,1190
+chakwal,Chakwal,Punjab,murree,Murree,161,322
+chakwal,Chakwal,Punjab,nathiagali,Nathia Gali,184,368
+chakwal,Chakwal,Punjab,naran,Naran & Kaghan,348,696
+chakwal,Chakwal,Punjab,swat,Swat & Kalam,429,858
+chakwal,Chakwal,Punjab,neelum,Neelum Valley,344,688
+chakwal,Chakwal,Punjab,gorakh,Gorakh Hill,1425,2850
+chakwal,Chakwal,Punjab,kundmalir,Kund Malir & Hingol,1471,2942
+chakwal,Chakwal,Punjab,hunza,Hunza (Karimabad),555,1110
+chakwal,Chakwal,Punjab,skardu,Skardu,550,1100
+chakwal,Chakwal,Punjab,gilgit,Gilgit,484,968
+chakwal,Chakwal,Punjab,chitral,Chitral & Kalash,560,1120
+chakwal,Chakwal,Punjab,astore,Astore Valley,541,1082
+chakwal,Chakwal,Punjab,fairymeadows,Fairy Meadows,521,1042
+chakwal,Chakwal,Punjab,deosai,Deosai Plains,540,1080
+chakwal,Chakwal,Punjab,khunjerab,Khunjerab Pass,667,1334
+vehari,Vehari,Punjab,murree,Murree,595,1190
+vehari,Vehari,Punjab,nathiagali,Nathia Gali,619,1238
+vehari,Vehari,Punjab,naran,Naran & Kaghan,832,1664
+vehari,Vehari,Punjab,swat,Swat & Kalam,910,1820
+vehari,Vehari,Punjab,neelum,Neelum Valley,869,1738
+vehari,Vehari,Punjab,gorakh,Gorakh Hill,1005,2010
+vehari,Vehari,Punjab,kundmalir,Kund Malir & Hingol,1135,2270
+vehari,Vehari,Punjab,hunza,Hunza (Karimabad),985,1970
+vehari,Vehari,Punjab,skardu,Skardu,990,1980
+vehari,Vehari,Punjab,gilgit,Gilgit,916,1832
+vehari,Vehari,Punjab,chitral,Chitral & Kalash,1069,2138
+vehari,Vehari,Punjab,astore,Astore Valley,1051,2102
+vehari,Vehari,Punjab,fairymeadows,Fairy Meadows,1040,2080
+vehari,Vehari,Punjab,deosai,Deosai Plains,1021,2042
+vehari,Vehari,Punjab,khunjerab,Khunjerab Pass,1092,2184
+khanewal,Khanewal,Punjab,murree,Murree,572,1144
+khanewal,Khanewal,Punjab,nathiagali,Nathia Gali,595,1190
+khanewal,Khanewal,Punjab,naran,Naran & Kaghan,805,1610
+khanewal,Khanewal,Punjab,swat,Swat & Kalam,870,1740
+khanewal,Khanewal,Punjab,neelum,Neelum Valley,844,1688
+khanewal,Khanewal,Punjab,gorakh,Gorakh Hill,981,1962
+khanewal,Khanewal,Punjab,kundmalir,Kund Malir & Hingol,1115,2230
+khanewal,Khanewal,Punjab,hunza,Hunza (Karimabad),965,1930
+khanewal,Khanewal,Punjab,skardu,Skardu,981,1962
+khanewal,Khanewal,Punjab,gilgit,Gilgit,895,1790
+khanewal,Khanewal,Punjab,chitral,Chitral & Kalash,1018,2036
+khanewal,Khanewal,Punjab,astore,Astore Valley,1033,2066
+khanewal,Khanewal,Punjab,fairymeadows,Fairy Meadows,1019,2038
+khanewal,Khanewal,Punjab,deosai,Deosai Plains,1011,2022
+khanewal,Khanewal,Punjab,khunjerab,Khunjerab Pass,1075,2150
+muzaffargarh,Muzaffargarh,Punjab,murree,Murree,640,1280
+muzaffargarh,Muzaffargarh,Punjab,nathiagali,Nathia Gali,662,1324
+muzaffargarh,Muzaffargarh,Punjab,naran,Naran & Kaghan,878,1756
+muzaffargarh,Muzaffargarh,Punjab,swat,Swat & Kalam,925,1850
+muzaffargarh,Muzaffargarh,Punjab,neelum,Neelum Valley,930,1860
+muzaffargarh,Muzaffargarh,Punjab,gorakh,Gorakh Hill,864,1728
+muzaffargarh,Muzaffargarh,Punjab,kundmalir,Kund Malir & Hingol,1019,2038
+muzaffargarh,Muzaffargarh,Punjab,hunza,Hunza (Karimabad),1033,2066
+muzaffargarh,Muzaffargarh,Punjab,skardu,Skardu,1071,2142
+muzaffargarh,Muzaffargarh,Punjab,gilgit,Gilgit,962,1924
+muzaffargarh,Muzaffargarh,Punjab,chitral,Chitral & Kalash,1065,2130
+muzaffargarh,Muzaffargarh,Punjab,astore,Astore Valley,1124,2248
+muzaffargarh,Muzaffargarh,Punjab,fairymeadows,Fairy Meadows,1107,2214
+muzaffargarh,Muzaffargarh,Punjab,deosai,Deosai Plains,1111,2222
+muzaffargarh,Muzaffargarh,Punjab,khunjerab,Khunjerab Pass,1146,2292
+tobateksingh,Toba Tek Singh,Punjab,murree,Murree,456,912
+tobateksingh,Toba Tek Singh,Punjab,nathiagali,Nathia Gali,479,958
+tobateksingh,Toba Tek Singh,Punjab,naran,Naran & Kaghan,677,1354
+tobateksingh,Toba Tek Singh,Punjab,swat,Swat & Kalam,754,1508
+tobateksingh,Toba Tek Singh,Punjab,neelum,Neelum Valley,699,1398
+tobateksingh,Toba Tek Singh,Punjab,gorakh,Gorakh Hill,1126,2252
+tobateksingh,Toba Tek Singh,Punjab,kundmalir,Kund Malir & Hingol,1233,2466
+tobateksingh,Toba Tek Singh,Punjab,hunza,Hunza (Karimabad),847,1694
+tobateksingh,Toba Tek Singh,Punjab,skardu,Skardu,845,1690
+tobateksingh,Toba Tek Singh,Punjab,gilgit,Gilgit,777,1554
+tobateksingh,Toba Tek Singh,Punjab,chitral,Chitral & Kalash,902,1804
+tobateksingh,Toba Tek Singh,Punjab,astore,Astore Valley,885,1770
+tobateksingh,Toba Tek Singh,Punjab,fairymeadows,Fairy Meadows,872,1744
+tobateksingh,Toba Tek Singh,Punjab,deosai,Deosai Plains,861,1722
+tobateksingh,Toba Tek Singh,Punjab,khunjerab,Khunjerab Pass,955,1910
+hafizabad,Hafizabad,Punjab,murree,Murree,278,556
+hafizabad,Hafizabad,Punjab,nathiagali,Nathia Gali,303,606
+hafizabad,Hafizabad,Punjab,naran,Naran & Kaghan,473,946
+hafizabad,Hafizabad,Punjab,swat,Swat & Kalam,591,1182
+hafizabad,Hafizabad,Punjab,neelum,Neelum Valley,463,926
+hafizabad,Hafizabad,Punjab,gorakh,Gorakh Hill,1401,2802
+hafizabad,Hafizabad,Punjab,kundmalir,Kund Malir & Hingol,1458,2916
+hafizabad,Hafizabad,Punjab,hunza,Hunza (Karimabad),648,1296
+hafizabad,Hafizabad,Punjab,skardu,Skardu,602,1204
+hafizabad,Hafizabad,Punjab,gilgit,Gilgit,583,1166
+hafizabad,Hafizabad,Punjab,chitral,Chitral & Kalash,751,1502
+hafizabad,Hafizabad,Punjab,astore,Astore Valley,631,1262
+hafizabad,Hafizabad,Punjab,fairymeadows,Fairy Meadows,624,1248
+hafizabad,Hafizabad,Punjab,deosai,Deosai Plains,593,1186
+hafizabad,Hafizabad,Punjab,khunjerab,Khunjerab Pass,748,1496
+mandibahauddin,Mandi Bahauddin,Punjab,murree,Murree,199,398
+mandibahauddin,Mandi Bahauddin,Punjab,nathiagali,Nathia Gali,223,446
+mandibahauddin,Mandi Bahauddin,Punjab,naran,Naran & Kaghan,388,776
+mandibahauddin,Mandi Bahauddin,Punjab,swat,Swat & Kalam,501,1002
+mandibahauddin,Mandi Bahauddin,Punjab,neelum,Neelum Valley,373,746
+mandibahauddin,Mandi Bahauddin,Punjab,gorakh,Gorakh Hill,1444,2888
+mandibahauddin,Mandi Bahauddin,Punjab,kundmalir,Kund Malir & Hingol,1491,2982
+mandibahauddin,Mandi Bahauddin,Punjab,hunza,Hunza (Karimabad),578,1156
+mandibahauddin,Mandi Bahauddin,Punjab,skardu,Skardu,541,1082
+mandibahauddin,Mandi Bahauddin,Punjab,gilgit,Gilgit,511,1022
+mandibahauddin,Mandi Bahauddin,Punjab,chitral,Chitral & Kalash,652,1304
+mandibahauddin,Mandi Bahauddin,Punjab,astore,Astore Valley,551,1102
+mandibahauddin,Mandi Bahauddin,Punjab,fairymeadows,Fairy Meadows,540,1080
+mandibahauddin,Mandi Bahauddin,Punjab,deosai,Deosai Plains,526,1052
+mandibahauddin,Mandi Bahauddin,Punjab,khunjerab,Khunjerab Pass,683,1366
+narowal,Narowal,Punjab,murree,Murree,329,658
+narowal,Narowal,Punjab,nathiagali,Nathia Gali,350,700
+narowal,Narowal,Punjab,naran,Naran & Kaghan,498,996
+narowal,Narowal,Punjab,swat,Swat & Kalam,649,1298
+narowal,Narowal,Punjab,neelum,Neelum Valley,480,960
+narowal,Narowal,Punjab,gorakh,Gorakh Hill,1548,3096
+narowal,Narowal,Punjab,kundmalir,Kund Malir & Hingol,1579,3158
+narowal,Narowal,Punjab,hunza,Hunza (Karimabad),633,1266
+narowal,Narowal,Punjab,skardu,Skardu,543,1086
+narowal,Narowal,Punjab,gilgit,Gilgit,578,1156
+narowal,Narowal,Punjab,chitral,Chitral & Kalash,833,1666
+narowal,Narowal,Punjab,astore,Astore Valley,599,1198
+narowal,Narowal,Punjab,fairymeadows,Fairy Meadows,605,1210
+narowal,Narowal,Punjab,deosai,Deosai Plains,532,1064
+narowal,Narowal,Punjab,khunjerab,Khunjerab Pass,716,1432
+larkana,Larkana,Sindh,murree,Murree,1162,2324
+larkana,Larkana,Sindh,nathiagali,Nathia Gali,1182,2364
+larkana,Larkana,Sindh,naran,Naran & Kaghan,1449,2898
+larkana,Larkana,Sindh,swat,Swat & Kalam,1460,2920
+larkana,Larkana,Sindh,neelum,Neelum Valley,1568,3136
+larkana,Larkana,Sindh,gorakh,Gorakh Hill,202,404
+larkana,Larkana,Sindh,kundmalir,Kund Malir & Hingol,477,954
+larkana,Larkana,Sindh,hunza,Hunza (Karimabad),1547,3094
+larkana,Larkana,Sindh,skardu,Skardu,1665,3330
+larkana,Larkana,Sindh,gilgit,Gilgit,1475,2950
+larkana,Larkana,Sindh,chitral,Chitral & Kalash,1619,3238
+larkana,Larkana,Sindh,astore,Astore Valley,1768,3536
+larkana,Larkana,Sindh,fairymeadows,Fairy Meadows,1746,3492
+larkana,Larkana,Sindh,deosai,Deosai Plains,1765,3530
+larkana,Larkana,Sindh,khunjerab,Khunjerab Pass,1665,3330
+nawabshah,Nawabshah,Sindh,murree,Murree,1319,2638
+nawabshah,Nawabshah,Sindh,nathiagali,Nathia Gali,1340,2680
+nawabshah,Nawabshah,Sindh,naran,Naran & Kaghan,1629,3258
+nawabshah,Nawabshah,Sindh,swat,Swat & Kalam,1653,3306
+nawabshah,Nawabshah,Sindh,neelum,Neelum Valley,1760,3520
+nawabshah,Nawabshah,Sindh,gorakh,Gorakh Hill,212,424
+nawabshah,Nawabshah,Sindh,kundmalir,Kund Malir & Hingol,408,816
+nawabshah,Nawabshah,Sindh,hunza,Hunza (Karimabad),1710,3420
+nawabshah,Nawabshah,Sindh,skardu,Skardu,1829,3658
+nawabshah,Nawabshah,Sindh,gilgit,Gilgit,1638,3276
+nawabshah,Nawabshah,Sindh,chitral,Chitral & Kalash,1840,3680
+nawabshah,Nawabshah,Sindh,astore,Astore Valley,1957,3914
+nawabshah,Nawabshah,Sindh,fairymeadows,Fairy Meadows,1938,3876
+nawabshah,Nawabshah,Sindh,deosai,Deosai Plains,1944,3888
+nawabshah,Nawabshah,Sindh,khunjerab,Khunjerab Pass,1825,3650
+mirpurkhas,Mirpur Khas,Sindh,murree,Murree,1381,2762
+mirpurkhas,Mirpur Khas,Sindh,nathiagali,Nathia Gali,1403,2806
+mirpurkhas,Mirpur Khas,Sindh,naran,Naran & Kaghan,1701,3402
+mirpurkhas,Mirpur Khas,Sindh,swat,Swat & Kalam,1739,3478
+mirpurkhas,Mirpur Khas,Sindh,neelum,Neelum Valley,1835,3670
+mirpurkhas,Mirpur Khas,Sindh,gorakh,Gorakh Hill,370,740
+mirpurkhas,Mirpur Khas,Sindh,kundmalir,Kund Malir & Hingol,476,952
+mirpurkhas,Mirpur Khas,Sindh,hunza,Hunza (Karimabad),1774,3548
+mirpurkhas,Mirpur Khas,Sindh,skardu,Skardu,1886,3772
+mirpurkhas,Mirpur Khas,Sindh,gilgit,Gilgit,1703,3406
+mirpurkhas,Mirpur Khas,Sindh,chitral,Chitral & Kalash,1944,3888
+mirpurkhas,Mirpur Khas,Sindh,astore,Astore Valley,2027,4054
+mirpurkhas,Mirpur Khas,Sindh,fairymeadows,Fairy Meadows,2011,4022
+mirpurkhas,Mirpur Khas,Sindh,deosai,Deosai Plains,2006,4012
+mirpurkhas,Mirpur Khas,Sindh,khunjerab,Khunjerab Pass,1887,3774
+jacobabad,Jacobabad,Sindh,murree,Murree,1057,2114
+jacobabad,Jacobabad,Sindh,nathiagali,Nathia Gali,1076,2152
+jacobabad,Jacobabad,Sindh,naran,Naran & Kaghan,1330,2660
+jacobabad,Jacobabad,Sindh,swat,Swat & Kalam,1338,2676
+jacobabad,Jacobabad,Sindh,neelum,Neelum Valley,1439,2878
+jacobabad,Jacobabad,Sindh,gorakh,Gorakh Hill,324,648
+jacobabad,Jacobabad,Sindh,kundmalir,Kund Malir & Hingol,571,1142
+jacobabad,Jacobabad,Sindh,hunza,Hunza (Karimabad),1440,2880
+jacobabad,Jacobabad,Sindh,skardu,Skardu,1551,3102
+jacobabad,Jacobabad,Sindh,gilgit,Gilgit,1368,2736
+jacobabad,Jacobabad,Sindh,chitral,Chitral & Kalash,1483,2966
+jacobabad,Jacobabad,Sindh,astore,Astore Valley,1640,3280
+jacobabad,Jacobabad,Sindh,fairymeadows,Fairy Meadows,1617,3234
+jacobabad,Jacobabad,Sindh,deosai,Deosai Plains,1640,3280
+jacobabad,Jacobabad,Sindh,khunjerab,Khunjerab Pass,1559,3118
+shikarpur,Shikarpur,Sindh,murree,Murree,1083,2166
+shikarpur,Shikarpur,Sindh,nathiagali,Nathia Gali,1102,2204
+shikarpur,Shikarpur,Sindh,naran,Naran & Kaghan,1361,2722
+shikarpur,Shikarpur,Sindh,swat,Swat & Kalam,1375,2750
+shikarpur,Shikarpur,Sindh,neelum,Neelum Valley,1470,2940
+shikarpur,Shikarpur,Sindh,gorakh,Gorakh Hill,300,600
+shikarpur,Shikarpur,Sindh,kundmalir,Kund Malir & Hingol,557,1114
+shikarpur,Shikarpur,Sindh,hunza,Hunza (Karimabad),1469,2938
+shikarpur,Shikarpur,Sindh,skardu,Skardu,1576,3152
+shikarpur,Shikarpur,Sindh,gilgit,Gilgit,1396,2792
+shikarpur,Shikarpur,Sindh,chitral,Chitral & Kalash,1529,3058
+shikarpur,Shikarpur,Sindh,astore,Astore Valley,1670,3340
+shikarpur,Shikarpur,Sindh,fairymeadows,Fairy Meadows,1649,3298
+shikarpur,Shikarpur,Sindh,deosai,Deosai Plains,1666,3332
+shikarpur,Shikarpur,Sindh,khunjerab,Khunjerab Pass,1586,3172
+thatta,Thatta,Sindh,murree,Murree,1549,3098
+thatta,Thatta,Sindh,nathiagali,Nathia Gali,1571,3142
+thatta,Thatta,Sindh,naran,Naran & Kaghan,1886,3772
+thatta,Thatta,Sindh,swat,Swat & Kalam,1913,3826
+thatta,Thatta,Sindh,neelum,Neelum Valley,2041,4082
+thatta,Thatta,Sindh,gorakh,Gorakh Hill,397,794
+thatta,Thatta,Sindh,kundmalir,Kund Malir & Hingol,349,698
+thatta,Thatta,Sindh,hunza,Hunza (Karimabad),1941,3882
+thatta,Thatta,Sindh,skardu,Skardu,2081,4162
+thatta,Thatta,Sindh,gilgit,Gilgit,1869,3738
+thatta,Thatta,Sindh,chitral,Chitral & Kalash,2127,4254
+thatta,Thatta,Sindh,astore,Astore Valley,2237,4474
+thatta,Thatta,Sindh,fairymeadows,Fairy Meadows,2219,4438
+thatta,Thatta,Sindh,deosai,Deosai Plains,2220,4440
+thatta,Thatta,Sindh,khunjerab,Khunjerab Pass,2056,4112
+dadu,Dadu,Sindh,murree,Murree,1299,2598
+dadu,Dadu,Sindh,nathiagali,Nathia Gali,1319,2638
+dadu,Dadu,Sindh,naran,Naran & Kaghan,1602,3204
+dadu,Dadu,Sindh,swat,Swat & Kalam,1614,3228
+dadu,Dadu,Sindh,neelum,Neelum Valley,1735,3470
+dadu,Dadu,Sindh,gorakh,Gorakh Hill,80,160
+dadu,Dadu,Sindh,kundmalir,Kund Malir & Hingol,357,714
+dadu,Dadu,Sindh,hunza,Hunza (Karimabad),1685,3370
+dadu,Dadu,Sindh,skardu,Skardu,1816,3632
+dadu,Dadu,Sindh,gilgit,Gilgit,1613,3226
+dadu,Dadu,Sindh,chitral,Chitral & Kalash,1787,3574
+dadu,Dadu,Sindh,astore,Astore Valley,1935,3870
+dadu,Dadu,Sindh,fairymeadows,Fairy Meadows,1913,3826
+dadu,Dadu,Sindh,deosai,Deosai Plains,1930,3860
+dadu,Dadu,Sindh,khunjerab,Khunjerab Pass,1803,3606
+khairpur,Khairpur,Sindh,murree,Murree,1128,2256
+khairpur,Khairpur,Sindh,nathiagali,Nathia Gali,1149,2298
+khairpur,Khairpur,Sindh,naran,Naran & Kaghan,1414,2828
+khairpur,Khairpur,Sindh,swat,Swat & Kalam,1435,2870
+khairpur,Khairpur,Sindh,neelum,Neelum Valley,1527,3054
+khairpur,Khairpur,Sindh,gorakh,Gorakh Hill,270,540
+khairpur,Khairpur,Sindh,kundmalir,Kund Malir & Hingol,532,1064
+khairpur,Khairpur,Sindh,hunza,Hunza (Karimabad),1517,3034
+khairpur,Khairpur,Sindh,skardu,Skardu,1623,3246
+khairpur,Khairpur,Sindh,gilgit,Gilgit,1445,2890
+khairpur,Khairpur,Sindh,chitral,Chitral & Kalash,1598,3196
+khairpur,Khairpur,Sindh,astore,Astore Valley,1725,3450
+khairpur,Khairpur,Sindh,fairymeadows,Fairy Meadows,1705,3410
+khairpur,Khairpur,Sindh,deosai,Deosai Plains,1717,3434
+khairpur,Khairpur,Sindh,khunjerab,Khunjerab Pass,1634,3268
+tandoadam,Tando Adam,Sindh,murree,Murree,1368,2736
+tandoadam,Tando Adam,Sindh,nathiagali,Nathia Gali,1389,2778
+tandoadam,Tando Adam,Sindh,naran,Naran & Kaghan,1685,3370
+tandoadam,Tando Adam,Sindh,swat,Swat & Kalam,1716,3432
+tandoadam,Tando Adam,Sindh,neelum,Neelum Valley,1819,3638
+tandoadam,Tando Adam,Sindh,gorakh,Gorakh Hill,297,594
+tandoadam,Tando Adam,Sindh,kundmalir,Kund Malir & Hingol,430,860
+tandoadam,Tando Adam,Sindh,hunza,Hunza (Karimabad),1760,3520
+tandoadam,Tando Adam,Sindh,skardu,Skardu,1877,3754
+tandoadam,Tando Adam,Sindh,gilgit,Gilgit,1688,3376
+tandoadam,Tando Adam,Sindh,chitral,Chitral & Kalash,1914,3828
+tandoadam,Tando Adam,Sindh,astore,Astore Valley,2014,4028
+tandoadam,Tando Adam,Sindh,fairymeadows,Fairy Meadows,1996,3992
+tandoadam,Tando Adam,Sindh,deosai,Deosai Plains,1997,3994
+tandoadam,Tando Adam,Sindh,khunjerab,Khunjerab Pass,1874,3748
+mardan,Mardan,KPK,murree,Murree,176,352
+mardan,Mardan,KPK,nathiagali,Nathia Gali,170,340
+mardan,Mardan,KPK,naran,Naran & Kaghan,253,506
+mardan,Mardan,KPK,swat,Swat & Kalam,229,458
+mardan,Mardan,KPK,neelum,Neelum Valley,294,588
+mardan,Mardan,KPK,gorakh,Gorakh Hill,1543,3086
+mardan,Mardan,KPK,kundmalir,Kund Malir & Hingol,1554,3108
+mardan,Mardan,KPK,hunza,Hunza (Karimabad),452,904
+mardan,Mardan,KPK,skardu,Skardu,528,1056
+mardan,Mardan,KPK,gilgit,Gilgit,382,764
+mardan,Mardan,KPK,chitral,Chitral & Kalash,305,610
+mardan,Mardan,KPK,astore,Astore Valley,478,956
+mardan,Mardan,KPK,fairymeadows,Fairy Meadows,443,886
+mardan,Mardan,KPK,deosai,Deosai Plains,532,1064
+mardan,Mardan,KPK,khunjerab,Khunjerab Pass,574,1148
+abbottabad,Abbottabad,KPK,murree,Murree,43,86
+abbottabad,Abbottabad,KPK,nathiagali,Nathia Gali,26,52
+abbottabad,Abbottabad,KPK,naran,Naran & Kaghan,141,282
+abbottabad,Abbottabad,KPK,swat,Swat & Kalam,239,478
+abbottabad,Abbottabad,KPK,neelum,Neelum Valley,134,268
+abbottabad,Abbottabad,KPK,gorakh,Gorakh Hill,1634,3268
+abbottabad,Abbottabad,KPK,kundmalir,Kund Malir & Hingol,1637,3274
+abbottabad,Abbottabad,KPK,hunza,Hunza (Karimabad),371,742
+abbottabad,Abbottabad,KPK,skardu,Skardu,385,770
+abbottabad,Abbottabad,KPK,gilgit,Gilgit,299,598
+abbottabad,Abbottabad,KPK,chitral,Chitral & Kalash,378,756
+abbottabad,Abbottabad,KPK,astore,Astore Valley,335,670
+abbottabad,Abbottabad,KPK,fairymeadows,Fairy Meadows,308,616
+abbottabad,Abbottabad,KPK,deosai,Deosai Plains,367,734
+abbottabad,Abbottabad,KPK,khunjerab,Khunjerab Pass,487,974
+mansehra,Mansehra,KPK,murree,Murree,68,136
+mansehra,Mansehra,KPK,nathiagali,Nathia Gali,46,92
+mansehra,Mansehra,KPK,naran,Naran & Kaghan,115,230
+mansehra,Mansehra,KPK,swat,Swat & Kalam,211,422
+mansehra,Mansehra,KPK,neelum,Neelum Valley,117,234
+mansehra,Mansehra,KPK,gorakh,Gorakh Hill,1661,3322
+mansehra,Mansehra,KPK,kundmalir,Kund Malir & Hingol,1658,3316
+mansehra,Mansehra,KPK,hunza,Hunza (Karimabad),347,694
+mansehra,Mansehra,KPK,skardu,Skardu,370,740
+mansehra,Mansehra,KPK,gilgit,Gilgit,275,550
+mansehra,Mansehra,KPK,chitral,Chitral & Kalash,350,700
+mansehra,Mansehra,KPK,astore,Astore Valley,314,628
+mansehra,Mansehra,KPK,fairymeadows,Fairy Meadows,284,568
+mansehra,Mansehra,KPK,deosai,Deosai Plains,355,710
+mansehra,Mansehra,KPK,khunjerab,Khunjerab Pass,465,930
+kohat,Kohat,KPK,murree,Murree,248,496
+kohat,Kohat,KPK,nathiagali,Nathia Gali,253,506
+kohat,Kohat,KPK,naran,Naran & Kaghan,376,752
+kohat,Kohat,KPK,swat,Swat & Kalam,354,708
+kohat,Kohat,KPK,neelum,Neelum Valley,417,834
+kohat,Kohat,KPK,gorakh,Gorakh Hill,1402,2804
+kohat,Kohat,KPK,kundmalir,Kund Malir & Hingol,1437,2874
+kohat,Kohat,KPK,hunza,Hunza (Karimabad),569,1138
+kohat,Kohat,KPK,skardu,Skardu,643,1286
+kohat,Kohat,KPK,gilgit,Gilgit,498,996
+kohat,Kohat,KPK,chitral,Chitral & Kalash,419,838
+kohat,Kohat,KPK,astore,Astore Valley,611,1222
+kohat,Kohat,KPK,fairymeadows,Fairy Meadows,578,1156
+kohat,Kohat,KPK,deosai,Deosai Plains,654,1308
+kohat,Kohat,KPK,khunjerab,Khunjerab Pass,691,1382
+swabi,Swabi,KPK,murree,Murree,119,238
+swabi,Swabi,KPK,nathiagali,Nathia Gali,114,228
+swabi,Swabi,KPK,naran,Naran & Kaghan,209,418
+swabi,Swabi,KPK,swat,Swat & Kalam,229,458
+swabi,Swabi,KPK,neelum,Neelum Valley,234,468
+swabi,Swabi,KPK,gorakh,Gorakh Hill,1566,3132
+swabi,Swabi,KPK,kundmalir,Kund Malir & Hingol,1577,3154
+swabi,Swabi,KPK,hunza,Hunza (Karimabad),424,848
+swabi,Swabi,KPK,skardu,Skardu,476,952
+swabi,Swabi,KPK,gilgit,Gilgit,352,704
+swabi,Swabi,KPK,chitral,Chitral & Kalash,334,668
+swabi,Swabi,KPK,astore,Astore Valley,427,854
+swabi,Swabi,KPK,fairymeadows,Fairy Meadows,394,788
+swabi,Swabi,KPK,deosai,Deosai Plains,472,944
+swabi,Swabi,KPK,khunjerab,Khunjerab Pass,545,1090
+nowshera,Nowshera,KPK,murree,Murree,177,354
+nowshera,Nowshera,KPK,nathiagali,Nathia Gali,176,352
+nowshera,Nowshera,KPK,naran,Naran & Kaghan,275,550
+nowshera,Nowshera,KPK,swat,Swat & Kalam,260,520
+nowshera,Nowshera,KPK,neelum,Neelum Valley,311,622
+nowshera,Nowshera,KPK,gorakh,Gorakh Hill,1511,3022
+nowshera,Nowshera,KPK,kundmalir,Kund Malir & Hingol,1528,3056
+nowshera,Nowshera,KPK,hunza,Hunza (Karimabad),477,954
+nowshera,Nowshera,KPK,skardu,Skardu,546,1092
+nowshera,Nowshera,KPK,gilgit,Gilgit,405,810
+nowshera,Nowshera,KPK,chitral,Chitral & Kalash,338,676
+nowshera,Nowshera,KPK,astore,Astore Valley,501,1002
+nowshera,Nowshera,KPK,fairymeadows,Fairy Meadows,467,934
+nowshera,Nowshera,KPK,deosai,Deosai Plains,549,1098
+nowshera,Nowshera,KPK,khunjerab,Khunjerab Pass,598,1196
+dikhan,Dera Ismail Khan,KPK,murree,Murree,442,884
+dikhan,Dera Ismail Khan,KPK,nathiagali,Nathia Gali,459,918
+dikhan,Dera Ismail Khan,KPK,naran,Naran & Kaghan,640,1280
+dikhan,Dera Ismail Khan,KPK,swat,Swat & Kalam,653,1306
+dikhan,Dera Ismail Khan,KPK,neelum,Neelum Valley,685,1370
+dikhan,Dera Ismail Khan,KPK,gorakh,Gorakh Hill,1083,2166
+dikhan,Dera Ismail Khan,KPK,kundmalir,Kund Malir & Hingol,1184,2368
+dikhan,Dera Ismail Khan,KPK,hunza,Hunza (Karimabad),819,1638
+dikhan,Dera Ismail Khan,KPK,skardu,Skardu,875,1750
+dikhan,Dera Ismail Khan,KPK,gilgit,Gilgit,746,1492
+dikhan,Dera Ismail Khan,KPK,chitral,Chitral & Kalash,750,1500
+dikhan,Dera Ismail Khan,KPK,astore,Astore Valley,887,1774
+dikhan,Dera Ismail Khan,KPK,fairymeadows,Fairy Meadows,861,1722
+dikhan,Dera Ismail Khan,KPK,deosai,Deosai Plains,899,1798
+dikhan,Dera Ismail Khan,KPK,khunjerab,Khunjerab Pass,938,1876
+bannu,Bannu,KPK,murree,Murree,375,750
+bannu,Bannu,KPK,nathiagali,Nathia Gali,384,768
+bannu,Bannu,KPK,naran,Naran & Kaghan,529,1058
+bannu,Bannu,KPK,swat,Swat & Kalam,498,996
+bannu,Bannu,KPK,neelum,Neelum Valley,583,1166
+bannu,Bannu,KPK,gorakh,Gorakh Hill,1246,2492
+bannu,Bannu,KPK,kundmalir,Kund Malir & Hingol,1305,2610
+bannu,Bannu,KPK,hunza,Hunza (Karimabad),706,1412
+bannu,Bannu,KPK,skardu,Skardu,794,1588
+bannu,Bannu,KPK,gilgit,Gilgit,635,1270
+bannu,Bannu,KPK,chitral,Chitral & Kalash,555,1110
+bannu,Bannu,KPK,astore,Astore Valley,779,1558
+bannu,Bannu,KPK,fairymeadows,Fairy Meadows,747,1494
+bannu,Bannu,KPK,deosai,Deosai Plains,817,1634
+bannu,Bannu,KPK,khunjerab,Khunjerab Pass,828,1656
+charsadda,Charsadda,KPK,murree,Murree,210,420
+charsadda,Charsadda,KPK,nathiagali,Nathia Gali,206,412
+charsadda,Charsadda,KPK,naran,Naran & Kaghan,293,586
+charsadda,Charsadda,KPK,swat,Swat & Kalam,253,506
+charsadda,Charsadda,KPK,neelum,Neelum Valley,340,680
+charsadda,Charsadda,KPK,gorakh,Gorakh Hill,1513,3026
+charsadda,Charsadda,KPK,kundmalir,Kund Malir & Hingol,1527,3054
+charsadda,Charsadda,KPK,hunza,Hunza (Karimabad),484,968
+charsadda,Charsadda,KPK,skardu,Skardu,568,1136
+charsadda,Charsadda,KPK,gilgit,Gilgit,414,828
+charsadda,Charsadda,KPK,chitral,Chitral & Kalash,313,626
+charsadda,Charsadda,KPK,astore,Astore Valley,522,1044
+charsadda,Charsadda,KPK,fairymeadows,Fairy Meadows,486,972
+charsadda,Charsadda,KPK,deosai,Deosai Plains,577,1154
+charsadda,Charsadda,KPK,khunjerab,Khunjerab Pass,606,1212
+haripur,Haripur,KPK,murree,Murree,58,116
+haripur,Haripur,KPK,nathiagali,Nathia Gali,57,114
+haripur,Haripur,KPK,naran,Naran & Kaghan,182,364
+haripur,Haripur,KPK,swat,Swat & Kalam,254,508
+haripur,Haripur,KPK,neelum,Neelum Valley,183,366
+haripur,Haripur,KPK,gorakh,Gorakh Hill,1587,3174
+haripur,Haripur,KPK,kundmalir,Kund Malir & Hingol,1598,3196
+haripur,Haripur,KPK,hunza,Hunza (Karimabad),407,814
+haripur,Haripur,KPK,skardu,Skardu,429,858
+haripur,Haripur,KPK,gilgit,Gilgit,335,670
+haripur,Haripur,KPK,chitral,Chitral & Kalash,382,764
+haripur,Haripur,KPK,astore,Astore Valley,384,768
+haripur,Haripur,KPK,fairymeadows,Fairy Meadows,356,712
+haripur,Haripur,KPK,deosai,Deosai Plains,416,832
+haripur,Haripur,KPK,khunjerab,Khunjerab Pass,525,1050
+gwadar,Gwadar,Balochistan,murree,Murree,1954,3908
+gwadar,Gwadar,Balochistan,nathiagali,Nathia Gali,1969,3938
+gwadar,Gwadar,Balochistan,naran,Naran & Kaghan,2307,4614
+gwadar,Gwadar,Balochistan,swat,Swat & Kalam,2271,4542
+gwadar,Gwadar,Balochistan,neelum,Neelum Valley,2529,5058
+gwadar,Gwadar,Balochistan,gorakh,Gorakh Hill,879,1758
+gwadar,Gwadar,Balochistan,kundmalir,Kund Malir & Hingol,435,870
+gwadar,Gwadar,Balochistan,hunza,Hunza (Karimabad),2309,4618
+gwadar,Gwadar,Balochistan,skardu,Skardu,2556,5112
+gwadar,Gwadar,Balochistan,gilgit,Gilgit,2239,4478
+gwadar,Gwadar,Balochistan,chitral,Chitral & Kalash,2469,4938
+gwadar,Gwadar,Balochistan,astore,Astore Valley,2730,5460
+gwadar,Gwadar,Balochistan,fairymeadows,Fairy Meadows,2701,5402
+gwadar,Gwadar,Balochistan,deosai,Deosai Plains,2749,5498
+gwadar,Gwadar,Balochistan,khunjerab,Khunjerab Pass,2431,4862
+turbat,Turbat,Balochistan,murree,Murree,1791,3582
+turbat,Turbat,Balochistan,nathiagali,Nathia Gali,1806,3612
+turbat,Turbat,Balochistan,naran,Naran & Kaghan,2125,4250
+turbat,Turbat,Balochistan,swat,Swat & Kalam,2088,4176
+turbat,Turbat,Balochistan,neelum,Neelum Valley,2329,4658
+turbat,Turbat,Balochistan,gorakh,Gorakh Hill,714,1428
+turbat,Turbat,Balochistan,kundmalir,Kund Malir & Hingol,338,676
+turbat,Turbat,Balochistan,hunza,Hunza (Karimabad),2145,4290
+turbat,Turbat,Balochistan,skardu,Skardu,2375,4750
+turbat,Turbat,Balochistan,gilgit,Gilgit,2074,4148
+turbat,Turbat,Balochistan,chitral,Chitral & Kalash,2268,4536
+turbat,Turbat,Balochistan,astore,Astore Valley,2530,5060
+turbat,Turbat,Balochistan,fairymeadows,Fairy Meadows,2501,5002
+turbat,Turbat,Balochistan,deosai,Deosai Plains,2551,5102
+turbat,Turbat,Balochistan,khunjerab,Khunjerab Pass,2267,4534
+khuzdar,Khuzdar,Balochistan,murree,Murree,1264,2528
+khuzdar,Khuzdar,Balochistan,nathiagali,Nathia Gali,1281,2562
+khuzdar,Khuzdar,Balochistan,naran,Naran & Kaghan,1550,3100
+khuzdar,Khuzdar,Balochistan,swat,Swat & Kalam,1535,3070
+khuzdar,Khuzdar,Balochistan,neelum,Neelum Valley,1689,3378
+khuzdar,Khuzdar,Balochistan,gorakh,Gorakh Hill,211,422
+khuzdar,Khuzdar,Balochistan,kundmalir,Kund Malir & Hingol,375,750
+khuzdar,Khuzdar,Balochistan,hunza,Hunza (Karimabad),1634,3268
+khuzdar,Khuzdar,Balochistan,skardu,Skardu,1787,3574
+khuzdar,Khuzdar,Balochistan,gilgit,Gilgit,1562,3124
+khuzdar,Khuzdar,Balochistan,chitral,Chitral & Kalash,1680,3360
+khuzdar,Khuzdar,Balochistan,astore,Astore Valley,1891,3782
+khuzdar,Khuzdar,Balochistan,fairymeadows,Fairy Meadows,1864,3728
+khuzdar,Khuzdar,Balochistan,deosai,Deosai Plains,1902,3804
+khuzdar,Khuzdar,Balochistan,khunjerab,Khunjerab Pass,1755,3510
+chaman,Chaman,Balochistan,murree,Murree,986,1972
+chaman,Chaman,Balochistan,nathiagali,Nathia Gali,996,1992
+chaman,Chaman,Balochistan,naran,Naran & Kaghan,1206,2412
+chaman,Chaman,Balochistan,swat,Swat & Kalam,1144,2288
+chaman,Chaman,Balochistan,neelum,Neelum Valley,1331,2662
+chaman,Chaman,Balochistan,gorakh,Gorakh Hill,762,1524
+chaman,Chaman,Balochistan,kundmalir,Kund Malir & Hingol,821,1642
+chaman,Chaman,Balochistan,hunza,Hunza (Karimabad),1305,2610
+chaman,Chaman,Balochistan,skardu,Skardu,1474,2948
+chaman,Chaman,Balochistan,gilgit,Gilgit,1236,2472
+chaman,Chaman,Balochistan,chitral,Chitral & Kalash,1218,2436
+chaman,Chaman,Balochistan,astore,Astore Valley,1526,3052
+chaman,Chaman,Balochistan,fairymeadows,Fairy Meadows,1491,2982
+chaman,Chaman,Balochistan,deosai,Deosai Plains,1565,3130
+chaman,Chaman,Balochistan,khunjerab,Khunjerab Pass,1426,2852
+sibi,Sibi,Balochistan,murree,Murree,961,1922
+sibi,Sibi,Balochistan,nathiagali,Nathia Gali,977,1954
+sibi,Sibi,Balochistan,naran,Naran & Kaghan,1210,2420
+sibi,Sibi,Balochistan,swat,Swat & Kalam,1192,2384
+sibi,Sibi,Balochistan,neelum,Neelum Valley,1317,2634
+sibi,Sibi,Balochistan,gorakh,Gorakh Hill,506,1012
+sibi,Sibi,Balochistan,kundmalir,Kund Malir & Hingol,682,1364
+sibi,Sibi,Balochistan,hunza,Hunza (Karimabad),1327,2654
+sibi,Sibi,Balochistan,skardu,Skardu,1453,2906
+sibi,Sibi,Balochistan,gilgit,Gilgit,1255,2510
+sibi,Sibi,Balochistan,chitral,Chitral & Kalash,1305,2610
+sibi,Sibi,Balochistan,astore,Astore Valley,1519,3038
+sibi,Sibi,Balochistan,fairymeadows,Fairy Meadows,1491,2982
+sibi,Sibi,Balochistan,deosai,Deosai Plains,1535,3070
+sibi,Sibi,Balochistan,khunjerab,Khunjerab Pass,1448,2896
+mirpurajk,Mirpur (AJK),Azad Kashmir,murree,Murree,123,246
+mirpurajk,Mirpur (AJK),Azad Kashmir,nathiagali,Nathia Gali,146,292
+mirpurajk,Mirpur (AJK),Azad Kashmir,naran,Naran & Kaghan,294,588
+mirpurajk,Mirpur (AJK),Azad Kashmir,swat,Swat & Kalam,423,846
+mirpurajk,Mirpur (AJK),Azad Kashmir,neelum,Neelum Valley,266,532
+mirpurajk,Mirpur (AJK),Azad Kashmir,gorakh,Gorakh Hill,1546,3092
+mirpurajk,Mirpur (AJK),Azad Kashmir,kundmalir,Kund Malir & Hingol,1573,3146
+mirpurajk,Mirpur (AJK),Azad Kashmir,hunza,Hunza (Karimabad),488,976
+mirpurajk,Mirpur (AJK),Azad Kashmir,skardu,Skardu,443,886
+mirpurajk,Mirpur (AJK),Azad Kashmir,gilgit,Gilgit,422,844
+mirpurajk,Mirpur (AJK),Azad Kashmir,chitral,Chitral & Kalash,578,1156
+mirpurajk,Mirpur (AJK),Azad Kashmir,astore,Astore Valley,440,880
+mirpurajk,Mirpur (AJK),Azad Kashmir,fairymeadows,Fairy Meadows,430,860
+mirpurajk,Mirpur (AJK),Azad Kashmir,deosai,Deosai Plains,419,838
+mirpurajk,Mirpur (AJK),Azad Kashmir,khunjerab,Khunjerab Pass,592,1184

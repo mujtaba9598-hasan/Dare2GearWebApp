@@ -55,6 +55,66 @@ export const ORIGINS: OriginCity[] = [
   { id: "rawalpindi", name: "Rawalpindi", province: "Punjab", lat: 33.5651, lng: 73.0169 },
   { id: "peshawar", name: "Peshawar", province: "KPK", lat: 34.0151, lng: 71.5249 },
   { id: "quetta", name: "Quetta", province: "Balochistan", lat: 30.1798, lng: 66.975 },
+
+  // --- Punjab ---
+  { id: "gujranwala", name: "Gujranwala", province: "Punjab", lat: 32.1617, lng: 74.1883 },
+  { id: "sialkot", name: "Sialkot", province: "Punjab", lat: 32.4945, lng: 74.5229 },
+  { id: "bahawalpur", name: "Bahawalpur", province: "Punjab", lat: 29.3956, lng: 71.6836 },
+  { id: "sargodha", name: "Sargodha", province: "Punjab", lat: 32.0836, lng: 72.6711 },
+  { id: "sahiwal", name: "Sahiwal", province: "Punjab", lat: 30.6682, lng: 73.1114 },
+  { id: "sheikhupura", name: "Sheikhupura", province: "Punjab", lat: 31.7131, lng: 73.9783 },
+  { id: "rahimyarkhan", name: "Rahim Yar Khan", province: "Punjab", lat: 28.4202, lng: 70.2952 },
+  { id: "jhang", name: "Jhang", province: "Punjab", lat: 31.2681, lng: 72.3181 },
+  { id: "gujrat", name: "Gujrat", province: "Punjab", lat: 32.5731, lng: 74.0789 },
+  { id: "kasur", name: "Kasur", province: "Punjab", lat: 31.1187, lng: 74.4504 },
+  { id: "okara", name: "Okara", province: "Punjab", lat: 30.8138, lng: 73.4534 },
+  { id: "dgkhan", name: "Dera Ghazi Khan", province: "Punjab", lat: 30.0561, lng: 70.6403 },
+  { id: "chiniot", name: "Chiniot", province: "Punjab", lat: 31.7202, lng: 72.9783 },
+  { id: "mianwali", name: "Mianwali", province: "Punjab", lat: 32.5853, lng: 71.5436 },
+  { id: "bhakkar", name: "Bhakkar", province: "Punjab", lat: 31.6333, lng: 71.0667 },
+  { id: "jhelum", name: "Jhelum", province: "Punjab", lat: 32.9425, lng: 73.7257 },
+  { id: "attock", name: "Attock", province: "Punjab", lat: 33.7667, lng: 72.3597 },
+  { id: "chakwal", name: "Chakwal", province: "Punjab", lat: 32.9303, lng: 72.8553 },
+  { id: "vehari", name: "Vehari", province: "Punjab", lat: 30.0419, lng: 72.3489 },
+  { id: "khanewal", name: "Khanewal", province: "Punjab", lat: 30.3017, lng: 71.9321 },
+  { id: "muzaffargarh", name: "Muzaffargarh", province: "Punjab", lat: 30.0703, lng: 71.1933 },
+  { id: "tobateksingh", name: "Toba Tek Singh", province: "Punjab", lat: 30.9709, lng: 72.4826 },
+  { id: "hafizabad", name: "Hafizabad", province: "Punjab", lat: 32.0709, lng: 73.6883 },
+  { id: "mandibahauddin", name: "Mandi Bahauddin", province: "Punjab", lat: 32.5861, lng: 73.4914 },
+  { id: "narowal", name: "Narowal", province: "Punjab", lat: 32.1014, lng: 74.8728 },
+
+  // --- Sindh ---
+  { id: "larkana", name: "Larkana", province: "Sindh", lat: 27.56, lng: 68.2264 },
+  { id: "nawabshah", name: "Nawabshah", province: "Sindh", lat: 26.2442, lng: 68.41 },
+  { id: "mirpurkhas", name: "Mirpur Khas", province: "Sindh", lat: 25.5276, lng: 69.0111 },
+  { id: "jacobabad", name: "Jacobabad", province: "Sindh", lat: 28.282, lng: 68.4376 },
+  { id: "shikarpur", name: "Shikarpur", province: "Sindh", lat: 27.9556, lng: 68.6382 },
+  { id: "thatta", name: "Thatta", province: "Sindh", lat: 24.7461, lng: 67.9243 },
+  { id: "dadu", name: "Dadu", province: "Sindh", lat: 26.7319, lng: 67.7758 },
+  { id: "khairpur", name: "Khairpur", province: "Sindh", lat: 27.5295, lng: 68.7592 },
+  { id: "tandoadam", name: "Tando Adam", province: "Sindh", lat: 25.7667, lng: 68.6622 },
+
+  // --- KPK ---
+  { id: "mardan", name: "Mardan", province: "KPK", lat: 34.1989, lng: 72.0231 },
+  { id: "abbottabad", name: "Abbottabad", province: "KPK", lat: 34.1495, lng: 73.1995 },
+  { id: "mansehra", name: "Mansehra", province: "KPK", lat: 34.3333, lng: 73.1968 },
+  { id: "kohat", name: "Kohat", province: "KPK", lat: 33.5869, lng: 71.4414 },
+  { id: "swabi", name: "Swabi", province: "KPK", lat: 34.1206, lng: 72.4697 },
+  { id: "nowshera", name: "Nowshera", province: "KPK", lat: 34.0153, lng: 71.9747 },
+  { id: "dikhan", name: "Dera Ismail Khan", province: "KPK", lat: 31.8313, lng: 70.9019 },
+  { id: "bannu", name: "Bannu", province: "KPK", lat: 32.9889, lng: 70.6056 },
+  { id: "charsadda", name: "Charsadda", province: "KPK", lat: 34.1453, lng: 71.7308 },
+  { id: "haripur", name: "Haripur", province: "KPK", lat: 33.9947, lng: 72.9342 },
+
+  // --- Balochistan ---
+  { id: "gwadar", name: "Gwadar", province: "Balochistan", lat: 25.1264, lng: 62.3225 },
+  { id: "turbat", name: "Turbat", province: "Balochistan", lat: 26.0031, lng: 63.0544 },
+  { id: "khuzdar", name: "Khuzdar", province: "Balochistan", lat: 27.812, lng: 66.617 },
+  { id: "chaman", name: "Chaman", province: "Balochistan", lat: 30.9214, lng: 66.4597 },
+  { id: "sibi", name: "Sibi", province: "Balochistan", lat: 29.543, lng: 67.8773 },
+
+  // --- Azad Kashmir ---
+  { id: "mirpurajk", name: "Mirpur (AJK)", province: "Azad Kashmir", lat: 33.1478, lng: 73.7517 },
 ];
 
 // ----------------------------------------------------------------------------

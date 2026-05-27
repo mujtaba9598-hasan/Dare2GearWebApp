@@ -83,7 +83,7 @@ function haversineKm(a: GeoPoint, b: GeoPoint): number {
 
 /** Roads in the north wind heavily; inflate straight-line distance to estimate
  * real road distance based on terrain. */
-function roadDistanceKm(origin: GeoPoint, dest: Destination): number {
+export function roadDistanceKm(origin: GeoPoint, dest: Destination): number {
   const straight = haversineKm(origin, dest);
   const factor =
     dest.terrain === "highway" ? 1.35 : dest.terrain === "mixed" ? 1.5 : 1.65;
