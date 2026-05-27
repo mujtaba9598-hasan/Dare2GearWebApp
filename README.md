@@ -126,6 +126,8 @@ npm start
 | `npm start` | Serve the production build |
 | `npm run lint` | Run ESLint |
 | `npm run gen:distances` | Regenerate `DISTANCES.md` + `data/distances.csv` from the dataset |
+| `npm run update:fuel` | Fetch latest official fuel prices and update `src/data/fuel-prices.json` |
+| `npm run check:fuel` | Report parsed-vs-stored prices and flag if stored data is stale |
 
 ---
 
@@ -183,6 +185,47 @@ For every destination, given the user's inputs, the engine in `src/lib/planner.t
    budget, then split into **Top picks**, **Also within reach**, and **Stretch goals**.
 
 It's all pure TypeScript — no network calls — so results are instant.
+
+---
+
+## ⛽ Fuel Prices (kept current, free, no API key)
+
+Fuel prices are the most time-sensitive input, so they live in **one source of
+truth**: [`src/data/fuel-prices.json`](src/data/fuel-prices.json) — with the
+values, effective date and the official source URL. The whole app reads from it,
+and the planner + landing page **display the current rates** with the date and an
+OGRA source link.
+
+Current values are the official **OGRA** notification (Petrol Rs 403.78/L, HSD
+Rs 402.78/L, effective 23 May 2026). Petrol & diesel are OGRA-regulated and
+revised about every 15 days (around the 1st and 16th); hi-octane is not regulated
+and varies by company.
+
+**How to keep it updated — all free, no API key required:**
+
+| Option | How | Reliability |
+|--------|-----|-------------|
+| ✍️ **Manual edit** | Open `src/data/fuel-prices.json`, change the numbers + `effectiveDate`. 10 seconds. | ⭐⭐⭐ Always works |
+| 🤖 **Assistive script** | `npm run update:fuel` scrapes the public OGRA/PSO pages. Has guards (rejects garbage / identical petrol=diesel). **Eyeball before committing** — free price aggregators are inconsistent. | ⭐⭐ Best-effort |
+| 🔔 **GitHub Action** | `.github/workflows/fuel-price-check.yml` runs on the 2nd & 17th and **emails you** if stored prices look stale, so you never forget. Uses the built-in token. | ⭐⭐⭐ Reliable reminder |
+| 🗓️ **Scheduled AI refresh** | A twice-monthly Claude routine (`/schedule`) can look up the official rate, update the JSON and push — most reliable since the numbers are read with judgment, not regex. | ⭐⭐⭐ |
+
+> **On API keys:** none are needed for any option above. There is no free official
+> OGRA JSON API; paid commodity-price APIs exist but aren't required. The honest
+> takeaway from testing: free web-scraping of price aggregators is *inconsistent*,
+> so the project favours a verified JSON + reminders over silently committing
+> scraped numbers.
+
+---
+
+## 👥 Vehicle Seating & Convoys
+
+Each vehicle has a realistic seating capacity (bike = 2, small car = 4, sedan = 5,
+SUV = 7–8). If the group is larger than one vehicle holds, the planner assumes a
+**convoy** — `vehicles needed = ceil(travelers ÷ seats)` — and multiplies the
+**fuel and tolls** accordingly (each vehicle drives the whole route), while hotels
+and food stay per-person. The convoy size and its cost impact are shown in the
+form hint and the results.
 
 ---
 

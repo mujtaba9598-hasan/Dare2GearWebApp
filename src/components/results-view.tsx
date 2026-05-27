@@ -61,7 +61,11 @@ export function ResultsView({
         />
         <SummaryStat
           icon={<GaugeIcon className="h-5 w-5" />}
-          label={VEHICLE_CLASS_LABELS[result.vehicle.class]}
+          label={
+            result.needsMultipleVehicles
+              ? `${result.vehiclesNeeded}× ${VEHICLE_CLASS_LABELS[result.vehicle.class]}`
+              : VEHICLE_CLASS_LABELS[result.vehicle.class]
+          }
           value={`${result.effectiveKmPerLiter} km/L`}
         />
         <SummaryStat
@@ -80,6 +84,22 @@ export function ResultsView({
           value={km(result.maxReachKm)}
         />
       </div>
+
+      {/* Convoy notice — group exceeds one vehicle's seats */}
+      {result.needsMultipleVehicles && (
+        <div className="mt-4 flex items-start gap-3 rounded-xl border border-amber-200 bg-amber-50/70 p-4">
+          <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-100 text-amber-700">
+            <UsersIcon className="h-5 w-5" />
+          </span>
+          <p className="text-sm leading-relaxed text-amber-900">
+            Your group of <strong>{input.people}</strong> won&apos;t fit in one{" "}
+            {result.vehicle.name} ({result.seatsPerVehicle} seats), so the plan
+            assumes a <strong>convoy of {result.vehiclesNeeded} {result.vehicle.class === "bike" ? "bikes" : "vehicles"}</strong>.
+            Fuel and tolls below are counted for all {result.vehiclesNeeded} — hotels and
+            food stay per-person.
+          </p>
+        </div>
+      )}
 
       {result.recommended.length > 0 ? (
         <>

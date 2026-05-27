@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { PlannerForm } from "@/components/planner-form";
+import { FuelPriceBar } from "@/components/fuel-prices";
 
 export const metadata: Metadata = {
   title: "Trip Planner — Dare to Gear",
@@ -23,6 +24,10 @@ export default function PlannerPage() {
             Fill in the details below. We&apos;ll calculate fuel, stays and food, then
             rank the Pakistani destinations that fit your money and your days.
           </p>
+        </div>
+
+        <div className="mb-6">
+          <FuelPriceBar />
         </div>
 
         <PlannerForm />

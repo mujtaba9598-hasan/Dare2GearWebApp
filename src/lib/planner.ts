@@ -39,7 +39,9 @@ export interface DestinationPlan {
   /** one-way road distance (km) */
   distanceKm: number;
   roundTripKm: number;
+  /** total litres burned across ALL vehicles in the convoy */
   liters: number;
+  vehiclesNeeded: number;
   drivingHoursOneWay: number;
   minDaysNeeded: number;
   costs: CostBreakdown;
@@ -58,6 +60,11 @@ export interface PlanResult {
   origin: GeoPoint;
   vehicle: VehicleModel;
   effectiveKmPerLiter: number;
+  /** how many of the chosen vehicle the group needs to fit everyone */
+  vehiclesNeeded: number;
+  seatsPerVehicle: number;
+  /** total seats vs. travelers — true when one vehicle isn't enough */
+  needsMultipleVehicles: boolean;
   /** farthest one-way distance reachable if ~45% of budget went to fuel */
   maxReachKm: number;
   recommended: DestinationPlan[];
@@ -110,11 +117,14 @@ function planDestination(
   origin: GeoPoint,
   vehicle: VehicleModel,
   kmPerLiter: number,
+  vehiclesNeeded: number,
   dest: Destination,
 ): DestinationPlan {
   const distanceKm = roadDistanceKm(origin, dest);
   const roundTripKm = distanceKm * 2;
-  const liters = roundTripKm / kmPerLiter;
+  // Every vehicle in the convoy drives the full route and burns its own fuel.
+  const litersPerVehicle = roundTripKm / kmPerLiter;
+  const liters = litersPerVehicle * vehiclesNeeded;
   const fuel = round(liters * FUEL_PRICES[vehicle.fuel]);
 
   const nights = Math.max(1, input.days - 1);
@@ -123,8 +133,8 @@ function planDestination(
 
   const food = round(FOOD_RATES[input.hotelTier] * dest.costFactor * input.people * input.days);
 
-  // misc = tolls/permits (per 100km) + per-person activities + 10% buffer
-  const tolls = round((roundTripKm / 100) * 150);
+  // misc = tolls/permits (per 100km, per vehicle) + per-person activities + 10% buffer
+  const tolls = round((roundTripKm / 100) * 150 * vehiclesNeeded);
   const activities = round(input.people * 1500);
   const subtotal = fuel + hotel + food + tolls + activities;
   const buffer = round(subtotal * 0.1);
@@ -166,6 +176,7 @@ function planDestination(
     distanceKm,
     roundTripKm,
     liters: Math.round(liters * 10) / 10,
+    vehiclesNeeded,
     drivingHoursOneWay: Math.round(drivingHoursOneWay * 10) / 10,
     minDaysNeeded,
     costs: { fuel, hotel, food, misc, total },
@@ -184,8 +195,11 @@ export function planTrip(input: PlanInput): PlanResult {
   const kmPerLiter =
     input.kmPerLiter && input.kmPerLiter > 0 ? input.kmPerLiter : vehicle.kmPerLiter;
 
+  // Convoy size: how many of this vehicle are needed to seat everyone.
+  const vehiclesNeeded = Math.max(1, Math.ceil(input.people / vehicle.seats));
+
   const all = DESTINATIONS.map((d) =>
-    planDestination(input, origin, vehicle, kmPerLiter, d),
+    planDestination(input, origin, vehicle, kmPerLiter, vehiclesNeeded, d),
   ).sort((a, b) => b.score - a.score);
 
   const feasible = all.filter((p) => p.feasible);
@@ -196,14 +210,18 @@ export function planTrip(input: PlanInput): PlanResult {
     .slice(0, 3);
 
   // Max reach: how far one-way you could drive spending ~45% of budget on fuel.
+  // With a convoy, fuel burns N times faster, so reach shrinks accordingly.
   const fuelBudget = input.budget * 0.45;
   const litersAffordable = fuelBudget / FUEL_PRICES[vehicle.fuel];
-  const maxReachKm = round((litersAffordable * kmPerLiter) / 2);
+  const maxReachKm = round((litersAffordable * kmPerLiter) / (2 * vehiclesNeeded));
 
   return {
     origin,
     vehicle,
     effectiveKmPerLiter: kmPerLiter,
+    vehiclesNeeded,
+    seatsPerVehicle: vehicle.seats,
+    needsMultipleVehicles: vehiclesNeeded > 1,
     maxReachKm,
     recommended,
     feasible,

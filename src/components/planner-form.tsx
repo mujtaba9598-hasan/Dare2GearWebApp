@@ -250,10 +250,25 @@ export function PlannerForm() {
             >
               {modelsForClass.map((v) => (
                 <option key={v.id} value={v.id}>
-                  {v.name} · {v.kmPerLiter} km/L
+                  {v.name} · {v.kmPerLiter} km/L · {v.seats} seats
                 </option>
               ))}
             </select>
+            {(() => {
+              const seats = VEHICLES.find((v) => v.id === vehicleId)?.seats ?? 0;
+              const need = seats > 0 ? Math.ceil(people / seats) : 1;
+              return need > 1 ? (
+                <p className="mt-1 text-xs font-medium text-amber-700">
+                  {people} people need {need}{" "}
+                  {vehicleClass === "bike" ? "bikes" : "of these"} ({seats} seats
+                  each) — fuel &amp; tolls counted for all {need}.
+                </p>
+              ) : (
+                <p className="mt-1 text-xs text-muted">
+                  Seats {people} of {seats} — one vehicle is enough.
+                </p>
+              );
+            })()}
           </div>
 
           {/* Vehicle class tabs */}

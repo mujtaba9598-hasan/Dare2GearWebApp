@@ -1,0 +1,26 @@
+name: Fuel price freshness check
+
+# OGRA revises petrol & diesel prices around the 1st and 16th of each month.
+# This runs the morning after, prints the latest parsed-vs-stored prices in the
+# job log, and FAILS (emailing the repo owner) if the stored prices look stale —
+# so you get a nudge to verify and update src/data/fuel-prices.json.
+#
+# FREE: uses the built-in GITHUB_TOKEN, no API keys or paid services.
+
+on:
+  schedule:
+    - cron: "0 4 2,17 * *" # 04:00 UTC on the 2nd and 17th
+  workflow_dispatch: {} # allow manual runs from the Actions tab
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Check fuel-price freshness
+        run: npm run check:fuel

@@ -39,6 +39,8 @@ export interface VehicleModel {
   /** kilometres per litre */
   kmPerLiter: number;
   fuel: FuelType;
+  /** realistic comfortable seating capacity (incl. driver) */
+  seats: number;
 }
 
 // ----------------------------------------------------------------------------
@@ -342,40 +344,53 @@ export const DESTINATIONS: Destination[] = [
 // Vehicles
 // ----------------------------------------------------------------------------
 export const VEHICLES: VehicleModel[] = [
-  // Bikes
-  { id: "cd70", name: "Honda CD 70", class: "bike", kmPerLiter: 55, fuel: "petrol" },
-  { id: "cg125", name: "Honda CG 125", class: "bike", kmPerLiter: 45, fuel: "petrol" },
-  { id: "ybr125", name: "Yamaha YBR 125", class: "bike", kmPerLiter: 42, fuel: "petrol" },
-  { id: "gs150", name: "Suzuki GS 150", class: "bike", kmPerLiter: 40, fuel: "petrol" },
-  { id: "cb150", name: "Honda CB 150F", class: "bike", kmPerLiter: 40, fuel: "petrol" },
-  { id: "bike-other", name: "Other / generic bike", class: "bike", kmPerLiter: 40, fuel: "petrol" },
+  // Bikes (rider + 1 pillion)
+  { id: "cd70", name: "Honda CD 70", class: "bike", kmPerLiter: 55, fuel: "petrol", seats: 2 },
+  { id: "cg125", name: "Honda CG 125", class: "bike", kmPerLiter: 45, fuel: "petrol", seats: 2 },
+  { id: "ybr125", name: "Yamaha YBR 125", class: "bike", kmPerLiter: 42, fuel: "petrol", seats: 2 },
+  { id: "gs150", name: "Suzuki GS 150", class: "bike", kmPerLiter: 40, fuel: "petrol", seats: 2 },
+  { id: "cb150", name: "Honda CB 150F", class: "bike", kmPerLiter: 40, fuel: "petrol", seats: 2 },
+  { id: "bike-other", name: "Other / generic bike", class: "bike", kmPerLiter: 40, fuel: "petrol", seats: 2 },
 
   // Cars
-  { id: "alto", name: "Suzuki Alto", class: "car", kmPerLiter: 18, fuel: "petrol" },
-  { id: "wagonr", name: "Suzuki Wagon R", class: "car", kmPerLiter: 16, fuel: "petrol" },
-  { id: "cultus", name: "Suzuki Cultus", class: "car", kmPerLiter: 14, fuel: "petrol" },
-  { id: "mehran", name: "Suzuki Mehran", class: "car", kmPerLiter: 14, fuel: "petrol" },
-  { id: "corolla", name: "Toyota Corolla", class: "car", kmPerLiter: 12, fuel: "petrol" },
-  { id: "civic", name: "Honda Civic", class: "car", kmPerLiter: 11, fuel: "petrol" },
-  { id: "yaris", name: "Toyota Yaris", class: "car", kmPerLiter: 14, fuel: "petrol" },
-  { id: "car-other", name: "Other / generic car", class: "car", kmPerLiter: 13, fuel: "petrol" },
+  { id: "alto", name: "Suzuki Alto", class: "car", kmPerLiter: 18, fuel: "petrol", seats: 4 },
+  { id: "wagonr", name: "Suzuki Wagon R", class: "car", kmPerLiter: 16, fuel: "petrol", seats: 4 },
+  { id: "cultus", name: "Suzuki Cultus", class: "car", kmPerLiter: 14, fuel: "petrol", seats: 4 },
+  { id: "mehran", name: "Suzuki Mehran", class: "car", kmPerLiter: 14, fuel: "petrol", seats: 4 },
+  { id: "corolla", name: "Toyota Corolla", class: "car", kmPerLiter: 12, fuel: "petrol", seats: 5 },
+  { id: "civic", name: "Honda Civic", class: "car", kmPerLiter: 11, fuel: "petrol", seats: 5 },
+  { id: "yaris", name: "Toyota Yaris", class: "car", kmPerLiter: 14, fuel: "petrol", seats: 5 },
+  { id: "car-other", name: "Other / generic car", class: "car", kmPerLiter: 13, fuel: "petrol", seats: 5 },
 
   // SUVs
-  { id: "brv", name: "Honda BR-V", class: "suv", kmPerLiter: 12, fuel: "petrol" },
-  { id: "sportage", name: "Kia Sportage", class: "suv", kmPerLiter: 11, fuel: "petrol" },
-  { id: "fortuner", name: "Toyota Fortuner", class: "suv", kmPerLiter: 9, fuel: "diesel" },
-  { id: "prado", name: "Toyota Prado", class: "suv", kmPerLiter: 8, fuel: "diesel" },
-  { id: "landcruiser", name: "Toyota Land Cruiser", class: "suv", kmPerLiter: 6, fuel: "diesel" },
-  { id: "suv-other", name: "Other / generic SUV", class: "suv", kmPerLiter: 9, fuel: "petrol" },
+  { id: "brv", name: "Honda BR-V", class: "suv", kmPerLiter: 12, fuel: "petrol", seats: 7 },
+  { id: "sportage", name: "Kia Sportage", class: "suv", kmPerLiter: 11, fuel: "petrol", seats: 5 },
+  { id: "fortuner", name: "Toyota Fortuner", class: "suv", kmPerLiter: 9, fuel: "diesel", seats: 7 },
+  { id: "prado", name: "Toyota Prado", class: "suv", kmPerLiter: 8, fuel: "diesel", seats: 7 },
+  { id: "landcruiser", name: "Toyota Land Cruiser", class: "suv", kmPerLiter: 6, fuel: "diesel", seats: 8 },
+  { id: "suv-other", name: "Other / generic SUV", class: "suv", kmPerLiter: 9, fuel: "petrol", seats: 7 },
 ];
 
 // ----------------------------------------------------------------------------
 // Pricing knobs (editable defaults — easy to swap for a live API later)
 // ----------------------------------------------------------------------------
+
+// Fuel prices live in src/data/fuel-prices.json — the single source of truth,
+// kept current from official OGRA notifications (see scripts/update-fuel-prices.ts).
+import fuelData from "@/data/fuel-prices.json";
+
 export const FUEL_PRICES: Record<FuelType, number> = {
-  petrol: 272,
-  diesel: 278,
-  "hi-octane": 295,
+  petrol: fuelData.perLiter.petrol,
+  diesel: fuelData.perLiter.diesel,
+  "hi-octane": fuelData.perLiter["hi-octane"],
+};
+
+export const FUEL_PRICE_META = {
+  effectiveDate: fuelData.effectiveDate,
+  lastChecked: fuelData.lastChecked,
+  source: fuelData.source,
+  sourceUrl: fuelData.sourceUrl,
+  note: fuelData.note,
 };
 
 /** PKR per room (2 people) per night, before per-destination cost factor. */

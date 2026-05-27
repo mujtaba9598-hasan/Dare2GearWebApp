@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FuelPriceBar } from "@/components/fuel-prices";
 import { DESTINATIONS, BUDGET_TIER_LABELS } from "@/lib/data";
 import {
   ArrowRightIcon,
@@ -151,8 +152,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Live fuel prices */}
+      <div className="mx-auto max-w-7xl px-5 pt-10 sm:px-8">
+        <FuelPriceBar />
+      </div>
+
       {/* How it works */}
-      <section id="how" className="mx-auto max-w-7xl scroll-mt-20 px-5 py-20 sm:px-8">
+      <section id="how" className="mx-auto max-w-7xl scroll-mt-20 px-5 pb-20 pt-12 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-brand-600">
             How it works

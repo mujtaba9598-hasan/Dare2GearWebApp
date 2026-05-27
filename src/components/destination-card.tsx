@@ -83,7 +83,11 @@ export function DestinationCard({
       <div className="mt-4 grid grid-cols-2 gap-x-5 border-t border-line pt-3">
         <StatRow icon={<RouteIcon className="h-4 w-4" />} label="One-way" value={km(plan.distanceKm)} />
         <StatRow icon={<ClockIcon className="h-4 w-4" />} label="Drive" value={`${plan.drivingHoursOneWay}h`} />
-        <StatRow icon={<FuelIcon className="h-4 w-4" />} label="Fuel" value={pkr(costs.fuel)} />
+        <StatRow
+          icon={<FuelIcon className="h-4 w-4" />}
+          label={plan.vehiclesNeeded > 1 ? `Fuel ×${plan.vehiclesNeeded}` : "Fuel"}
+          value={pkr(costs.fuel)}
+        />
         <StatRow icon={<BedIcon className="h-4 w-4" />} label="Stay" value={pkr(costs.hotel)} />
         <StatRow icon={<UtensilsIcon className="h-4 w-4" />} label="Food" value={pkr(costs.food)} />
         <StatRow icon={<CalendarIcon className="h-4 w-4" />} label="Min days" value={`${plan.minDaysNeeded}`} />

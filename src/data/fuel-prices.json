@@ -1,0 +1,13 @@
+{
+  "currency": "PKR",
+  "perLiter": {
+    "petrol": 403.78,
+    "diesel": 402.78,
+    "hi-octane": 540
+  },
+  "effectiveDate": "2026-05-23",
+  "lastChecked": "2026-05-27",
+  "source": "OGRA / Ministry of Energy (Petroleum Division)",
+  "sourceUrl": "https://www.ogra.org.pk/notified-petroleum-prices",
+  "note": "Petrol (MS) and High-Speed Diesel (HSD) are OGRA-regulated and revised fortnightly (around the 1st and 16th). Hi-octane (HOBC) is not OGRA-regulated and varies by oil-marketing company; the value here is a representative average."
+}
