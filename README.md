@@ -1,17 +1,19 @@
-# 🏔️ Dare to Gear
+# 🏔️ Dare2Gear
 
-**Smart travel budget planner for Pakistan.** Enter your budget, group size, days,
-starting city and vehicle → it calculates fuel, hotels and food, then recommends
-which destinations you can afford (Murree → Hunza → Fairy Meadows) with a full cost
-breakdown and how much you'll have left over.
+**Travel planning platform for Pakistan.** Two core features:
+
+- **🎁 Budget planner** (`/planner`) — *"I have Rs X, where can I go?"* → ranked destinations you can afford, with full cost breakdown.
+- **🗺️ Plan a specific trip** (`/trip`) — any place → any place (e.g. Hunza → Karachi) with real road distance, drive time, fuel, stay, food and total.
+
+Plus destination guides, 80+ starting-city pages, route intelligence (weather, tolls, docs), rentals/services catalogs, and live OGRA fuel prices.
 
 | | |
 |---|---|
 | **Stack** | Next.js 16 (App Router) · React 19 · Tailwind v4 · TypeScript |
-| **Status** | Phase 1 MVP — works fully offline, no API keys/backend needed |
+| **Status** | Live travel platform — static export (Netlify), no backend / API keys |
 | **Repo** | github.com/mujtaba9598-hasan/Dare2GearWebApp |
-| **Key files** | `src/lib/data.ts` (data) · `src/lib/planner.ts` (cost engine) |
-| **Backlog** | see [ROADMAP.md](ROADMAP.md) for features to pick from |
+| **Key files** | `src/lib/data.ts` · `src/lib/planner.ts` (engine) · `src/lib/content.ts` · `src/lib/city-attractions.ts` · `src/data/road-distances.json` (real OSRM distances) |
+| **Backlog** | see [ROADMAP.md](ROADMAP.md); **deferred-to-VPS items in [DEFERRED.md](DEFERRED.md)** |
 | **Deploy** | Static export (`output: 'export'` → `out/`). Netlify config in `netlify.toml`. Also works on plain shared hosting. |
 
 ---
@@ -73,7 +75,8 @@ locally*, not stored in the repo. That's why the download is tiny; nothing is mi
 | `npm run build` | Production build (generates `.next/`) |
 | `npm start` | Serve production build |
 | `npm run lint` | ESLint |
-| `npm run gen:distances` | Rebuild `DISTANCES.md` + `data/distances.csv` |
+| `npm run gen:distances` | Rebuild `DISTANCES.md` + `data/distances.csv` (legacy estimate) |
+| `npm run gen:roads` | Rebuild the **real** OSRM road-distance matrix (`src/data/road-distances.json`) |
 | `npm run update:fuel` | Fetch official fuel prices → update JSON |
 | `npm run check:fuel` | Report price freshness (flags stale data) |
 
@@ -82,16 +85,21 @@ locally*, not stored in the repo. That's why the download is tiny; nothing is mi
 ## 📂 Structure
 
 ```
-src/lib/data.ts          # 🔑 Data: 60 cities, 15 destinations, 20 vehicles, prices
-src/lib/planner.ts       # 🔑 Cost + recommendation engine (pure functions)
-src/lib/format.ts        # PKR / km formatting
-src/data/fuel-prices.json# 🔑 Single source of truth for fuel prices (OGRA)
-src/app/                 # layout, landing (page.tsx), planner/page.tsx, globals.css
-src/components/           # navbar, footer, planner-form, results-view,
-                         # destination-card, cost-donut, fuel-prices, icons
-scripts/                 # generate-distances.ts, update-fuel-prices.ts
-DISTANCES.md, data/distances.csv   # 900-route distance reference (generated)
-.github/workflows/fuel-price-check.yml  # fuel-price freshness CI (2nd & 17th)
+src/lib/data.ts            # 🔑 81 cities, 17 destinations, 20 vehicles, prices
+src/lib/planner.ts         # 🔑 Cost engine + planPointToPoint (any-to-any)
+src/lib/content.ts         # Destination guides: spots, tracks, hotels, en-route
+src/lib/city-attractions.ts# "Places to see" for every origin city
+src/lib/catalog.ts         # Rentals & services categories
+src/lib/route-info.ts      # Tolls, CC rules, docs, weather URL (Pillar 2)
+src/lib/contact.ts         # WhatsApp / email links (no backend)
+src/data/road-distances.json # 🔑 REAL OSRM road distance + drive-time matrix
+src/data/fuel-prices.json  # 🔑 OGRA fuel prices (auto-updated weekly)
+src/app/                   # /, /planner, /trip, /destinations/[id], /cities/[id],
+                           # /rentals/[category], /services/[slug], /list-your-property
+src/components/             # navbar (dropdowns), getting-there, trip-planner,
+                           # savings-panel, hotel-card, explore-card, icons, …
+scripts/                   # generate-road-distances.ts (OSRM), update-fuel-prices.ts
+.github/workflows/fuel-price-check.yml   # fuel freshness emailer (2nd & 17th)
 ```
 
 ---
@@ -100,11 +108,11 @@ DISTANCES.md, data/distances.csv   # 900-route distance reference (generated)
 
 Per destination, from the user's inputs:
 
-- **Distance** = great-circle × terrain road-factor (1.35 highway → 1.65 rough)
+- **Distance & drive time** = **real OSRM/OpenStreetMap road route**, precomputed into `src/data/road-distances.json` (run `npm run gen:roads` to refresh). Great-circle × terrain factor is only a fallback for missing pairs.
 - **Convoy** = `ceil(travelers ÷ vehicle seats)` — fuel & tolls scale with this
 - **Fuel** = `round-trip km ÷ km/L × fuel price × convoy`
-- **Hotel** = `tier rate × dest cost-factor × nights × rooms` (rooms = ⌈people/2⌉)
-- **Food** = `tier rate × dest cost-factor × people × days`
+- **Hotel** = `tier rate × dest cost-factor × nights × people` (per person/night; standard ≈ Rs 1,500)
+- **Food** = `tier rate × dest cost-factor × people × days` (standard ≈ Rs 1,500/person/day)
 - **Misc** = tolls (per 100 km × convoy) + per-person activities + 10% buffer
 - **Feasibility** = fits budget **and** enough days to drive there & back
 - **Ranking** → Top picks · Also within reach · Stretch goals
@@ -136,6 +144,13 @@ per-person). Shown in the form hint and results.
 
 ## 📜 Build log (latest first)
 
+- **2026-05-31** — Fuel prices updated (Petrol 381.78, eff. 30 May, per OGRA/PSO); weekly auto-update routine.
+- **2026-05-31** — **Real OSRM road distances + drive times** replace the straight-line estimate; +21 cities (81 total).
+- **2026-05-31** — **Any-to-any trip planner** (`/trip`) added as a separate feature; nav "Plan" dropdown.
+- **2026-05-31** — 80+ **starting-city pages** with researched "places to see"; per-person stay/food rates.
+- **2026-05-31** — **Rebrand to Dare2Gear**; static-export + `netlify.toml`; deployed to Netlify.
+- **2026-05-31** — Route Intelligence (weather, tolls, CC rules, docs, en-route, road-condition flow).
+- **2026-05-31** — Destination guides (spots, dangerous tracks, hotel listings, photos); Explore gallery.
 - **2026-05-27** — Lean README + new-machine setup; backlog moved to `ROADMAP.md`.
 - **2026-05-27** — Live fuel prices (OGRA), on-site display, updater + freshness CI.
 - **2026-05-27** — Vehicle seating + convoy logic.
