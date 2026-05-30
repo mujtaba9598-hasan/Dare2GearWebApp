@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "gen:distances": "tsx scripts/generate-distances.ts",
+    "gen:roads": "tsx scripts/generate-road-distances.ts",
     "update:fuel": "tsx scripts/update-fuel-prices.ts",
     "check:fuel": "tsx scripts/update-fuel-prices.ts --check"
   },

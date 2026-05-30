@@ -117,6 +117,29 @@ export const ORIGINS: OriginCity[] = [
 
   // --- Azad Kashmir ---
   { id: "mirpurajk", name: "Mirpur (AJK)", province: "Azad Kashmir", lat: 33.1478, lng: 73.7517 },
+
+  // --- Additional cities (population list, 2026) ---
+  { id: "mingora", name: "Mingora", province: "KPK", lat: 34.7795, lng: 72.3614 },
+  { id: "wahcantt", name: "Wah Cantonment", province: "Punjab", lat: 33.7986, lng: 72.7236 },
+  { id: "kamoke", name: "Kamoke", province: "Punjab", lat: 31.974, lng: 74.2235 },
+  { id: "burewala", name: "Burewala", province: "Punjab", lat: 30.1575, lng: 72.6814 },
+  { id: "sadiqabad", name: "Sadiqabad", province: "Punjab", lat: 28.3091, lng: 70.1295 },
+  { id: "khanpur", name: "Khanpur", province: "Punjab", lat: 28.6471, lng: 70.662 },
+  { id: "gojra", name: "Gojra", province: "Punjab", lat: 31.15, lng: 72.6861 },
+  { id: "bahawalnagar", name: "Bahawalnagar", province: "Punjab", lat: 29.9947, lng: 73.2536 },
+  { id: "muridke", name: "Muridke", province: "Punjab", lat: 31.8022, lng: 74.2558 },
+  { id: "pakpattan", name: "Pakpattan", province: "Punjab", lat: 30.3431, lng: 73.3858 },
+  { id: "jaranwala", name: "Jaranwala", province: "Punjab", lat: 31.3339, lng: 73.4194 },
+  { id: "chishtian", name: "Chishtian", province: "Punjab", lat: 29.7975, lng: 72.8578 },
+  { id: "daska", name: "Daska", province: "Punjab", lat: 32.3242, lng: 74.35 },
+  { id: "ahmadpureast", name: "Ahmadpur East", province: "Punjab", lat: 29.1428, lng: 71.2606 },
+  { id: "kamalia", name: "Kamalia", province: "Punjab", lat: 30.7258, lng: 72.6447 },
+  { id: "wazirabad", name: "Wazirabad", province: "Punjab", lat: 32.45, lng: 74.12 },
+  { id: "khushab", name: "Khushab", province: "Punjab", lat: 32.2961, lng: 72.3531 },
+  { id: "kotadu", name: "Kot Adu", province: "Punjab", lat: 30.4711, lng: 70.9644 },
+  { id: "chichawatni", name: "Chichawatni", province: "Punjab", lat: 30.5361, lng: 72.7011 },
+  { id: "kandhkot", name: "Kandhkot", province: "Sindh", lat: 28.2362, lng: 69.1769 },
+  { id: "tandoallahyar", name: "Tando Allahyar", province: "Sindh", lat: 25.46, lng: 68.7178 },
 ];
 
 // ----------------------------------------------------------------------------

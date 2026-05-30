@@ -14,6 +14,32 @@ import {
   type HotelTier,
   type VehicleModel,
 } from "./data";
+// Real road distances + drive times (OSRM/OpenStreetMap), precomputed offline by
+// scripts/generate-road-distances.ts. Indexed by place id.
+import roadData from "@/data/road-distances.json";
+
+const ROAD_INDEX: Record<string, number> = {};
+roadData.ids.forEach((id, i) => {
+  ROAD_INDEX[id] = i;
+});
+
+function matrixCell(grid: (number | null)[][], aId: string, bId: string): number | null {
+  const ai = ROAD_INDEX[aId];
+  const bi = ROAD_INDEX[bId];
+  if (ai === undefined || bi === undefined) return null;
+  const v = grid[ai]?.[bi];
+  return v == null ? null : v;
+}
+
+/** Real one-way driving distance (km) between any two places, from the matrix. */
+export function roadDistanceBetween(a: GeoPoint, b: GeoPoint): number | null {
+  return matrixCell(roadData.km as (number | null)[][], a.id, b.id);
+}
+
+/** Real one-way driving time (minutes) between any two places, from the matrix. */
+export function roadMinutesBetween(a: GeoPoint, b: GeoPoint): number | null {
+  return matrixCell(roadData.min as (number | null)[][], a.id, b.id);
+}
 
 export interface PlanInput {
   budget: number;
@@ -88,18 +114,28 @@ function haversineKm(a: GeoPoint, b: GeoPoint): number {
   return 2 * EARTH_RADIUS_KM * Math.asin(Math.min(1, Math.sqrt(h)));
 }
 
-/** Roads in the north wind heavily; inflate straight-line distance to estimate
- * real road distance based on terrain. */
+/** One-way road distance (km). Uses the real OSRM matrix; falls back to a
+ * great-circle × terrain estimate only if a pair is missing from the matrix. */
 export function roadDistanceKm(origin: GeoPoint, dest: Destination): number {
+  const real = roadDistanceBetween(origin, dest);
+  if (real != null && real > 0) return real;
   const straight = haversineKm(origin, dest);
   const factor =
     dest.terrain === "highway" ? 1.35 : dest.terrain === "mixed" ? 1.5 : 1.65;
   return Math.round(straight * factor);
 }
 
-/** Average driving speed (km/h) including stops, by terrain. */
+/** Average driving speed (km/h) including stops, by terrain — fallback only. */
 function avgSpeed(dest: Destination): number {
   return dest.terrain === "highway" ? 55 : dest.terrain === "mixed" ? 42 : 32;
+}
+
+/** One-way driving time (hours). Uses the real OSRM matrix; falls back to
+ * distance ÷ terrain speed if the pair is missing. */
+function roadDriveHours(origin: GeoPoint, dest: Destination): number {
+  const min = roadMinutesBetween(origin, dest);
+  if (min != null && min > 0) return Math.round((min / 60) * 10) / 10;
+  return Math.round((roadDistanceKm(origin, dest) / avgSpeed(dest)) * 10) / 10;
 }
 
 const round = (n: number) => Math.round(n);
@@ -142,7 +178,7 @@ function planDestination(
 
   const total = fuel + hotel + food + misc;
 
-  const drivingHoursOneWay = distanceKm / avgSpeed(dest);
+  const drivingHoursOneWay = roadDriveHours(origin, dest);
   // need travel time both ways at ~9 driving hours/day, plus at least 1 full day to enjoy
   const travelDays = Math.ceil((drivingHoursOneWay * 2) / 9);
   const minDaysNeeded = Math.max(2, travelDays + 1);
