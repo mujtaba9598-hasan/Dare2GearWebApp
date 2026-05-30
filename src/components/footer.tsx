@@ -28,7 +28,8 @@ export function Footer() {
               <ul className="mt-3 space-y-2 text-muted">
                 <li><Link href="/destinations" className="hover:text-brand-700">Destinations</Link></li>
                 <li><Link href="/cities" className="hover:text-brand-700">Starting cities</Link></li>
-                <li><Link href="/planner" className="hover:text-brand-700">Trip planner</Link></li>
+                <li><Link href="/planner" className="hover:text-brand-700">Budget planner</Link></li>
+                <li><Link href="/trip" className="hover:text-brand-700">Plan a specific trip</Link></li>
                 <li><Link href="/rentals" className="hover:text-brand-700">Rentals</Link></li>
                 <li><Link href="/services" className="hover:text-brand-700">Services</Link></li>
                 <li><Link href="/#how" className="hover:text-brand-700">How it works</Link></li>

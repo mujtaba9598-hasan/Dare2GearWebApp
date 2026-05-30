@@ -225,6 +225,116 @@ function planDestination(
   };
 }
 
+// ----------------------------------------------------------------------------
+// Any-to-any ("Plan a specific trip") — every place can be a start or an end.
+// ----------------------------------------------------------------------------
+export interface TripPlace {
+  id: string;
+  name: string;
+  kind: "city" | "destination";
+  /** cost-of-living factor (1.0 for cities; richer for remote destinations) */
+  costFactor: number;
+}
+
+export const ALL_PLACES: TripPlace[] = [
+  ...ORIGINS.map((o) => ({ id: o.id, name: o.name, kind: "city" as const, costFactor: 1.0 })),
+  ...DESTINATIONS.map((d) => ({
+    id: d.id,
+    name: d.name,
+    kind: "destination" as const,
+    costFactor: d.costFactor,
+  })),
+];
+
+export interface TripInput {
+  fromId: string;
+  toId: string;
+  vehicleId: string;
+  kmPerLiter?: number;
+  people: number;
+  days: number;
+  hotelTier: HotelTier;
+}
+
+export interface TripResult {
+  from: TripPlace;
+  to: TripPlace;
+  distanceKm: number;
+  roundTripKm: number;
+  driveHoursOneWay: number;
+  vehiclesNeeded: number;
+  effectiveKmPerLiter: number;
+  fuelOneWay: number;
+  fuelRoundTrip: number;
+  hotel: number;
+  food: number;
+  tolls: number;
+  buffer: number;
+  total: number;
+}
+
+export function getPlace(id: string): TripPlace | undefined {
+  return ALL_PLACES.find((p) => p.id === id);
+}
+
+/** Full cost for a specific A→B trip, using the real road matrix. */
+export function planPointToPoint(input: TripInput): TripResult | null {
+  const from = getPlace(input.fromId);
+  const to = getPlace(input.toId);
+  if (!from || !to || from.id === to.id) return null;
+
+  const fi = ROAD_INDEX[from.id];
+  const ti = ROAD_INDEX[to.id];
+  const distanceKm =
+    fi !== undefined && ti !== undefined
+      ? ((roadData.km as (number | null)[][])[fi]?.[ti] ?? null)
+      : null;
+  if (distanceKm == null || distanceKm <= 0) return null;
+  const driveMin =
+    fi !== undefined && ti !== undefined
+      ? ((roadData.min as (number | null)[][])[fi]?.[ti] ?? null)
+      : null;
+
+  const vehicle = getVehicle(input.vehicleId);
+  const kmPerLiter =
+    input.kmPerLiter && input.kmPerLiter > 0 ? input.kmPerLiter : vehicle.kmPerLiter;
+  const vehiclesNeeded = Math.max(1, Math.ceil(input.people / vehicle.seats));
+
+  const roundTripKm = distanceKm * 2;
+  const fuelRoundTrip = round((roundTripKm / kmPerLiter) * FUEL_PRICES[vehicle.fuel] * vehiclesNeeded);
+  const fuelOneWay = round(fuelRoundTrip / 2);
+
+  const nights = Math.max(1, input.days - 1);
+  const hotel = round(HOTEL_RATES[input.hotelTier] * to.costFactor * nights * input.people);
+  const food = round(FOOD_RATES[input.hotelTier] * to.costFactor * input.people * input.days);
+  const tolls = round((roundTripKm / 100) * 150 * vehiclesNeeded);
+  const subtotal = fuelRoundTrip + hotel + food + tolls;
+  const buffer = round(subtotal * 0.1);
+  const total = subtotal + buffer;
+
+  const driveHoursOneWay =
+    driveMin != null && driveMin > 0
+      ? Math.round((driveMin / 60) * 10) / 10
+      : Math.round((distanceKm / 45) * 10) / 10;
+
+  return {
+    from,
+    to,
+    distanceKm,
+    roundTripKm,
+    driveHoursOneWay,
+    vehiclesNeeded,
+    effectiveKmPerLiter: kmPerLiter,
+    fuelOneWay,
+    fuelRoundTrip,
+    hotel,
+    food,
+    tolls,
+    buffer,
+    total,
+  };
+}
+
 export function planTrip(input: PlanInput): PlanResult {
   const origin = getOrigin(input.originId);
   const vehicle = getVehicle(input.vehicleId);

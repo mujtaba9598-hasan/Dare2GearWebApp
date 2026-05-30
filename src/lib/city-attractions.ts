@@ -442,6 +442,110 @@ export const CITY_PLACES: Record<string, CityPlace[]> = {
     { name: "Darbar-e-Aalia Khari Sharif", note: "Revered Sufi shrine complex near Mirpur.", category: "shrine" },
     { name: "Chakswari Bazaar", note: "Market for local handicrafts and traditional clothing.", category: "bazaar" },
   ],
+
+  // --- Additional cities (2026) ---
+  mingora: [
+    { name: "White Palace, Marghazar", note: "1940 former summer palace of the Wali of Swat, near Mingora.", category: "historical" },
+    { name: "Swat Museum", note: "Houses Gandhara and Buddhist-era artifacts from the valley.", category: "museum" },
+    { name: "Mingora Bazaar", note: "Bustling market for Swati handicrafts, jewellery and local goods.", category: "bazaar" },
+  ],
+  wahcantt: [
+    { name: "Wah Gardens", note: "Mughal-era terraced gardens with fountains and water channels.", category: "garden" },
+    { name: "Gurdwara Panja Sahib", note: "Major Sikh shrine in nearby Hasan Abdal with Guru Nanak's handprint.", category: "religious" },
+    { name: "Tomb of Lala Rukh", note: "Mughal-era tomb in Hasan Abdal beside Hakim's Tomb.", category: "historical" },
+  ],
+  kamoke: [
+    { name: "Kamoke Rice Market", note: "One of the subcontinent's largest basmati rice markets.", category: "bazaar" },
+    { name: "Grand Trunk Road", note: "Historic highway passing through the town toward Lahore.", category: "historical" },
+  ],
+  burewala: [
+    { name: "Shrine of Baba Haji Sher Muhammad Qalandar", note: "Popular Sufi shrine drawing devotees to the town.", category: "shrine" },
+    { name: "Fawara Chowk", note: "Central fountain roundabout and city landmark.", category: "historical" },
+    { name: "Burewala Stadium", note: "Local cricket and sports venue hosting community matches.", category: "park" },
+  ],
+  sadiqabad: [
+    { name: "Bhong Mosque", note: "Aga Khan Award-winning mosque in nearby Bhong village.", category: "religious" },
+    { name: "Cholistan Desert", note: "Vast desert landscape stretching east of the town.", category: "nature" },
+  ],
+  khanpur: [
+    { name: "Khanqah-e-Aaliya Qadriya", note: "Revered Sufi khanqah at Deenpur Sharif near Khanpur.", category: "shrine" },
+    { name: "Patan Minara", note: "Ancient minaret and ruins of Hakra-valley antiquity nearby.", category: "historical" },
+    { name: "Cholistan Desert", note: "Desert safari country with dunes south of the town.", category: "nature" },
+  ],
+  gojra: [
+    { name: "Manzoor Elahi Forest Park", note: "Forest park on Jhang Road with playgrounds and pathways.", category: "park" },
+    { name: "Gojra Grain Market", note: "Important regional grain market on the railway branch.", category: "bazaar" },
+  ],
+  bahawalnagar: [
+    { name: "Bahawalnagar Wildlife Park", note: "15-acre park with blackbuck, ostriches and peafowl.", category: "park" },
+    { name: "Marot Fort", note: "Late-18th-century Nawab-era fort in the Cholistan desert.", category: "fort" },
+    { name: "Sutlej River banks", note: "Riverside and canal-bank recreation spots near the city.", category: "nature" },
+  ],
+  muridke: [
+    { name: "Shrine of Hazrat Shah Murid", note: "17th-century Sufi shrine, the town's namesake.", category: "shrine" },
+    { name: "Muridke Sabzi Mandi", note: "One of Punjab's largest vegetable markets.", category: "bazaar" },
+  ],
+  pakpattan: [
+    { name: "Shrine of Baba Farid Ganjshakar", note: "Major Sufi shrine with the silver Bahishti Darwaza.", category: "shrine" },
+    { name: "Malka Hans", note: "Historic town where Waris Shah composed the epic Heer.", category: "historical" },
+    { name: "Chan Pir Darbar", note: "Shrine 7 km out hosting a seven-day spring festival.", category: "shrine" },
+  ],
+  jaranwala: [
+    { name: "Pakistani Gate", note: "Historic 1917 town gate, formerly O'Dwyer Gate.", category: "historical" },
+    { name: "Committee Bagh", note: "Public park with historical monuments in the city.", category: "park" },
+    { name: "Mahtab Masjid", note: "Mosque admired for its intricate architecture.", category: "religious" },
+  ],
+  chishtian: [
+    { name: "Shrine of Taj Sarwar Chishti", note: "Tomb marking the town's reputed 13th-century founding site.", category: "shrine" },
+    { name: "Jamia Mosque", note: "Old mosque showcasing traditional Islamic architecture.", category: "religious" },
+    { name: "Chishtian Lake", note: "Local lake used for fishing and a recreational picnic spot.", category: "lake" },
+  ],
+  daska: [
+    { name: "Shahab Masjid", note: "Mughal-era mosque, one of Daska's iconic historical sites.", category: "religious" },
+    { name: "Daska Fort (Kot Daska)", note: "Old mud-fort site from the Mughal/Afghan-invasion era.", category: "fort" },
+    { name: "Shaheedan Wala Qabrastan", note: "Burial site of 19 Lancers martyrs of the 1965 war.", category: "historical" },
+  ],
+  ahmadpureast: [
+    { name: "Sadiq Garh Palace", note: "Grand 1882 Abbasi royal palace at nearby Dera Nawab Sahib.", category: "historical" },
+    { name: "Derawar Fort", note: "Massive 9th-century desert fort in the Cholistan, near the town.", category: "fort" },
+    { name: "Sadiq Garh Mosque", note: "Historic royal mosque within the Dera Nawab Sahib complex.", category: "religious" },
+  ],
+  kamalia: [
+    { name: "Jahangir-era Mosque", note: "Ancient mosque reflecting Mughal architectural influences.", category: "religious" },
+    { name: "Shrine of Baba Fazil Dewan", note: "Revered Sufi shrine and spiritual centre in the city.", category: "shrine" },
+    { name: "Kamalia Wildlife Park", note: "Family amusement park on the Kamalia-Chichawatni road.", category: "park" },
+  ],
+  wazirabad: [
+    { name: "Qila Wazirabad", note: "Historic Mughal-era fortress in the heart of the city.", category: "fort" },
+    { name: "Wazir Khan Baradari", note: "Elegant Mughal-era garden pavilion in Wazirabad.", category: "historical" },
+    { name: "Chenab River Bridge", note: "Historic British-era railway bridge over the Chenab.", category: "historical" },
+  ],
+  khushab: [
+    { name: "Soon Valley", note: "Scenic green valley and lake district in the Salt Range.", category: "nature" },
+    { name: "Uchhali Lake", note: "Salt-water lake with boating, a top valley attraction.", category: "lake" },
+    { name: "Kanhatti Garden", note: "Garden resort with waterfalls, hiking trails and camping.", category: "garden" },
+    { name: "Sakesar Peak", note: "Highest Salt Range peak at about 5,010 feet elevation.", category: "viewpoint" },
+  ],
+  kotadu: [
+    { name: "Taunsa Barrage", note: "Indus River barrage about 16 km from Kot Adu.", category: "lake" },
+    { name: "Bagh-e-Sardaran", note: "Well-maintained public garden good for a leisurely stroll.", category: "garden" },
+    { name: "Indus River bank", note: "Riverside spot popular with picnickers and day visitors.", category: "nature" },
+  ],
+  chichawatni: [
+    { name: "Chichawatni Forest Plantation", note: "1923 plantation, second-largest man-made forest in Pakistan.", category: "nature" },
+    { name: "Harappa Archaeological Site", note: "Ancient Indus Valley city ruins and museum nearby.", category: "historical" },
+    { name: "Harappa Museum", note: "1926 museum displaying Indus Valley Civilization artifacts.", category: "museum" },
+  ],
+  kandhkot: [
+    { name: "Guddu Barrage", note: "Large 1962 Indus River barrage, a popular day outing.", category: "lake" },
+    { name: "Indus Dolphin Reserve", note: "River reserve protecting the endangered blind Indus dolphin.", category: "nature" },
+    { name: "Kandhkot Grain Market", note: "One of the region's largest grain markets.", category: "bazaar" },
+  ],
+  tandoallahyar: [
+    { name: "Tando Allahyar Fort", note: "18th-century fort offering views over the surrounding area.", category: "fort" },
+    { name: "Shrine of Shaikh Bhirkio", note: "Important Suhrawardi Sufi centre 25 km southwest of town.", category: "shrine" },
+    { name: "Shrine of Pir Patho", note: "Revered Sufi saint shrine attracting pilgrims and visitors.", category: "shrine" },
+  ],
 };
 
 export function cityPlaces(id: string): CityPlace[] {

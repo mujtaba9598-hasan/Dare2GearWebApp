@@ -43,7 +43,15 @@ const SERVICES_MENU: NavMenu = {
   ],
 };
 
-const MENUS: NavMenu[] = [EXPLORE, RENTALS, SERVICES_MENU];
+const PLAN: NavMenu = {
+  label: "Plan",
+  items: [
+    { label: "Budget planner — where can I go?", href: "/planner" },
+    { label: "Specific trip — any place → any place", href: "/trip" },
+  ],
+};
+
+const MENUS: NavMenu[] = [EXPLORE, PLAN, RENTALS, SERVICES_MENU];
 
 function DesktopDropdown({ menu }: { menu: NavMenu }) {
   return (
@@ -93,12 +101,6 @@ export function Navbar() {
           {MENUS.map((m) => (
             <DesktopDropdown key={m.label} menu={m} />
           ))}
-          <Link
-            href="/planner"
-            className="py-2 text-sm font-medium text-muted transition-colors hover:text-ink"
-          >
-            Planner
-          </Link>
         </div>
 
         {/* Right cluster */}
