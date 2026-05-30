@@ -1,4 +1,4 @@
-// Dare to Gear — budget calculation + trip recommendation engine.
+// Dare2Gear — budget calculation + trip recommendation engine.
 // Pure functions, no external APIs. Swap the pricing knobs in data.ts for a
 // live feed later without touching this file.
 
@@ -128,8 +128,8 @@ function planDestination(
   const fuel = round(liters * FUEL_PRICES[vehicle.fuel]);
 
   const nights = Math.max(1, input.days - 1);
-  const rooms = Math.ceil(input.people / 2);
-  const hotel = round(HOTEL_RATES[input.hotelTier] * dest.costFactor * nights * rooms);
+  // Stay is estimated per person per night (≈ Rs 1,500 standard).
+  const hotel = round(HOTEL_RATES[input.hotelTier] * dest.costFactor * nights * input.people);
 
   const food = round(FOOD_RATES[input.hotelTier] * dest.costFactor * input.people * input.days);
 

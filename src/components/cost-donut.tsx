@@ -25,20 +25,22 @@ export function CostDonut({
   const circumference = 2 * Math.PI * radius;
   const total = costs.total || 1;
 
-  let offset = 0;
-  const arcs = SEGMENTS.map((seg) => {
+  const arcs = SEGMENTS.map((seg, i) => {
     const value = costs[seg.key];
     const fraction = value / total;
     const dash = fraction * circumference;
-    const arc = {
+    // Offset = total length of all preceding segments (no mutation across renders).
+    const precedingDash = SEGMENTS.slice(0, i).reduce(
+      (sum, s) => sum + (costs[s.key] / total) * circumference,
+      0,
+    );
+    return {
       ...seg,
       value,
       fraction,
       dashArray: `${dash} ${circumference - dash}`,
-      dashOffset: -offset,
+      dashOffset: -precedingDash,
     };
-    offset += dash;
-    return arc;
   });
 
   return (

@@ -18,9 +18,9 @@ const sora = Sora({
 });
 
 export const metadata: Metadata = {
-  title: "Dare to Gear — Smart Travel Budget Planner for Pakistan",
+  title: "Dare2Gear — Smart Travel Budget Planner for Pakistan",
   description:
-    "Tell us your budget, group size and ride. Dare to Gear calculates fuel, hotels and food, then recommends exactly where in Pakistan you can travel — from Murree to Hunza and Fairy Meadows.",
+    "Tell us your budget, group size and ride. Dare2Gear calculates fuel, hotels and food, then recommends exactly where in Pakistan you can travel — from Murree to Hunza and Fairy Meadows.",
   keywords: [
     "Pakistan travel",
     "budget trip planner",

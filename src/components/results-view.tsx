@@ -3,6 +3,7 @@ import { VEHICLE_CLASS_LABELS, HOTEL_TIER_LABELS } from "@/lib/data";
 import { pkr, km } from "@/lib/format";
 import { CostDonut } from "./cost-donut";
 import { DestinationCard } from "./destination-card";
+import { SavingsPanel } from "./savings-panel";
 import {
   WalletIcon,
   UsersIcon,
@@ -149,6 +150,8 @@ export function ResultsView({
               ))}
             </div>
           </div>
+
+          <SavingsPanel topPlan={top} vehicleClass={result.vehicle.class} />
 
           {extraFeasible.length > 0 && (
             <div className="mt-10">

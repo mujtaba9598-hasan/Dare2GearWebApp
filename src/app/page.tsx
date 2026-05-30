@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { FuelPriceBar } from "@/components/fuel-prices";
-import { DESTINATIONS, BUDGET_TIER_LABELS } from "@/lib/data";
+import { ExploreCard } from "@/components/explore-card";
+import { DESTINATIONS } from "@/lib/data";
 import {
   ArrowRightIcon,
   WalletIcon,
@@ -40,12 +41,6 @@ const VALUE_PROPS = [
   { icon: <RouteIcon className="h-5 w-5" />, label: "Distance & drive time" },
 ];
 
-const tierStyle: Record<string, string> = {
-  low: "bg-brand-50 text-brand-700",
-  medium: "bg-amber-50 text-amber-700",
-  high: "bg-violet-50 text-violet-700",
-};
-
 export default function Home() {
   const featured = ["hunza", "skardu", "naran", "fairymeadows", "swat", "neelum"]
     .map((id) => DESTINATIONS.find((d) => d.id === id)!)
@@ -71,7 +66,7 @@ export default function Home() {
               <span className="text-brand-600">how far you can go.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
-              Dare to Gear turns the cash in your pocket into a real trip plan —
+              Dare2Gear turns the cash in your pocket into a real trip plan —
               calculating fuel, hotels and food, then recommending exactly which
               Pakistani destinations you can afford, from Murree to Hunza and
               Fairy Meadows.
@@ -203,42 +198,17 @@ export default function Home() {
               </p>
             </div>
             <Link
-              href="/planner"
+              href="/destinations"
               className="inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-xl border border-line bg-surface px-5 py-3 text-sm font-semibold text-ink transition-colors hover:border-brand-300"
             >
-              Plan a trip there
+              Explore all destinations
               <ArrowRightIcon className="h-4 w-4" />
             </Link>
           </div>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((d) => (
-              <article
-                key={d.id}
-                className="flex flex-col rounded-2xl border border-line bg-surface p-6 transition-shadow hover:shadow-lg hover:shadow-slate-200/60"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="font-display text-lg font-bold text-ink">{d.name}</h3>
-                    <p className="mt-0.5 flex items-center gap-1 text-xs text-muted">
-                      <MapPinIcon className="h-3.5 w-3.5" />
-                      {d.region}
-                    </p>
-                  </div>
-                  <span className={`shrink-0 rounded-full px-2.5 py-1 text-xs font-semibold ${tierStyle[d.tier]}`}>
-                    {BUDGET_TIER_LABELS[d.tier]}
-                  </span>
-                </div>
-                <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{d.blurb}</p>
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {d.attractions.slice(0, 3).map((a) => (
-                    <span key={a} className="rounded-full bg-slate-100 px-2.5 py-1 text-xs text-slate-600">
-                      {a}
-                    </span>
-                  ))}
-                </div>
-                <p className="mt-4 text-xs text-muted">Best season · {d.bestMonths}</p>
-              </article>
+              <ExploreCard key={d.id} d={d} />
             ))}
           </div>
         </div>
@@ -254,7 +224,7 @@ export default function Home() {
               Got cash and a few free days?
             </h2>
             <p className="mt-4 text-lg leading-relaxed text-slate-300">
-              Stop guessing what you can afford. Let Dare to Gear plan your next
+              Stop guessing what you can afford. Let Dare2Gear plan your next
               Pakistani adventure down to the last rupee.
             </p>
             <Link

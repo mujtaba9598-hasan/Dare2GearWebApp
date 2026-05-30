@@ -3,7 +3,7 @@ import { PlannerForm } from "@/components/planner-form";
 import { FuelPriceBar } from "@/components/fuel-prices";
 
 export const metadata: Metadata = {
-  title: "Trip Planner — Dare to Gear",
+  title: "Trip Planner — Dare2Gear",
   description:
     "Enter your budget, group and vehicle to instantly see which Pakistani destinations you can afford, with a full fuel, hotel and food breakdown.",
 };

@@ -12,6 +12,32 @@ breakdown and how much you'll have left over.
 | **Repo** | github.com/mujtaba9598-hasan/Dare2GearWebApp |
 | **Key files** | `src/lib/data.ts` (data) · `src/lib/planner.ts` (cost engine) |
 | **Backlog** | see [ROADMAP.md](ROADMAP.md) for features to pick from |
+| **Deploy** | Static export (`output: 'export'` → `out/`). Netlify config in `netlify.toml`. Also works on plain shared hosting. |
+
+---
+
+## 📸 PLANNED (next session): real destination & city photos + lightbox
+
+> **Reminder for the next working session.** The user will provide image folders.
+
+**What the user will deliver:** folders of **actual photos** for destinations and cities.
+- Each **folder name** = the destination or city (e.g. `hunza/`, `lahore/`).
+- Each **file name inside** = the place/spot it depicts (e.g. `attabad-lake.jpg`).
+
+**What to do when the photos arrive:**
+1. **Use only the provided photos.** Remove every generic / internet-fetched image
+   (current Pexels heroes in `public/destinations/*.jpg`, `public/scenery/*`,
+   `public/hotels/*`) and replace with the user's real ones. (Panjpeer already uses
+   real user photos — keep those.)
+2. Place them under `public/destinations/<id>/` and `public/cities/<id>/`, mapped to
+   each spot/place by filename.
+3. **Caption from filename:** turn the file name into a decent, human-readable label
+   (e.g. `attabad-lake.jpg` → "Attabad Lake") and overlay it in a **corner of the image**.
+4. **Lightbox ("lightstudio"):** clicking any photo opens it fullscreen with
+   **zoom in / zoom out** (and pan) and a close button. Build a reusable client
+   component and use it for destination spots/galleries and city places.
+
+Status: **ready and waiting for the folders.**
 
 ---
 

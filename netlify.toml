@@ -1,0 +1,10 @@
+# Netlify config — Dare2Gear (static export, no server runtime)
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  # Next.js 16 needs a modern Node runtime
+  NODE_VERSION = "20"
+
+# Static export already emits a 404.html; Netlify serves it automatically.

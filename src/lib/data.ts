@@ -1,4 +1,4 @@
-// Dare to Gear — Pakistan travel dataset
+// Dare2Gear — Pakistan travel dataset
 // All coordinates are approximate. Distances are derived at runtime
 // (great-circle distance x road-winding factor) so any origin works.
 
@@ -153,6 +153,20 @@ export const DESTINATIONS: Destination[] = [
     terrain: "highway",
   },
   {
+    id: "panjpeer",
+    name: "Panjpeer Rocks",
+    region: "Potohar, Punjab",
+    lat: 33.7783,
+    lng: 73.4736,
+    tier: "low",
+    costFactor: 1.0,
+    scenicScore: 58,
+    bestMonths: "Mar–Jun, Sep–Nov",
+    blurb: "A dramatic sandstone ridge on the Potohar Plateau — a short, popular sunrise hike near Islamabad.",
+    attractions: ["Sunrise Viewpoint", "Sandstone Boulders", "Ridge Hike", "Camping"],
+    terrain: "mixed",
+  },
+  {
     id: "naran",
     name: "Naran & Kaghan",
     region: "Kaghan Valley, KPK",
@@ -193,6 +207,20 @@ export const DESTINATIONS: Destination[] = [
     blurb: "A long emerald river valley dotted with villages, waterfalls and lakes.",
     attractions: ["Keran", "Sharda", "Ratti Gali Lake", "Arang Kel"],
     terrain: "rough",
+  },
+  {
+    id: "rawalakot",
+    name: "Rawalakot (Pearl Valley)",
+    region: "Azad Kashmir",
+    lat: 33.8578,
+    lng: 73.7604,
+    tier: "low",
+    costFactor: 1.1,
+    scenicScore: 72,
+    bestMonths: "Apr–Oct",
+    blurb: "The 'Pearl Valley' of Poonch — pine ridges, the calm Banjosa Lake and the sweeping meadows of Toli Pir.",
+    attractions: ["Banjosa Lake", "Toli Pir", "Sudhan Gali", "Tatta Pani"],
+    terrain: "mixed",
   },
   {
     id: "gorakh",
@@ -393,18 +421,18 @@ export const FUEL_PRICE_META = {
   note: fuelData.note,
 };
 
-/** PKR per room (2 people) per night, before per-destination cost factor. */
+/** PKR per person per night, before per-destination cost factor. */
 export const HOTEL_RATES: Record<HotelTier, number> = {
-  cheap: 2500,
-  standard: 6000,
-  luxury: 15000,
+  cheap: 1000,
+  standard: 1500,
+  luxury: 3500,
 };
 
 /** PKR per person per day, before per-destination cost factor. */
 export const FOOD_RATES: Record<HotelTier, number> = {
-  cheap: 1200,
-  standard: 2500,
-  luxury: 5000,
+  cheap: 1000,
+  standard: 1500,
+  luxury: 3000,
 };
 
 export const HOTEL_TIER_LABELS: Record<HotelTier, string> = {
