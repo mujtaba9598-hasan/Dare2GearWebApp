@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Destination } from "@/lib/data";
 import { BUDGET_TIER_LABELS } from "@/lib/data";
 import { CONTENT } from "@/lib/content";
+import { destHero } from "@/lib/photos";
 import { MapPinIcon, ArrowRightIcon } from "./icons";
 
 const tierStyle: Record<string, string> = {
@@ -12,7 +13,7 @@ const tierStyle: Record<string, string> = {
 
 export function ExploreCard({ d }: { d: Destination }) {
   const content = CONTENT[d.id];
-  const hero = content?.hero ?? "/scenery/s01.jpg";
+  const hero = destHero(d.id) ?? content?.hero ?? "/scenery/s01.jpg";
 
   return (
     <Link
