@@ -4,6 +4,55 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 
 ---
 
+## Session — 2026-06-01
+
+**Summary:** Replaced internet placeholder images with the user's own photos
+(221 total) for 9 northern destinations + 46 Punjab cities, added a
+click-to-zoom lightbox gallery with captions under each image, and added 5
+new destinations that arrived as photo folders.
+
+### Shipped
+- **221 real photos imported** via `scripts/import-photos.mjs` (one-shot):
+  copies into `public/photos/{destinations,cities}/<id>/<slug>.<ext>` and
+  generates the typed manifest `src/lib/photos.ts` (`{src, caption}`; caption
+  = reworked filename, **blank** for generic numbered shots like "NALTOR 001").
+- **PhotoGallery** (`src/components/photo-gallery.tsx`, client component):
+  caption shown **UNDER** each image in a dark `bg-ink` bar (always readable);
+  lightbox with zoom buttons + mouse-wheel + drag-pan + arrow-key nav + Esc.
+- Wired into **destination** & **city** detail pages; hero + the
+  `/destinations` grid thumbnails (`explore-card.tsx`) now use a real photo
+  via `destHero()`.
+- **5 new destinations** (came as folders): `shigar`, `naltar`, `nooritop`,
+  `raatigali`, `baboonvalley`.
+- **Removed** the earlier standalone `sarfaranga` + `katpana` (Katpana is a
+  Skardu spot in the folders; no Sarfaranga folder) and the placeholder
+  images that had been used for `khaplu`.
+- Raw source folders/zips gitignored — only `public/photos` is committed.
+
+### Key decisions
+- **Folders are the source of truth**: folder = place (mapped to its id),
+  filename = spot name (→ caption). Re-run the importer after adding folders.
+- Caption moved from "corner overlay" to a **bar under the image** (user:
+  text on top of photos isn't always visible).
+
+### Pending / next session
+- **Verify coords** in `data.ts`: `baboonvalley` (36.0, 74.0) and `nooritop`
+  (34.9, 73.75) are approximate guesses — they affect distance/fuel results.
+- **Compress** `public/photos/cities/mianwali/namal-lake.png` (~16 MB).
+- Destinations with **no photos yet** still use Pexels placeholders: murree,
+  nathiagali, naran, swat, neelum, rawalakot, gorakh, kundmalir, gilgit,
+  chitral, deosai, khunjerab, fairymeadows, panjpeer.
+- **Logo**: 5 AI prompts provided (brand teal #0D9488 / amber #F59E0B / ink
+  #0F172A). Logo not yet generated or wired into the header/favicon.
+
+### To add more photos later (quick action)
+1. Drop a folder per place; folder name = the place, file names = the spots.
+2. Add the folder→id mapping in `scripts/import-photos.mjs` if it's a new place.
+3. Run `node scripts/import-photos.mjs` → regenerates `src/lib/photos.ts`.
+4. `npm run build` to verify, then commit + push (Netlify auto-deploys).
+
+---
+
 ## Session — 2026-05-31
 
 **Summary:** Expanded Dare2Gear from a single budget planner into a full travel

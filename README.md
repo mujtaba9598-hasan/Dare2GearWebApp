@@ -18,28 +18,36 @@ Plus destination guides, 80+ starting-city pages, route intelligence (weather, t
 
 ---
 
-## 📸 PLANNED (next session): real destination & city photos + lightbox
+## 📸 Real photos + zoom lightbox (DONE — 2026-06-01)
 
-> **Reminder for the next working session.** The user will provide image folders.
+Real, user-provided photos now power 9 northern destinations and 46 Punjab
+cities (**221 photos**). Each photo shows its **name in a bar under the image**
+and opens a **click-to-zoom lightbox** (zoom buttons + wheel + drag-pan + arrow
+keys + Esc).
 
-**What the user will deliver:** folders of **actual photos** for destinations and cities.
-- Each **folder name** = the destination or city (e.g. `hunza/`, `lahore/`).
-- Each **file name inside** = the place/spot it depicts (e.g. `attabad-lake.jpg`).
+**How it works**
+- Photos live in `public/photos/{destinations,cities}/<id>/<slug>.<ext>`.
+- `src/lib/photos.ts` is the **auto-generated** manifest (`{src, caption}` per
+  place). **Do not hand-edit** — regenerate it with the importer.
+- `src/components/photo-gallery.tsx` is the reusable gallery + lightbox.
+- Heroes and `/destinations` thumbnails prefer a real photo via `destHero()`.
 
-**What to do when the photos arrive:**
-1. **Use only the provided photos.** Remove every generic / internet-fetched image
-   (current Pexels heroes in `public/destinations/*.jpg`, `public/scenery/*`,
-   `public/hotels/*`) and replace with the user's real ones. (Panjpeer already uses
-   real user photos — keep those.)
-2. Place them under `public/destinations/<id>/` and `public/cities/<id>/`, mapped to
-   each spot/place by filename.
-3. **Caption from filename:** turn the file name into a decent, human-readable label
-   (e.g. `attabad-lake.jpg` → "Attabad Lake") and overlay it in a **corner of the image**.
-4. **Lightbox ("lightstudio"):** clicking any photo opens it fullscreen with
-   **zoom in / zoom out** (and pan) and a close button. Build a reusable client
-   component and use it for destination spots/galleries and city places.
+**To add more photos (quick action for next session)**
+1. Make one folder per place: **folder name = the place**, **file names = the
+   spots** (e.g. `Hunza/Attabad Lake.jpg`). Generic numbered files (e.g.
+   `BABOON 001.jpg`) become un-captioned gallery shots.
+2. If it's a **new** place, add the folder→id mapping in
+   `scripts/import-photos.mjs` (and add the destination to `src/lib/data.ts` +
+   a `CONTENT` entry in `src/lib/content.ts`).
+3. Run `node scripts/import-photos.mjs` → copies photos + regenerates
+   `src/lib/photos.ts`.
+4. `npm run build` to verify, then commit + push (Netlify auto-deploys).
 
-Status: **ready and waiting for the folders.**
+> **Still on Pexels placeholders** (no photos provided yet): murree, nathiagali,
+> naran, swat, neelum, rawalakot, gorakh, kundmalir, gilgit, chitral, deosai,
+> khunjerab, fairymeadows, panjpeer. **TODO:** verify approximate coords for
+> `baboonvalley` & `nooritop` in `data.ts`; compress the ~16 MB
+> `mianwali/namal-lake.png`.
 
 ---
 
@@ -77,6 +85,7 @@ locally*, not stored in the repo. That's why the download is tiny; nothing is mi
 | `npm run lint` | ESLint |
 | `npm run gen:distances` | Rebuild `DISTANCES.md` + `data/distances.csv` (legacy estimate) |
 | `npm run gen:roads` | Rebuild the **real** OSRM road-distance matrix (`src/data/road-distances.json`) |
+| `node scripts/import-photos.mjs` | Import real photos from source folders → `public/photos` + regenerate `src/lib/photos.ts` |
 | `npm run update:fuel` | Fetch official fuel prices → update JSON |
 | `npm run check:fuel` | Report price freshness (flags stale data) |
 
@@ -85,10 +94,11 @@ locally*, not stored in the repo. That's why the download is tiny; nothing is mi
 ## 📂 Structure
 
 ```
-src/lib/data.ts            # 🔑 81 cities, 17 destinations, 20 vehicles, prices
+src/lib/data.ts            # 🔑 81 cities, 23 destinations, 20 vehicles, prices
 src/lib/planner.ts         # 🔑 Cost engine + planPointToPoint (any-to-any)
 src/lib/content.ts         # Destination guides: spots, tracks, hotels, en-route
 src/lib/city-attractions.ts# "Places to see" for every origin city
+src/lib/photos.ts          # 🔑 AUTO-GENERATED real-photo manifest (do not edit)
 src/lib/catalog.ts         # Rentals & services categories
 src/lib/route-info.ts      # Tolls, CC rules, docs, weather URL (Pillar 2)
 src/lib/contact.ts         # WhatsApp / email links (no backend)
@@ -98,7 +108,9 @@ src/app/                   # /, /planner, /trip, /destinations/[id], /cities/[id
                            # /rentals/[category], /services/[slug], /list-your-property
 src/components/             # navbar (dropdowns), getting-there, trip-planner,
                            # savings-panel, hotel-card, explore-card, icons, …
-scripts/                   # generate-road-distances.ts (OSRM), update-fuel-prices.ts
+src/components/photo-gallery.tsx # captioned gallery + click-to-zoom lightbox
+scripts/                   # import-photos.mjs (real photos → public + manifest),
+                           # generate-road-distances.ts (OSRM), update-fuel-prices.ts
 .github/workflows/fuel-price-check.yml   # fuel freshness emailer (2nd & 17th)
 ```
 
