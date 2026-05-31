@@ -290,9 +290,9 @@ export const CONTENT: Record<string, DestinationContent> = {
   },
 
   khaplu: {
-    hero: SCENERY.fort,
+    hero: "/photos/destinations/khaplu/khaplu-fort.jpg",
     tagline: "An ancient royal valley on the Shyok, gateway to the Hushe peaks.",
-    gallery: [SCENERY.fort, SCENERY.greenValley, SCENERY.karakoram],
+    gallery: [],
     spots: [
       { name: "Khaplu Palace (Yabgo Khar)", blurb: "A 19th-century Raja's palace restored as a heritage hotel and museum — among the finest surviving in Baltistan.", category: "fort" },
       { name: "Chaqchan Mosque", blurb: "A roughly 700-year-old mosque blending Tibetan, Mughal and Persian woodwork.", category: "religious" },
@@ -311,29 +311,61 @@ export const CONTENT: Record<string, DestinationContent> = {
     ],
   },
 
-  sarfaranga: {
-    hero: SCENERY.karakoram,
-    tagline: "Silver dunes on the Shigar valley floor, ringed by snow peaks.",
-    gallery: [SCENERY.karakoram, SCENERY.turquoise, SCENERY.snowLake],
+  shigar: {
+    hero: "/photos/destinations/shigar/serena-shigar-fort.jpg",
+    tagline: "Apricot orchards and old forts on the road to the Baltoro and K2.",
+    gallery: [],
     spots: [
-      { name: "The Cold Desert Dunes", blurb: "Vast wind-sculpted sand dunes at over 2,200m — among the highest cold deserts on earth.", category: "viewpoint" },
-      { name: "Jeep Rally Track", blurb: "The venue of the annual Sarfaranga Desert Jeep Rally, one of Pakistan's biggest motorsport events.", category: "viewpoint" },
-      { name: "Dune Camping", blurb: "Pitch a tent among the dunes for cold, star-filled nights against the Karakoram skyline.", category: "trek" },
-      { name: "Shigar Fort", blurb: "The 17th-century fort-palace a short drive away, restored as a heritage hotel.", category: "fort" },
-      { name: "Blind Lake", blurb: "A small, still lake near Shigar with mirror reflections of the surrounding peaks.", category: "lake" },
+      { name: "Serena Shigar Fort", blurb: "A 17th-century Raja's fort-palace ('Fong Khar') restored as a heritage hotel and museum.", category: "fort" },
+      { name: "Blind Lake", blurb: "A calm lake on the valley floor with mirror reflections of the surrounding peaks.", category: "lake" },
+      { name: "Amburiq Mosque", blurb: "An ancient wooden mosque showing early Tibetan-Balti Islamic craftsmanship.", category: "religious" },
+      { name: "Khilingrong Mosque", blurb: "A centuries-old carved-wood mosque in the heart of Shigar.", category: "religious" },
+      { name: "Shigar Valley", blurb: "Green terraced fields and orchards lining the Shigar River below the Karakoram.", category: "valley" },
     ],
   },
 
-  katpana: {
-    hero: SCENERY.turquoise,
-    tagline: "High-altitude dunes where the desert meets the Indus, minutes from Skardu.",
-    gallery: [SCENERY.turquoise, SCENERY.karakoram, SCENERY.snowLake],
+  naltar: {
+    hero: "/photos/destinations/naltar/naltor-001.jpg",
+    tagline: "Pine forests, vivid blue lakes and Pakistan's premier ski slope.",
+    gallery: [],
     spots: [
-      { name: "Katpana Sand Dunes", blurb: "The famous cold-desert dunes just outside Skardu town, glowing gold at sunset.", category: "viewpoint" },
-      { name: "Indus Riverbank", blurb: "Where the dunes run down to the wide, slow Indus below the Karakoram.", category: "viewpoint" },
-      { name: "Desert Camp", blurb: "Tented camps on the sand with bonfires and clear-sky stargazing.", category: "trek" },
-      { name: "Skardu Airport View", blurb: "The dunes overlook the runway set dramatically among the mountains.", category: "viewpoint" },
-      { name: "Sadpara Lake (nearby)", blurb: "The lake on the road above Skardu, an easy add-on to a desert evening.", category: "lake" },
+      { name: "Naltar Lakes", blurb: "A cluster of intensely blue-green alpine lakes reached by jeep above Naltar Bala.", category: "lake" },
+      { name: "Naltar Ski Resort", blurb: "The Air Force-run ski slope, one of the best in Pakistan.", category: "viewpoint" },
+      { name: "Pine Forests", blurb: "Thick conifer forest blanketing the valley — a rarity in the dry north.", category: "valley" },
+      { name: "Strawberry Valley", blurb: "A green pocket of the valley known for wild strawberries in summer.", category: "valley" },
+    ],
+  },
+
+  nooritop: {
+    hero: "/photos/destinations/nooritop/noori-top-001.jpg",
+    tagline: "A high alpine top with sweeping meadows above the Kaghan Valley.",
+    gallery: [],
+    spots: [
+      { name: "Summit Meadows", blurb: "Wide green pastures at the top with 360° mountain views.", category: "viewpoint" },
+      { name: "Malika Parbat View", blurb: "Views toward Malika Parbat, the highest peak of the Kaghan Valley.", category: "viewpoint" },
+      { name: "Alpine Camping", blurb: "A popular high-altitude camping spot under clear, star-filled skies.", category: "trek" },
+    ],
+  },
+
+  raatigali: {
+    hero: "/photos/destinations/raatigali/raati-gali-001.jpg",
+    tagline: "A glacial alpine lake high above the Neelum Valley.",
+    gallery: [],
+    spots: [
+      { name: "Raati Gali Lake", blurb: "A vivid glacial lake ringed by snowfields above Dawarian, reached by jeep and a short trek.", category: "lake" },
+      { name: "Alpine Meadows", blurb: "Wildflower meadows surrounding the lake in midsummer.", category: "valley" },
+      { name: "Glacier Streams", blurb: "Icy meltwater streams feeding the lake from the surrounding peaks.", category: "viewpoint" },
+    ],
+  },
+
+  baboonvalley: {
+    hero: "/photos/destinations/baboonvalley/baboon-001.jpg",
+    tagline: "A quiet, lesser-known green valley away from the crowds.",
+    gallery: [],
+    spots: [
+      { name: "Valley Meadows", blurb: "Open green pastures and gentle slopes ideal for a relaxed stop.", category: "valley" },
+      { name: "Mountain Views", blurb: "Uncrowded views of the surrounding northern peaks.", category: "viewpoint" },
+      { name: "Riverside Walks", blurb: "Easy walks along the valley's streams and meadows.", category: "valley" },
     ],
   },
 

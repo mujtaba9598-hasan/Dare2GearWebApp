@@ -24,6 +24,12 @@
 .DS_Store
 *.pem
 
+# raw photo source folders (imported into /public/photos via scripts/import-photos.mjs)
+/PUNJAB
+/D2G (9 DESTINATIONS)
+/*.zip
+.dev-server.log
+
 # debug
 npm-debug.log*
 yarn-debug.log*

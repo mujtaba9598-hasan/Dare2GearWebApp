@@ -9,8 +9,10 @@ import {
   hotelsFor,
   enRouteFor,
 } from "@/lib/content";
+import { destPhotos, destHero } from "@/lib/photos";
 import { HotelCard } from "@/components/hotel-card";
 import { GettingThere } from "@/components/getting-there";
+import { PhotoGallery } from "@/components/photo-gallery";
 import {
   MapPinIcon,
   CalendarIcon,
@@ -70,6 +72,8 @@ export default async function DestinationDetail({
 
   const hotels = hotelsFor(id);
   const enRoute = enRouteFor(id);
+  const photos = destPhotos(id);
+  const heroSrc = destHero(id) ?? content.hero;
 
   return (
     <>
@@ -77,7 +81,7 @@ export default async function DestinationDetail({
       <section className="relative h-[44vh] min-h-[320px] w-full overflow-hidden sm:h-[52vh]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src={content.hero}
+          src={heroSrc}
           alt={d.name}
           className="absolute inset-0 h-full w-full object-cover"
         />
@@ -149,21 +153,17 @@ export default async function DestinationDetail({
           </div>
         </section>
 
-        {/* Photo strip */}
-        {content.gallery.length > 0 && (
+        {/* Photo gallery — real photos, tap any to zoom */}
+        {photos.length > 0 && (
           <section className="mt-12">
-            <div className="grid gap-3 sm:grid-cols-3">
-              {content.gallery.map((src, i) => (
-                <div key={i} className="aspect-[4/3] overflow-hidden rounded-2xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={src}
-                    alt={`${d.name} scenery ${i + 1}`}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-              ))}
+            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+              {d.name} in photos
+            </h2>
+            <p className="mt-1 text-sm text-muted">
+              Real shots from {d.name} — tap any photo to zoom in.
+            </p>
+            <div className="mt-6">
+              <PhotoGallery photos={photos} altPrefix={d.name} />
             </div>
           </section>
         )}

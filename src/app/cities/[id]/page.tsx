@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ORIGINS } from "@/lib/data";
 import { cityPlaces, CITY_PLACE_LABELS } from "@/lib/city-attractions";
+import { cityPhotos } from "@/lib/photos";
+import { PhotoGallery } from "@/components/photo-gallery";
 import {
   MapPinIcon,
   ArrowRightIcon,
@@ -38,6 +40,7 @@ export default async function CityDetail({
   if (!city) notFound();
 
   const places = cityPlaces(id);
+  const photos = cityPhotos(id);
 
   return (
     <>
@@ -71,6 +74,21 @@ export default async function CityDetail({
       </section>
 
       <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
+        {/* Photo gallery — real photos, tap any to zoom */}
+        {photos.length > 0 && (
+          <section className="mb-12">
+            <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+              {city.name} in photos
+            </h2>
+            <p className="mt-1 text-sm text-muted">
+              Real shots of {city.name}&apos;s landmarks — tap any photo to zoom in.
+            </p>
+            <div className="mt-6">
+              <PhotoGallery photos={photos} altPrefix={city.name} />
+            </div>
+          </section>
+        )}
+
         {places.length > 0 ? (
           <>
             <h2 className="font-display text-2xl font-bold text-ink sm:text-3xl">
