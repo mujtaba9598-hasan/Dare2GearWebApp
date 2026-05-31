@@ -289,6 +289,54 @@ export const CONTENT: Record<string, DestinationContent> = {
     ],
   },
 
+  khaplu: {
+    hero: SCENERY.fort,
+    tagline: "An ancient royal valley on the Shyok, gateway to the Hushe peaks.",
+    gallery: [SCENERY.fort, SCENERY.greenValley, SCENERY.karakoram],
+    spots: [
+      { name: "Khaplu Palace (Yabgo Khar)", blurb: "A 19th-century Raja's palace restored as a heritage hotel and museum — among the finest surviving in Baltistan.", category: "fort" },
+      { name: "Chaqchan Mosque", blurb: "A roughly 700-year-old mosque blending Tibetan, Mughal and Persian woodwork.", category: "religious" },
+      { name: "Hushe Valley", blurb: "The road-head village and base camp for K6, K7 and Masherbrum trekkers.", category: "valley" },
+      { name: "Shyok River", blurb: "The wide braided river that carves the Khaplu valley below the orchards.", category: "viewpoint" },
+      { name: "Saling Valley", blurb: "A quiet green side-valley of terraced fields and apricot orchards.", category: "valley" },
+    ],
+    tracks: [
+      {
+        name: "Khaplu → Hushe jeep track",
+        blurb: "A long, rough valley road following the Shyok and Hushe rivers to the trekking road-head — loose surface, narrow ledges and stream crossings.",
+        bikeNeeded: "150cc+ dual-sport / trail bike, or a 4x4 jeep",
+        skill: "advanced",
+        warning: "Remote with little fuel or help beyond Khaplu — travel in daylight and carry spares.",
+      },
+    ],
+  },
+
+  sarfaranga: {
+    hero: SCENERY.karakoram,
+    tagline: "Silver dunes on the Shigar valley floor, ringed by snow peaks.",
+    gallery: [SCENERY.karakoram, SCENERY.turquoise, SCENERY.snowLake],
+    spots: [
+      { name: "The Cold Desert Dunes", blurb: "Vast wind-sculpted sand dunes at over 2,200m — among the highest cold deserts on earth.", category: "viewpoint" },
+      { name: "Jeep Rally Track", blurb: "The venue of the annual Sarfaranga Desert Jeep Rally, one of Pakistan's biggest motorsport events.", category: "viewpoint" },
+      { name: "Dune Camping", blurb: "Pitch a tent among the dunes for cold, star-filled nights against the Karakoram skyline.", category: "trek" },
+      { name: "Shigar Fort", blurb: "The 17th-century fort-palace a short drive away, restored as a heritage hotel.", category: "fort" },
+      { name: "Blind Lake", blurb: "A small, still lake near Shigar with mirror reflections of the surrounding peaks.", category: "lake" },
+    ],
+  },
+
+  katpana: {
+    hero: SCENERY.turquoise,
+    tagline: "High-altitude dunes where the desert meets the Indus, minutes from Skardu.",
+    gallery: [SCENERY.turquoise, SCENERY.karakoram, SCENERY.snowLake],
+    spots: [
+      { name: "Katpana Sand Dunes", blurb: "The famous cold-desert dunes just outside Skardu town, glowing gold at sunset.", category: "viewpoint" },
+      { name: "Indus Riverbank", blurb: "Where the dunes run down to the wide, slow Indus below the Karakoram.", category: "viewpoint" },
+      { name: "Desert Camp", blurb: "Tented camps on the sand with bonfires and clear-sky stargazing.", category: "trek" },
+      { name: "Skardu Airport View", blurb: "The dunes overlook the runway set dramatically among the mountains.", category: "viewpoint" },
+      { name: "Sadpara Lake (nearby)", blurb: "The lake on the road above Skardu, an easy add-on to a desert evening.", category: "lake" },
+    ],
+  },
+
   fairymeadows: {
     hero: "/destinations/fairymeadows.jpg",
     tagline: "A grassy plateau facing the 8,126m face of Nanga Parbat.",
