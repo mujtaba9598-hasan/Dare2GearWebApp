@@ -6,6 +6,7 @@ import {
   VEHICLES,
   HOTEL_RATES,
   HOTEL_TIER_LABELS,
+  isRestrictedProvince,
   type HotelTier,
   type VehicleClass,
 } from "@/lib/data";
@@ -113,6 +114,8 @@ export function PlannerForm() {
   const originsByProvince = useMemo(() => {
     const groups = new Map<string, typeof ORIGINS>();
     for (const o of ORIGINS) {
+      // Restricted provinces aren't offered as a budget-trip starting point.
+      if (isRestrictedProvince(o.province)) continue;
       const list = groups.get(o.province) ?? [];
       list.push(o);
       groups.set(o.province, list);

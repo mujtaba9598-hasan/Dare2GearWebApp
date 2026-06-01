@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { DESTINATIONS } from "@/lib/data";
+import { DESTINATIONS, isRestrictedDestination } from "@/lib/data";
 import { ExploreCard } from "@/components/explore-card";
 import { ArrowRightIcon, CompassIcon } from "@/components/icons";
 
@@ -60,9 +60,9 @@ export default function DestinationsPage() {
       {/* Grouped destinations */}
       <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 sm:py-20">
         {TIER_ORDER.map((tier) => {
-          const items = DESTINATIONS.filter((d) => d.tier === tier).sort(
-            (a, b) => b.scenicScore - a.scenicScore,
-          );
+          const items = DESTINATIONS.filter(
+            (d) => d.tier === tier && !isRestrictedDestination(d),
+          ).sort((a, b) => b.scenicScore - a.scenicScore);
           if (items.length === 0) return null;
           const heading = TIER_HEADINGS[tier];
           return (

@@ -9,6 +9,7 @@ import {
   FOOD_RATES,
   ORIGINS,
   VEHICLES,
+  isRestrictedDestination,
   type Destination,
   type GeoPoint,
   type HotelTier,
@@ -237,8 +238,11 @@ export interface TripPlace {
 }
 
 export const ALL_PLACES: TripPlace[] = [
+  // All cities stay selectable — incl. restricted provinces — so a manual
+  // any-to-any calc (e.g. Karachi → Quetta) still returns a rough estimate.
   ...ORIGINS.map((o) => ({ id: o.id, name: o.name, kind: "city" as const, costFactor: 1.0 })),
-  ...DESTINATIONS.map((d) => ({
+  // Restricted destinations (their full guides) are dropped from discovery.
+  ...DESTINATIONS.filter((d) => !isRestrictedDestination(d)).map((d) => ({
     id: d.id,
     name: d.name,
     kind: "destination" as const,
@@ -344,9 +348,10 @@ export function planTrip(input: PlanInput): PlanResult {
   // Convoy size: how many of this vehicle are needed to seat everyone.
   const vehiclesNeeded = Math.max(1, Math.ceil(input.people / vehicle.seats));
 
-  const all = DESTINATIONS.map((d) =>
-    planDestination(input, origin, vehicle, kmPerLiter, vehiclesNeeded, d),
-  ).sort((a, b) => b.score - a.score);
+  // Restricted regions never appear as a budget recommendation.
+  const all = DESTINATIONS.filter((d) => !isRestrictedDestination(d))
+    .map((d) => planDestination(input, origin, vehicle, kmPerLiter, vehiclesNeeded, d))
+    .sort((a, b) => b.score - a.score);
 
   const feasible = all.filter((p) => p.feasible);
   const recommended = feasible.slice(0, 3);

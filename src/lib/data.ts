@@ -44,6 +44,30 @@ export interface VehicleModel {
 }
 
 // ----------------------------------------------------------------------------
+// Temporarily restricted areas (security situation).
+// Places in a restricted province are hidden from every AUTOMATED surface —
+// budget recommendations, the explore gallery, home features and destination
+// guide pages — with NO on-screen warning. They stay fully browsable on the
+// /cities pages and usable in the manual any-to-any trip calculator.
+// To re-enable a region later, just remove it from this set. No data is deleted.
+// ----------------------------------------------------------------------------
+export const RESTRICTED_PROVINCES: ReadonlySet<string> = new Set(["Balochistan"]);
+
+export function isRestrictedProvince(province: string): boolean {
+  return RESTRICTED_PROVINCES.has(province);
+}
+
+/** Origin city in a restricted province (e.g. Quetta). */
+export function isRestrictedOrigin(o: OriginCity): boolean {
+  return RESTRICTED_PROVINCES.has(o.province);
+}
+
+/** Destination whose region falls in a restricted province (e.g. Kund Malir → "Balochistan Coast"). */
+export function isRestrictedDestination(d: Destination): boolean {
+  return [...RESTRICTED_PROVINCES].some((p) => d.region.includes(p));
+}
+
+// ----------------------------------------------------------------------------
 // Origin cities
 // ----------------------------------------------------------------------------
 export const ORIGINS: OriginCity[] = [

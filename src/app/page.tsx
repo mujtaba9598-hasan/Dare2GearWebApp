@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FuelPriceBar } from "@/components/fuel-prices";
 import { ExploreCard } from "@/components/explore-card";
-import { DESTINATIONS } from "@/lib/data";
+import { DESTINATIONS, isRestrictedDestination } from "@/lib/data";
 import {
   ArrowRightIcon,
   WalletIcon,
@@ -44,7 +44,7 @@ const VALUE_PROPS = [
 export default function Home() {
   const featured = ["hunza", "skardu", "naran", "fairymeadows", "swat", "neelum"]
     .map((id) => DESTINATIONS.find((d) => d.id === id)!)
-    .filter(Boolean);
+    .filter((d) => d && !isRestrictedDestination(d));
 
   return (
     <>

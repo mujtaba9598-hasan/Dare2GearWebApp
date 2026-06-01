@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { DESTINATIONS, BUDGET_TIER_LABELS } from "@/lib/data";
+import { DESTINATIONS, BUDGET_TIER_LABELS, isRestrictedDestination } from "@/lib/data";
 import {
   CONTENT,
   SPOT_LABELS,
@@ -43,7 +43,8 @@ const skillStyle: Record<string, string> = {
 };
 
 export function generateStaticParams() {
-  return DESTINATIONS.map((d) => ({ id: d.id }));
+  // Restricted regions get no guide page (not built → 404 on direct hit, silently).
+  return DESTINATIONS.filter((d) => !isRestrictedDestination(d)).map((d) => ({ id: d.id }));
 }
 
 export async function generateMetadata({
@@ -68,7 +69,7 @@ export default async function DestinationDetail({
   const { id } = await params;
   const d = DESTINATIONS.find((x) => x.id === id);
   const content = CONTENT[id];
-  if (!d || !content) notFound();
+  if (!d || !content || isRestrictedDestination(d)) notFound();
 
   const hotels = hotelsFor(id);
   const enRoute = enRouteFor(id);
