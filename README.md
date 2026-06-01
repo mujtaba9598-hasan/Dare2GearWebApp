@@ -5,7 +5,7 @@
 - **🎁 Budget planner** (`/planner`) — *"I have Rs X, where can I go?"* → ranked destinations you can afford, with full cost breakdown.
 - **🗺️ Plan a specific trip** (`/trip`) — any place → any place (e.g. Hunza → Karachi) with real road distance, drive time, fuel, stay, food and total.
 
-Plus destination guides, 80+ starting-city pages, route intelligence (weather, tolls, docs), rentals/services catalogs, and live OGRA fuel prices.
+Plus destination guides, 90+ starting-city pages, nearby-city day-trip suggestions, route intelligence (weather, tolls, docs), rentals/services catalogs, and live OGRA fuel prices.
 
 | | |
 |---|---|
@@ -20,10 +20,10 @@ Plus destination guides, 80+ starting-city pages, route intelligence (weather, t
 
 ## 📸 Real photos + zoom lightbox (DONE — 2026-06-01)
 
-Real, user-provided photos now power 9 northern destinations and 46 Punjab
-cities (**221 photos**). Each photo shows its **name in a bar under the image**
-and opens a **click-to-zoom lightbox** (zoom buttons + wheel + drag-pan + arrow
-keys + Esc).
+Real, user-provided photos now power **21 destinations and 79 cities (437
+photos)** across all provinces. Each photo shows its **name in a bar under the
+image** and opens a **click-to-zoom lightbox** (zoom buttons + wheel + drag-pan
++ arrow keys + Esc).
 
 **How it works**
 - Photos live in `public/photos/{destinations,cities}/<id>/<slug>.<ext>`.
@@ -43,11 +43,10 @@ keys + Esc).
    `src/lib/photos.ts`.
 4. `npm run build` to verify, then commit + push (Netlify auto-deploys).
 
-> **Still on Pexels placeholders** (no photos provided yet): murree, nathiagali,
-> naran, swat, neelum, rawalakot, gorakh, kundmalir, gilgit, chitral, deosai,
-> khunjerab, fairymeadows, panjpeer. **TODO:** verify approximate coords for
-> `baboonvalley` & `nooritop` in `data.ts`; compress the ~16 MB
-> `mianwali/namal-lake.png`.
+> **Still on scenery placeholders** (no real photos yet): `panjpeer`, and the
+> three new AJK destinations `leepa`, `gangachoti`, `pirchinasi`. **TODO:**
+> verify approximate coords for `baboonvalley` & `nooritop` in `data.ts`;
+> compress the ~16 MB `mianwali/namal-lake.png`.
 
 ---
 
@@ -132,7 +131,7 @@ locally*, not stored in the repo. That's why the download is tiny; nothing is mi
 ## 📂 Structure
 
 ```
-src/lib/data.ts            # 🔑 81 cities, 23 destinations, 20 vehicles, prices
+src/lib/data.ts            # 🔑 91 cities, 25 destinations, 20 vehicles, prices
 src/lib/planner.ts         # 🔑 Cost engine + planPointToPoint (any-to-any)
 src/lib/content.ts         # Destination guides: spots, tracks, hotels, en-route
 src/lib/city-attractions.ts# "Places to see" for every origin city
@@ -194,6 +193,7 @@ per-person). Shown in the form hint and results.
 
 ## 📜 Build log (latest first)
 
+- **2026-06-01** — **Nearby-city suggestions** + **sub-100km day trips** (no hotel) in the budget planner; any-to-any /trip now estimates distances for places missing from the OSRM matrix. Real photos for 16 Explorer destinations; +3 AJK destinations (Leepa, Ganga Choti, Pir Chinasi); Ziarat + Kund Malir added as cities. Now **91 cities / 25 destinations / 437 photos**.
 - **2026-06-01** — **Balochistan restricted** from all automated discovery (security), reversible via `RESTRICTED_PROVINCES` in `data.ts`; cities kept for manual search. See "🔒 Restricted regions" above.
 - **2026-06-01** — Real photos for **Sindh/KPK/Balochistan cities** (148 photos, 33 cities); `/cities` cards now show photo thumbnails; importer is now merge-safe.
 - **2026-06-01** — Added **8 AJK origin cities** (Muzaffarabad, Kotli, Bagh, Bhimber, Palandri, Hattian Bala, Athmuqam, Forward Kahuta) with researched spots.
