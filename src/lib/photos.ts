@@ -482,7 +482,7 @@ export const CITY_PHOTOS: Record<string, Photo[]> = {
     { src: "/photos/cities/kohat/kohat-fort.jpg", caption: "Kohat Fort" },
     { src: "/photos/cities/kohat/kohat-tunnel.jpg", caption: "Kohat Tunnel" },
     { src: "/photos/cities/kohat/tanda-dam.jpg", caption: "Tanda Dam" },
-    { src: "/photos/cities/kohat/tanda-wildlife-par.jpg", caption: "Tanda Wildlife Par" },
+    { src: "/photos/cities/kohat/tanda-wildlife-par.jpg", caption: "Tanda Wildlife Park" },
   ],
   "mansehra": [
     { src: "/photos/cities/mansehra/ashoka-rock-edicts.jpg", caption: "Ashoka Rock Edicts" },
@@ -497,7 +497,7 @@ export const CITY_PHOTOS: Record<string, Photo[]> = {
     { src: "/photos/cities/mardan/takht-i-bahi.jpg", caption: "Takht I Bahi" },
   ],
   "mingora": [
-    { src: "/photos/cities/mingora/mingora-bazaa.jpg", caption: "Mingora Bazaa" },
+    { src: "/photos/cities/mingora/mingora-bazaa.jpg", caption: "Mingora Bazaar" },
     { src: "/photos/cities/mingora/swat-museum.jpg", caption: "Swat Museum" },
     { src: "/photos/cities/mingora/white-palace-marghazar.jpg", caption: "White Palace, Marghazar" },
   ],

@@ -124,6 +124,12 @@ const BALOCH_IDS = {
   Turbat: "turbat",
 };
 
+// Fix captions where the source filename was truncated. Keyed by output src path.
+const CAPTION_OVERRIDES = {
+  "/photos/cities/kohat/tanda-wildlife-par.jpg": "Tanda Wildlife Park",
+  "/photos/cities/mingora/mingora-bazaa.jpg": "Mingora Bazaar",
+};
+
 const slug = (s) =>
   s
     .toLowerCase()
@@ -159,8 +165,9 @@ function importFolder(srcRoot, folder, id, kind) {
     const caption = rework(base);
     const fileSlug = slug(base) || "photo";
     const outName = `${fileSlug}${ext}`;
+    const src = `/photos/${kind}/${id}/${outName}`;
     fs.copyFileSync(path.join(srcDir, f), path.join(destDir, outName));
-    photos.push({ src: `/photos/${kind}/${id}/${outName}`, caption });
+    photos.push({ src, caption: CAPTION_OVERRIDES[src] ?? caption });
   }
   return photos;
 }
