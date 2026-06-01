@@ -185,6 +185,11 @@ export function TripPlanner() {
                 {people} {people === 1 ? "person" : "people"} · {days} days · includes a 10% buffer
                 {result.vehiclesNeeded > 1 ? ` · convoy of ${result.vehiclesNeeded}` : ""}
               </p>
+              {result.isDayTrip && (
+                <span className="mt-2 inline-block rounded-full bg-brand-100 px-2.5 py-0.5 text-[11px] font-semibold text-brand-700">
+                  Short day trip (≤100 km) — no overnight stay, fuel + food only
+                </span>
+              )}
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
@@ -220,8 +225,10 @@ export function TripPlanner() {
                 </div>
               </dl>
               <p className="mt-3 text-xs text-muted">
-                Fuel uses one-way {pkr(result.fuelOneWay)} (×2 for the return). Distances &amp; drive
-                times are real road routes; costs are estimates.
+                Fuel uses one-way {pkr(result.fuelOneWay)} (×2 for the return).{" "}
+                {result.estimated
+                  ? "Distance is an approximate straight-line estimate for this route; costs are estimates."
+                  : "Distances & drive times are real road routes; costs are estimates."}
               </p>
               <a
                 href={waLink(`Hi Dare2Gear! I want to plan a trip from ${result.from.name} to ${result.to.name} (${people} people, ${days} days). Estimated ${pkr(result.total)}. Can you help?`)}

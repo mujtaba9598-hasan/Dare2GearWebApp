@@ -108,7 +108,7 @@ export function DestinationCard({
       <div className="mt-3 grid grid-cols-2 gap-x-5 border-t border-line pt-3">
         <StatRow icon={<ClockIcon className="h-4 w-4" />} label="Drive (1-way)" value={`${plan.drivingHoursOneWay}h`} />
         <StatRow icon={<CalendarIcon className="h-4 w-4" />} label="Min days" value={`${plan.minDaysNeeded}`} />
-        <StatRow icon={<BedIcon className="h-4 w-4" />} label="Stay" value={pkr(costs.hotel)} />
+        <StatRow icon={<BedIcon className="h-4 w-4" />} label="Stay" value={plan.isDayTrip ? "Day trip" : pkr(costs.hotel)} />
         <StatRow icon={<UtensilsIcon className="h-4 w-4" />} label="Food" value={pkr(costs.food)} />
       </div>
 
@@ -129,7 +129,8 @@ export function DestinationCard({
       <div className="mt-3 flex items-start gap-2 text-sm">
         {plan.feasible ? (
           <span className="inline-flex items-center gap-1.5 font-medium text-brand-700">
-            <CheckIcon className="h-4 w-4" /> Fits your budget &amp; days
+            <CheckIcon className="h-4 w-4" />{" "}
+            {plan.isDayTrip ? "Fits — short day trip, no overnight stay" : "Fits your budget & days"}
           </span>
         ) : (
           <span className="inline-flex items-start gap-1.5 font-medium text-amber-700">

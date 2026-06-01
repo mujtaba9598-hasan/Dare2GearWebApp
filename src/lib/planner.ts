@@ -10,14 +10,21 @@ import {
   ORIGINS,
   VEHICLES,
   isRestrictedDestination,
+  isRestrictedOrigin,
   type Destination,
   type GeoPoint,
+  type OriginCity,
   type HotelTier,
   type VehicleModel,
 } from "./data";
+import { cityPlaces } from "./city-attractions";
 // Real road distances + drive times (OSRM/OpenStreetMap), precomputed offline by
 // scripts/generate-road-distances.ts. Indexed by place id.
 import roadData from "@/data/road-distances.json";
+
+/** A one-way trip at or under this distance is treated as a same-day round trip:
+ * no overnight hotel — just fuel and a day's food. */
+export const DAY_TRIP_KM = 100;
 
 const ROAD_INDEX: Record<string, number> = {};
 roadData.ids.forEach((id, i) => {
@@ -71,6 +78,8 @@ export interface DestinationPlan {
   vehiclesNeeded: number;
   drivingHoursOneWay: number;
   minDaysNeeded: number;
+  /** ≤ DAY_TRIP_KM one-way — a same-day return, no overnight stay. */
+  isDayTrip: boolean;
   costs: CostBreakdown;
   withinBudget: boolean;
   enoughDays: boolean;
@@ -81,6 +90,21 @@ export interface DestinationPlan {
   score: number;
   /** human note when not fully feasible */
   note?: string;
+}
+
+/** A short trip to a nearby city (with its own "places to see"), surfaced
+ * alongside the far-flung destinations so small budgets still get ideas. */
+export interface CityTrip {
+  city: OriginCity;
+  distanceKm: number;
+  roundTripKm: number;
+  isDayTrip: boolean;
+  drivingHoursOneWay: number;
+  vehiclesNeeded: number;
+  costs: CostBreakdown;
+  withinBudget: boolean;
+  /** number of attractions we list for this city */
+  placesToSee: number;
 }
 
 export interface PlanResult {
@@ -98,6 +122,8 @@ export interface PlanResult {
   feasible: DestinationPlan[];
   stretch: DestinationPlan[];
   all: DestinationPlan[];
+  /** nearby cities worth a short/day trip, closest first, within budget */
+  nearby: CityTrip[];
 }
 
 const EARTH_RADIUS_KM = 6371;
@@ -113,6 +139,20 @@ function haversineKm(a: GeoPoint, b: GeoPoint): number {
     Math.sin(dLat / 2) ** 2 +
     Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
   return 2 * EARTH_RADIUS_KM * Math.asin(Math.min(1, Math.sqrt(h)));
+}
+
+/** Look up the coordinates of any place (city or destination) by id. */
+function geoById(id: string): GeoPoint | undefined {
+  return ORIGINS.find((o) => o.id === id) ?? DESTINATIONS.find((d) => d.id === id);
+}
+
+/** One-way road distance (km) between two places, using the real matrix where
+ * available and a great-circle × 1.45 estimate as a fallback (for newer places
+ * not yet in the OSRM matrix — e.g. AJK cities, Ziarat, Kund Malir). */
+function roadOrEstimateKm(a: GeoPoint, b: GeoPoint): number {
+  const real = roadDistanceBetween(a, b);
+  if (real != null && real > 0) return real;
+  return Math.round(haversineKm(a, b) * 1.45);
 }
 
 /** One-way road distance (km). Uses the real OSRM matrix; falls back to a
@@ -164,11 +204,16 @@ function planDestination(
   const liters = litersPerVehicle * vehiclesNeeded;
   const fuel = round(liters * FUEL_PRICES[vehicle.fuel]);
 
-  const nights = Math.max(1, input.days - 1);
-  // Stay is estimated per person per night (≈ Rs 1,500 standard).
-  const hotel = round(HOTEL_RATES[input.hotelTier] * dest.costFactor * nights * input.people);
+  // A nearby spot (≤ 100 km one-way) is a same-day round trip: no overnight stay,
+  // just one day's food. Otherwise stay per person per night (≈ Rs 1,500 standard).
+  const isDayTrip = distanceKm <= DAY_TRIP_KM;
+  const nights = isDayTrip ? 0 : Math.max(1, input.days - 1);
+  const hotel = isDayTrip
+    ? 0
+    : round(HOTEL_RATES[input.hotelTier] * dest.costFactor * nights * input.people);
 
-  const food = round(FOOD_RATES[input.hotelTier] * dest.costFactor * input.people * input.days);
+  const foodDays = isDayTrip ? 1 : input.days;
+  const food = round(FOOD_RATES[input.hotelTier] * dest.costFactor * input.people * foodDays);
 
   // misc = tolls/permits (per 100km, per vehicle) + per-person activities + 10% buffer
   const tolls = round((roundTripKm / 100) * 150 * vehiclesNeeded);
@@ -180,9 +225,10 @@ function planDestination(
   const total = fuel + hotel + food + misc;
 
   const drivingHoursOneWay = roadDriveHours(origin, dest);
-  // need travel time both ways at ~9 driving hours/day, plus at least 1 full day to enjoy
+  // A day trip needs just 1 day; otherwise travel both ways at ~9 driving hours/day
+  // plus at least 1 full day to enjoy.
   const travelDays = Math.ceil((drivingHoursOneWay * 2) / 9);
-  const minDaysNeeded = Math.max(2, travelDays + 1);
+  const minDaysNeeded = isDayTrip ? 1 : Math.max(2, travelDays + 1);
 
   const withinBudget = total <= input.budget;
   const enoughDays = input.days >= minDaysNeeded;
@@ -206,6 +252,8 @@ function planDestination(
     note = `Over budget by Rs ${(total - input.budget).toLocaleString()}.`;
   } else if (!enoughDays) {
     note = `Doable on budget but realistically needs ${minDaysNeeded}+ days.`;
+  } else if (isDayTrip) {
+    note = "Short day trip — visit and drive back the same day (no overnight stay).";
   }
 
   return {
@@ -216,6 +264,7 @@ function planDestination(
     vehiclesNeeded,
     drivingHoursOneWay: Math.round(drivingHoursOneWay * 10) / 10,
     minDaysNeeded,
+    isDayTrip,
     costs: { fuel, hotel, food, misc, total },
     withinBudget,
     enoughDays,
@@ -275,6 +324,10 @@ export interface TripResult {
   tolls: number;
   buffer: number;
   total: number;
+  /** ≤ DAY_TRIP_KM one-way — same-day return, no overnight stay. */
+  isDayTrip: boolean;
+  /** true when distance came from the great-circle estimate, not the OSRM matrix. */
+  estimated: boolean;
 }
 
 export function getPlace(id: string): TripPlace | undefined {
@@ -289,15 +342,26 @@ export function planPointToPoint(input: TripInput): TripResult | null {
 
   const fi = ROAD_INDEX[from.id];
   const ti = ROAD_INDEX[to.id];
-  const distanceKm =
+  const matrixKm =
     fi !== undefined && ti !== undefined
       ? ((roadData.km as (number | null)[][])[fi]?.[ti] ?? null)
       : null;
-  if (distanceKm == null || distanceKm <= 0) return null;
   const driveMin =
     fi !== undefined && ti !== undefined
       ? ((roadData.min as (number | null)[][])[fi]?.[ti] ?? null)
       : null;
+
+  // Fall back to a great-circle estimate for places not yet in the OSRM matrix
+  // (e.g. AJK cities, Ziarat, Kund Malir) so the calculator always answers.
+  let estimated = false;
+  let distanceKm = matrixKm;
+  if (distanceKm == null || distanceKm <= 0) {
+    const ga = geoById(from.id);
+    const gb = geoById(to.id);
+    if (!ga || !gb) return null;
+    distanceKm = Math.round(haversineKm(ga, gb) * 1.45);
+    estimated = true;
+  }
 
   const vehicle = getVehicle(input.vehicleId);
   const kmPerLiter =
@@ -308,9 +372,12 @@ export function planPointToPoint(input: TripInput): TripResult | null {
   const fuelRoundTrip = round((roundTripKm / kmPerLiter) * FUEL_PRICES[vehicle.fuel] * vehiclesNeeded);
   const fuelOneWay = round(fuelRoundTrip / 2);
 
-  const nights = Math.max(1, input.days - 1);
-  const hotel = round(HOTEL_RATES[input.hotelTier] * to.costFactor * nights * input.people);
-  const food = round(FOOD_RATES[input.hotelTier] * to.costFactor * input.people * input.days);
+  // ≤ 100 km one-way is a same-day round trip: no hotel, just a day's food.
+  const isDayTrip = distanceKm <= DAY_TRIP_KM;
+  const nights = isDayTrip ? 0 : Math.max(1, input.days - 1);
+  const hotel = isDayTrip ? 0 : round(HOTEL_RATES[input.hotelTier] * to.costFactor * nights * input.people);
+  const foodDays = isDayTrip ? 1 : input.days;
+  const food = round(FOOD_RATES[input.hotelTier] * to.costFactor * input.people * foodDays);
   const tolls = round((roundTripKm / 100) * 150 * vehiclesNeeded);
   const subtotal = fuelRoundTrip + hotel + food + tolls;
   const buffer = round(subtotal * 0.1);
@@ -336,7 +403,69 @@ export function planPointToPoint(input: TripInput): TripResult | null {
     tolls,
     buffer,
     total,
+    isDayTrip,
+    estimated,
   };
+}
+
+/** Cost of a short trip from the origin to a nearby city (cost-of-living 1.0). */
+function planCityTrip(
+  input: PlanInput,
+  origin: GeoPoint,
+  kmPerLiter: number,
+  vehiclesNeeded: number,
+  fuelType: VehicleModel["fuel"],
+  city: OriginCity,
+): CityTrip {
+  const distanceKm = roadOrEstimateKm(origin, city);
+  const roundTripKm = distanceKm * 2;
+  const liters = (roundTripKm / kmPerLiter) * vehiclesNeeded;
+  const fuel = round(liters * FUEL_PRICES[fuelType]);
+
+  const isDayTrip = distanceKm <= DAY_TRIP_KM;
+  const nights = isDayTrip ? 0 : Math.max(1, input.days - 1);
+  const hotel = isDayTrip ? 0 : round(HOTEL_RATES[input.hotelTier] * nights * input.people);
+  const foodDays = isDayTrip ? 1 : input.days;
+  const food = round(FOOD_RATES[input.hotelTier] * input.people * foodDays);
+
+  const tolls = round((roundTripKm / 100) * 150 * vehiclesNeeded);
+  const activities = round(input.people * 1000);
+  const subtotal = fuel + hotel + food + tolls + activities;
+  const buffer = round(subtotal * 0.1);
+  const misc = tolls + activities + buffer;
+  const total = fuel + hotel + food + misc;
+
+  const drivingHoursOneWay = Math.round((distanceKm / 50) * 10) / 10;
+
+  return {
+    city,
+    distanceKm,
+    roundTripKm,
+    isDayTrip,
+    drivingHoursOneWay,
+    vehiclesNeeded,
+    costs: { fuel, hotel, food, misc, total },
+    withinBudget: total <= input.budget,
+    placesToSee: cityPlaces(city.id).length,
+  };
+}
+
+/** Nearby cities worth a short trip — closest first, within budget, and only
+ * ones that actually have attractions listed. Restricted provinces excluded. */
+export function nearbyCityTrips(
+  input: PlanInput,
+  origin: GeoPoint,
+  kmPerLiter: number,
+  vehiclesNeeded: number,
+  fuelType: VehicleModel["fuel"],
+): CityTrip[] {
+  return ORIGINS.filter(
+    (c) => c.id !== origin.id && !isRestrictedOrigin(c),
+  )
+    .map((c) => planCityTrip(input, origin, kmPerLiter, vehiclesNeeded, fuelType, c))
+    .filter((t) => t.placesToSee > 0 && t.withinBudget && t.distanceKm > 0)
+    .sort((a, b) => a.distanceKm - b.distanceKm)
+    .slice(0, 6);
 }
 
 export function planTrip(input: PlanInput): PlanResult {
@@ -366,6 +495,8 @@ export function planTrip(input: PlanInput): PlanResult {
   const litersAffordable = fuelBudget / FUEL_PRICES[vehicle.fuel];
   const maxReachKm = round((litersAffordable * kmPerLiter) / (2 * vehiclesNeeded));
 
+  const nearby = nearbyCityTrips(input, origin, kmPerLiter, vehiclesNeeded, vehicle.fuel);
+
   return {
     origin,
     vehicle,
@@ -378,5 +509,6 @@ export function planTrip(input: PlanInput): PlanResult {
     feasible,
     stretch,
     all,
+    nearby,
   };
 }
