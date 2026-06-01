@@ -185,16 +185,42 @@ export const CONTENT: Record<string, DestinationContent> = {
     ],
   },
 
-  kundmalir: {
-    hero: "/destinations/kundmalir.jpg",
-    tagline: "Where the desert meets the sea in Hingol National Park.",
-    gallery: [SCENERY.coast, SCENERY.karakoram, SCENERY.fort],
+  leepa: {
+    hero: SCENERY.greenValley,
+    tagline: "Terraced orchards and wooden houses in a hidden LoC valley.",
+    gallery: [SCENERY.greenValley, SCENERY.meadow, SCENERY.riverBridge],
     spots: [
-      { name: "Kund Malir Beach", blurb: "A golden beach on the Makran coast, roughly 4 hours from Karachi.", category: "beach" },
-      { name: "Princess of Hope", blurb: "A natural rock sculpture rising from the Hingol badlands.", category: "viewpoint" },
-      { name: "Hinglaj Mata Temple", blurb: "A major Hindu pilgrimage shrine set in a desert canyon.", category: "religious" },
-      { name: "Mud Volcanoes (Chandragup)", blurb: "Bubbling cones of cool mud sacred to Hinglaj pilgrims.", category: "viewpoint" },
-      { name: "Buzi Pass", blurb: "A dramatic cut through the coastal mountains on the Makran highway.", category: "viewpoint" },
+      { name: "Reshian Gali", blurb: "The high forested pass that opens into the Leepa valley — often the first snow point.", category: "viewpoint" },
+      { name: "Dao Khun", blurb: "A lush meadow hamlet of terraced rice fields and wooden Kashmiri homes.", category: "valley" },
+      { name: "Chananian", blurb: "A scenic village known for its apple, cherry and walnut orchards.", category: "valley" },
+      { name: "Leepa Bazaar", blurb: "The valley's small main bazaar for local honey, rajma and handicrafts.", category: "town" },
+      { name: "Naullishaw", blurb: "A quiet upper-valley spot with panoramic terraced-field views.", category: "viewpoint" },
+    ],
+  },
+
+  gangachoti: {
+    hero: SCENERY.meadow,
+    tagline: "A meadow summit and Kashmir's favourite day hike above Bagh.",
+    gallery: [SCENERY.meadow, SCENERY.greenValley, SCENERY.snowLake],
+    spots: [
+      { name: "Sudhan Gali", blurb: "The 2,300m forested pass that is the trailhead for Ganga Choti.", category: "viewpoint" },
+      { name: "Ganga Choti Summit", blurb: "A 3,044m grassy peak with 360° views over the Kashmir ranges.", category: "trek" },
+      { name: "Las Danna", blurb: "A pine-clad ridge near Bagh, the breezy 'rooftop' of the district.", category: "viewpoint" },
+      { name: "Pir Kanthi", blurb: "A quieter neighbouring summit with sweeping, uncrowded valley views.", category: "trek" },
+      { name: "Dhirkot", blurb: "A green hill town en route, a cool pine retreat for a halt.", category: "town" },
+    ],
+  },
+
+  pirchinasi: {
+    hero: SCENERY.karakoram,
+    tagline: "A shrine-topped ridge with sweeping views over Muzaffarabad.",
+    gallery: [SCENERY.karakoram, SCENERY.meadow, SCENERY.greenValley],
+    spots: [
+      { name: "Pir Chinasi Shrine", blurb: "The hilltop ziarat of Sayed Hussain Shah Bukhari at 2,900m.", category: "religious" },
+      { name: "Saral Lake", blurb: "An alpine lake on the high meadows beyond Pir Chinasi (long trek/jeep).", category: "lake" },
+      { name: "Patika", blurb: "A green roadside town on the Neelum road below the ridge.", category: "town" },
+      { name: "Lohar Gali", blurb: "A forested pass with panoramic views on the way up.", category: "viewpoint" },
+      { name: "Subri Lake", blurb: "A calm lake on the edge of Muzaffarabad for a relaxed stop.", category: "lake" },
     ],
   },
 
@@ -488,8 +514,6 @@ const HOTEL_SEEDS: HotelSeed[] = [
   { dest: "neelum", name: "Keran Riverside Camp", area: "Keran", price: 1600, rating: 3.8, amenities: ["River view", "Camping", "Breakfast"] },
   { dest: "gorakh", name: "Gorakh Hill Cottages", area: "Plateau", price: 2200, rating: 3.6, amenities: ["Heater", "Bonfire", "Stargazing deck"] },
   { dest: "gorakh", name: "Sunset Point Camp", area: "Sunset Point", price: 1200, rating: 3.5, amenities: ["Camping", "Bonfire", "Shared kitchen"] },
-  { dest: "kundmalir", name: "Hingol Beach Huts", area: "Kund Malir", price: 2000, rating: 3.7, amenities: ["Beachfront", "BBQ", "Parking"] },
-  { dest: "kundmalir", name: "Makran Coast Camp", area: "Kund Malir", price: 1500, rating: 3.5, amenities: ["Beachfront", "Camping", "Bonfire"] },
   { dest: "hunza", name: "Karimabad Eagle View", area: "Karimabad", price: 2500, rating: 4.5, amenities: ["Rakaposhi view", "Wi-Fi", "Restaurant", "Terrace"] },
   { dest: "hunza", name: "Altit Orchard Guest House", area: "Altit", price: 2200, rating: 4.3, amenities: ["Orchard", "Hot water", "Breakfast", "Parking"] },
   { dest: "skardu", name: "Shangrila Road Inn", area: "Skardu town", price: 2500, rating: 4.2, amenities: ["Wi-Fi", "Restaurant", "Hot water", "Parking"] },
@@ -586,12 +610,6 @@ export const EN_ROUTE: Record<string, RouteStop[]> = {
     { name: "Sehwan Sharif", note: "Famous Sufi shrine worth a stop on the way." },
     { name: "Johi / Wahi Pandhi", note: "Last town for fuel before the mountain track." },
     { name: "Gorakh plateau", note: "The winding climb tops out at the cool plateau." },
-  ],
-  kundmalir: [
-    { name: "Hub / Winder", note: "Leave Karachi; last easy fuel and food." },
-    { name: "Buzi Pass", note: "Dramatic cut through the coastal mountains." },
-    { name: "Hingol National Park", note: "Princess of Hope rock and mud volcanoes." },
-    { name: "Kund Malir", note: "Golden beach where the desert meets the sea." },
   ],
   hunza: [
     { name: "Besham", note: "Classic overnight halt on the Karakoram Highway." },

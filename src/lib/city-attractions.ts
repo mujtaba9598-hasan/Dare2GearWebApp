@@ -436,6 +436,20 @@ export const CITY_PLACES: Record<string, CityPlace[]> = {
     { name: "Sohbat Sarai", note: "Historic 1920 caravanserai being restored as heritage.", category: "historical" },
     { name: "Mehrgarh", note: "Ancient Indus-era farming settlement near the Bolan Pass.", category: "historical" },
   ],
+  ziarat: [
+    { name: "Quaid-e-Azam Residency", note: "Colonial-era wooden house where Jinnah spent his final days; a national monument.", category: "historical" },
+    { name: "Juniper Forest", note: "One of the world's oldest and largest juniper forests, some trees millennia old.", category: "nature" },
+    { name: "Prospect Point", note: "Hilltop viewpoint over the valley, with the 'Fern Tangi' waterfall nearby.", category: "viewpoint" },
+    { name: "Sandeman Tangi Waterfall", note: "A scenic gorge waterfall a short drive from Ziarat town.", category: "nature" },
+    { name: "Chashma (Ziarat Spring)", note: "Cold mountain spring and picnic spot on the valley floor.", category: "nature" },
+  ],
+  kundmalir: [
+    { name: "Kund Malir Beach", note: "A golden beach on the Makran Coastal Highway, roughly 4 hours from Karachi.", category: "beach" },
+    { name: "Princess of Hope", note: "A natural rock sculpture rising from the Hingol badlands.", category: "viewpoint" },
+    { name: "Hinglaj Mata Temple", note: "A major Hindu pilgrimage shrine set in a desert canyon.", category: "religious" },
+    { name: "Hingol National Park", note: "Pakistan's largest national park — desert, coast and wildlife.", category: "nature" },
+    { name: "Mud Volcanoes (Chandragup)", note: "Bubbling cones of cool mud sacred to Hinglaj pilgrims.", category: "viewpoint" },
+  ],
   mirpurajk: [
     { name: "Mangla Dam", note: "Huge reservoir offering boating and water sports.", category: "lake" },
     { name: "Ramkot Fort", note: "16th-century hilltop fort reached by boat across Mangla.", category: "fort" },
