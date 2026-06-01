@@ -1,0 +1,10 @@
+{
+  // Cloudflare Workers — static-assets-only deployment of the Next.js export.
+  // `npm run build` emits the site to ./out, and Wrangler serves it as static
+  // assets (no Worker script needed). See README "Deploy" section.
+  "name": "dare2gearwebapp",
+  "compatibility_date": "2025-05-01",
+  "assets": {
+    "directory": "./out"
+  }
+}

@@ -129,9 +129,15 @@ recommended host because its free tier has **unlimited bandwidth** (ideal for th
    - (Node version is pinned to 20 via `.node-version`.)
 4. **Save and Deploy.** Every push to `main` now auto-deploys, same as Netlify did.
 
+**If Cloudflare routes you through the newer Workers "Builds" flow** (deploy
+command `npx wrangler deploy`), it also works — the repo ships a `wrangler.jsonc`
+that serves `./out` as static assets. Just keep **Build command:** `npm run build`
+and **Deploy command:** `npx wrangler deploy`; leave the variable fields blank and
+let it create the API token automatically.
+
 > GitHub Pages also works but needs `basePath: "/Dare2GearWebApp"` in
 > `next.config.ts` + a deploy workflow, **and** has the same ~100 GB/mo bandwidth
-> cap that this image-heavy site can exceed — hence Cloudflare Pages instead.
+> cap that this image-heavy site can exceed — hence Cloudflare instead.
 
 ---
 
