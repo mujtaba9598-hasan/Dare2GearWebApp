@@ -161,7 +161,6 @@ export const ORIGINS: OriginCity[] = [
   { id: "khanpur", name: "Khanpur", province: "Punjab", lat: 28.6471, lng: 70.662 },
   { id: "gojra", name: "Gojra", province: "Punjab", lat: 31.15, lng: 72.6861 },
   { id: "bahawalnagar", name: "Bahawalnagar", province: "Punjab", lat: 29.9947, lng: 73.2536 },
-  { id: "muridke", name: "Muridke", province: "Punjab", lat: 31.8022, lng: 74.2558 },
   { id: "pakpattan", name: "Pakpattan", province: "Punjab", lat: 30.3431, lng: 73.3858 },
   { id: "jaranwala", name: "Jaranwala", province: "Punjab", lat: 31.3339, lng: 73.4194 },
   { id: "chishtian", name: "Chishtian", province: "Punjab", lat: 29.7975, lng: 72.8578 },

@@ -543,10 +543,6 @@ export const CITY_PLACES: Record<string, CityPlace[]> = {
     { name: "Marot Fort", note: "Late-18th-century Nawab-era fort in the Cholistan desert.", category: "fort" },
     { name: "Sutlej River banks", note: "Riverside and canal-bank recreation spots near the city.", category: "nature" },
   ],
-  muridke: [
-    { name: "Shrine of Hazrat Shah Murid", note: "17th-century Sufi shrine, the town's namesake.", category: "shrine" },
-    { name: "Muridke Sabzi Mandi", note: "One of Punjab's largest vegetable markets.", category: "bazaar" },
-  ],
   pakpattan: [
     { name: "Shrine of Baba Farid Ganjshakar", note: "Major Sufi shrine with the silver Bahishti Darwaza.", category: "shrine" },
     { name: "Malka Hans", note: "Historic town where Waris Shah composed the epic Heer.", category: "historical" },
