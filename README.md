@@ -20,7 +20,7 @@ Plus destination guides, 90+ starting-city pages, nearby-city day-trip suggestio
 
 ## 📸 Real photos + zoom lightbox (DONE — 2026-06-01)
 
-Real, user-provided photos now power **21 destinations and 79 cities (437
+Real, user-provided photos now power **21 destinations and 90 cities (485
 photos)** across all provinces. Each photo shows its **name in a bar under the
 image** and opens a **click-to-zoom lightbox** (zoom buttons + wheel + drag-pan
 + arrow keys + Esc).
@@ -131,7 +131,7 @@ locally*, not stored in the repo. That's why the download is tiny; nothing is mi
 ## 📂 Structure
 
 ```
-src/lib/data.ts            # 🔑 91 cities, 25 destinations, 20 vehicles, prices
+src/lib/data.ts            # 🔑 90 cities, 25 destinations, 20 vehicles, prices
 src/lib/planner.ts         # 🔑 Cost engine + planPointToPoint (any-to-any)
 src/lib/content.ts         # Destination guides: spots, tracks, hotels, en-route
 src/lib/city-attractions.ts# "Places to see" for every origin city
@@ -193,7 +193,7 @@ per-person). Shown in the form hint and results.
 
 ## 📜 Build log (latest first)
 
-- **2026-06-01** — **Nearby-city suggestions** + **sub-100km day trips** (no hotel) in the budget planner; any-to-any /trip now estimates distances for places missing from the OSRM matrix. Real photos for 16 Explorer destinations; +3 AJK destinations (Leepa, Ganga Choti, Pir Chinasi); Ziarat + Kund Malir added as cities. Now **91 cities / 25 destinations / 437 photos**.
+- **2026-06-01** — **Nearby-city suggestions** + **sub-100km day trips** (no hotel) in the budget planner; any-to-any /trip now estimates distances for places missing from the OSRM matrix. Real photos for 16 Explorer destinations + 9 AJK cities + Kund Malir/Ziarat; +3 AJK destinations (Leepa, Ganga Choti, Pir Chinasi); Ziarat + Kund Malir added as cities; Muridke removed. Now **90 cities / 25 destinations / 485 photos**.
 - **2026-06-01** — **Balochistan restricted** from all automated discovery (security), reversible via `RESTRICTED_PROVINCES` in `data.ts`; cities kept for manual search. See "🔒 Restricted regions" above.
 - **2026-06-01** — Real photos for **Sindh/KPK/Balochistan cities** (148 photos, 33 cities); `/cities` cards now show photo thumbnails; importer is now merge-safe.
 - **2026-06-01** — Added **8 AJK origin cities** (Muzaffarabad, Kotli, Bagh, Bhimber, Palandri, Hattian Bala, Athmuqam, Forward Kahuta) with researched spots.

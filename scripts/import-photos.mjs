@@ -15,6 +15,7 @@ const SRC_KPK = path.join(ROOT, "KPK", "KPK");
 const SRC_BALOCH = path.join(ROOT, "BALOCHISTAN", "Balochistan");
 const SRC_OTHER = path.join(ROOT, "OTHER CITIES");
 const SRC_AJK = path.join(ROOT, "AJK");
+const SRC_KZ = path.join(ROOT, "kund malir & ziarat");
 const OUT_PUBLIC = path.join(ROOT, "public", "photos");
 const OUT_MANIFEST = path.join(ROOT, "src", "lib", "photos.ts");
 
@@ -161,6 +162,12 @@ const AJK_IDS = {
   Palandri: "palandri",
 };
 
+// "kund malir & ziarat" folder name (as on disk) -> Balochistan city id.
+const KZ_IDS = {
+  "Kund Malir": "kundmalir",
+  Ziarat: "ziarat",
+};
+
 // Skip these source photos entirely (e.g. a place that turned out not to exist).
 const SKIP_SRC = new Set(["/photos/cities/daska/daska-fort-kot-daska.jpg"]);
 
@@ -277,6 +284,7 @@ cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_SINDH, SINDH_IDS, "cities")
 cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_KPK, KPK_IDS, "cities"));
 cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_BALOCH, BALOCH_IDS, "cities"));
 cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_AJK, AJK_IDS, "cities"));
+cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_KZ, KZ_IDS, "cities"));
 
 const stringify = (obj) =>
   "{\n" +

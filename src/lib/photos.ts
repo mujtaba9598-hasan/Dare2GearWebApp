@@ -706,6 +706,20 @@ export const CITY_PHOTOS: Record<string, Photo[]> = {
     { src: "/photos/cities/palandri/nagaishwar.jpg", caption: "Nagaishwar" },
     { src: "/photos/cities/palandri/pallandri-fort-baral-fort.jpg", caption: "Pallandri Fort (baral Fort)" },
   ],
+  "kundmalir": [
+    { src: "/photos/cities/kundmalir/hinglaj-mata-temple.jpg", caption: "Hinglaj Mata Temple" },
+    { src: "/photos/cities/kundmalir/hingol-national-park.jpg", caption: "Hingol National Park" },
+    { src: "/photos/cities/kundmalir/kund-malir-beach.jpg", caption: "Kund Malir Beach" },
+    { src: "/photos/cities/kundmalir/mud-volcanoes-chandragup.jpg", caption: "Mud Volcanoes (chandragup)" },
+    { src: "/photos/cities/kundmalir/princess-of-hope.jpg", caption: "Princess Of Hope" },
+  ],
+  "ziarat": [
+    { src: "/photos/cities/ziarat/chashma-ziarat-spring.jpg", caption: "Chashma (ziarat Spring)" },
+    { src: "/photos/cities/ziarat/juniper-forest.jpg", caption: "Juniper Forest" },
+    { src: "/photos/cities/ziarat/prospect-point.jpg", caption: "Prospect Point" },
+    { src: "/photos/cities/ziarat/quaid-e-azam-residency.jpg", caption: "Quaid E Azam Residency" },
+    { src: "/photos/cities/ziarat/sandeman-tangi-waterfall.jpg", caption: "Sandeman Tangi Waterfall" },
+  ],
 };
 
 export function destPhotos(id: string): Photo[] {

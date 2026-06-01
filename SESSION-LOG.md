@@ -4,6 +4,58 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 
 ---
 
+## Session — 2026-06-01 (part 3)
+
+**Summary:** Big content + planner-feature batch. Cities **90**, destinations
+**25**, **485 photos** (90 cities + 21 destinations with real photos).
+
+### Shipped
+- **Photos** — real photos for **16 Explorer destinations** (Murree, Naran,
+  Swat, Neelum, Nathia Gali, Gilgit, Chitral, Deosai, Khunjerab, Fairy Meadows,
+  Gorakh, Rawalakot + new spots merged into Khaplu/Naltar/Noori Top/Raati Gali)
+  and **9 AJK cities** (Muzaffarabad, Mirpur, Bagh, Bhimber, Palandri, Hattian
+  Bala, Athmuqam, Forward Kahuta, Kotli) + **Kund Malir & Ziarat** cities.
+  Importer now **union-merges** per id (`mergePhotoMaps`) so re-runs never drop
+  existing photos.
+- **Ziarat + Kund Malir** added as Balochistan **cities**; Kund Malir removed as
+  a destination (its guide content deleted). Both stay hidden from auto-discovery
+  (Balochistan restriction) but searchable + usable in manual /trip.
+- **3 AJK destinations** in Explorer: **Leepa Valley, Ganga Choti (Bagh),
+  Pir Chinasi (Muzaffarabad)** — full CONTENT guides (scenery placeholders).
+- **Honda CG 125** default mileage **45 → 40** km/L (manual override kept).
+- **Nearby-city suggestions** — budget planner now has a "Closer to home" section
+  recommending nearby cities + their attractions within budget (Sialkot→Narowal,
+  Karachi→Hyderabad…), closest first, restricted provinces excluded.
+- **Sub-100km day trips** — one-way ≤100 km ⇒ no hotel, fuel + one day's food,
+  labelled "short day trip". Applies to budget planner + any-to-any /trip.
+- **/trip great-circle fallback** — places not yet in the OSRM matrix (AJK cities,
+  Ziarat, Kund Malir, new AJK destinations) now return a rough estimate instead
+  of "no route data".
+- **Navbar** Explore menu now links 4 AJK city pages (Muzaffarabad, Mirpur, Bagh,
+  Kotli).
+- **Homepage hero** copy broadened: province-to-province, city-to-city, short
+  day trips and long adventures — "whatever's in your pocket, we'll turn it into
+  a trip."
+- **Removed**: Daska Fort (no such fort — photo + spot deleted), **Muridke**
+  (removed from Punjab cities).
+
+### Key decisions
+- `mergePhotoMaps` union keeps committed photos when source folders are absent
+  (they're gitignored + ephemeral) — never regenerate the manifest from scratch.
+- Day-trip threshold = `DAY_TRIP_KM = 100` (one-way) in `planner.ts`.
+- Nearby cities drawn from existing ORIGINS that have `cityPlaces`, within budget.
+
+### Pending / next session
+- 4 destinations still on scenery placeholders (no real photos): `panjpeer`,
+  `leepa`, `gangachoti`, `pirchinasi`.
+- Old TODOs: verify `baboonvalley`/`nooritop` coords; compress 16 MB
+  `mianwali/namal-lake.png`.
+- New cities (AJK, Ziarat, Kund Malir, AJK destinations) use the great-circle
+  fallback for distances — run `gen:roads` (needs an OSRM that allows >100
+  coords; public demo caps at 100) to upgrade them to real road distances.
+
+---
+
 ## Session — 2026-06-01 (part 2)
 
 **Summary:** Added 8 AJK cities, imported real photos for Sindh/KPK/Balochistan
