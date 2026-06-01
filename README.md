@@ -14,7 +14,7 @@ Plus destination guides, 90+ starting-city pages, nearby-city day-trip suggestio
 | **Repo** | github.com/mujtaba9598-hasan/Dare2GearWebApp |
 | **Key files** | `src/lib/data.ts` · `src/lib/planner.ts` (engine) · `src/lib/content.ts` · `src/lib/city-attractions.ts` · `src/data/road-distances.json` (real OSRM distances) |
 | **Backlog** | see [ROADMAP.md](ROADMAP.md); **deferred-to-VPS items in [DEFERRED.md](DEFERRED.md)** |
-| **Deploy** | Static export (`output: 'export'` → `out/`). Netlify config in `netlify.toml`. Also works on plain shared hosting. |
+| **Deploy** | Static export (`output: 'export'` → `out/`). **Cloudflare Pages** (unlimited bandwidth — see Deploy section). Also works on Netlify or any plain static host. |
 
 ---
 
@@ -109,6 +109,29 @@ locally*, not stored in the repo. That's why the download is tiny; nothing is mi
 
 > No API keys, database, or paid services required for Phase 1. Internet is needed
 > once for `npm install`. Pushing changes back needs GitHub auth (`gh auth login`).
+
+---
+
+## ☁️ Deploy — Cloudflare Pages (unlimited bandwidth, free)
+
+The site is a static export, so it hosts anywhere. **Cloudflare Pages** is the
+recommended host because its free tier has **unlimited bandwidth** (ideal for the
+126 MB of photos) and serves at the **root domain — so no `basePath` is needed**.
+
+**One-time setup (in the Cloudflare dashboard):**
+1. Go to **Cloudflare Dashboard → Workers & Pages → Create → Pages → Connect to Git**.
+2. Authorise GitHub and pick the **`Dare2GearWebApp`** repo.
+3. Build settings:
+   - **Framework preset:** `Next.js (Static HTML Export)` (or `None`)
+   - **Build command:** `npm run build`
+   - **Build output directory:** `out`
+   - **Production branch:** `main`
+   - (Node version is pinned to 20 via `.node-version`.)
+4. **Save and Deploy.** Every push to `main` now auto-deploys, same as Netlify did.
+
+> GitHub Pages also works but needs `basePath: "/Dare2GearWebApp"` in
+> `next.config.ts` + a deploy workflow, **and** has the same ~100 GB/mo bandwidth
+> cap that this image-heavy site can exceed — hence Cloudflare Pages instead.
 
 ---
 
