@@ -124,6 +124,9 @@ const BALOCH_IDS = {
   Turbat: "turbat",
 };
 
+// Skip these source photos entirely (e.g. a place that turned out not to exist).
+const SKIP_SRC = new Set(["/photos/cities/daska/daska-fort-kot-daska.jpg"]);
+
 // Fix captions where the source filename was truncated. Keyed by output src path.
 const CAPTION_OVERRIDES = {
   "/photos/cities/kohat/tanda-wildlife-par.jpg": "Tanda Wildlife Park",
@@ -166,6 +169,7 @@ function importFolder(srcRoot, folder, id, kind) {
     const fileSlug = slug(base) || "photo";
     const outName = `${fileSlug}${ext}`;
     const src = `/photos/${kind}/${id}/${outName}`;
+    if (SKIP_SRC.has(src)) continue;
     fs.copyFileSync(path.join(srcDir, f), path.join(destDir, outName));
     photos.push({ src, caption: CAPTION_OVERRIDES[src] ?? caption });
   }

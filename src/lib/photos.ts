@@ -135,7 +135,6 @@ export const CITY_PHOTOS: Record<string, Photo[]> = {
     { src: "/photos/cities/chishtian/shrine-of-taj-sarwar-chishti.jpg", caption: "Shrine Of Taj Sarwar Chishti" },
   ],
   "daska": [
-    { src: "/photos/cities/daska/daska-fort-kot-daska.jpg", caption: "Daska Fort (kot Daska)" },
     { src: "/photos/cities/daska/shahab-masjid.jpg", caption: "Shahab Masjid" },
     { src: "/photos/cities/daska/shaheedan-wala-qabrastan.jpg", caption: "Shaheedan Wala Qabrastan" },
   ],
