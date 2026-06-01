@@ -650,6 +650,62 @@ export const CITY_PHOTOS: Record<string, Photo[]> = {
     { src: "/photos/cities/turbat/mirani-dam.jpg", caption: "Mirani Dam" },
     { src: "/photos/cities/turbat/miri-qila-punnu-fort.webp", caption: "Miri Qila (punnu Fort)" },
   ],
+  "athmuqam": [
+    { src: "/photos/cities/athmuqam/athmuqam-bazaar.jpg", caption: "Athmuqam Bazaar" },
+    { src: "/photos/cities/athmuqam/dhani-noseri-waterfall.jpg", caption: "Dhani Noseri Waterfall" },
+    { src: "/photos/cities/athmuqam/kutton-jagran-waterfal.jpg", caption: "Kutton (Jagran) Waterfall" },
+    { src: "/photos/cities/athmuqam/upper-neelum.jpg", caption: "Upper Neelum" },
+  ],
+  "bagh": [
+    { src: "/photos/cities/bagh/dhirkot.jpg", caption: "Dhirkot" },
+    { src: "/photos/cities/bagh/ganga-choti.jpg", caption: "Ganga Choti" },
+    { src: "/photos/cities/bagh/las-danna.jpg", caption: "Las Danna" },
+    { src: "/photos/cities/bagh/pir-kanthi.jpg", caption: "Pir Kanthi" },
+  ],
+  "bhimber": [
+    { src: "/photos/cities/bhimber/baghsar-fort.jpg", caption: "Baghsar Fort" },
+    { src: "/photos/cities/bhimber/baghsar-lake.jpg", caption: "Baghsar Lake" },
+    { src: "/photos/cities/bhimber/sadhery-waterfall.webp", caption: "Sadhery Waterfall" },
+    { src: "/photos/cities/bhimber/samahni-valley.jpg", caption: "Samahni Valley" },
+    { src: "/photos/cities/bhimber/samahni-water-fall.jpg", caption: "Samahni Water Fall" },
+  ],
+  "forwardkahuta": [
+    { src: "/photos/cities/forwardkahuta/haji-pir-pass-darra-haji-peer.jpg", caption: "Haji Pir Pass (darra Haji Peer)" },
+    { src: "/photos/cities/forwardkahuta/hillian-waterfall.jpg", caption: "Hillian Waterfall" },
+    { src: "/photos/cities/forwardkahuta/neel-fairy-meadows-neel-fari.jpg", caption: "Neel Fairy Meadows (neel Fari)" },
+    { src: "/photos/cities/forwardkahuta/sharo-dahara.jpg", caption: "Sharo Dahara" },
+  ],
+  "hattianbala": [
+    { src: "/photos/cities/hattianbala/chikar.jpg", caption: "Chikar" },
+    { src: "/photos/cities/hattianbala/chinari.jpg", caption: "Chinari" },
+    { src: "/photos/cities/hattianbala/leepa-valley.jpg", caption: "Leepa Valley" },
+    { src: "/photos/cities/hattianbala/zalzal-lake.jpg", caption: "Zalzal Lake" },
+  ],
+  "kotli": [
+    { src: "/photos/cities/kotli/gulpur-waterfall.jpg", caption: "Gulpur Waterfall" },
+    { src: "/photos/cities/kotli/saarda-point.jpg", caption: "Saarda Point" },
+    { src: "/photos/cities/kotli/teenda-valley.jpg", caption: "Teenda Valley" },
+    { src: "/photos/cities/kotli/throchi-fort.jpg", caption: "Throchi Fort" },
+  ],
+  "mirpurajk": [
+    { src: "/photos/cities/mirpurajk/chakswari-bazaar.jpg", caption: "Chakswari Bazaar" },
+    { src: "/photos/cities/mirpurajk/darbar-e-aalia-khari-sharif.jpg", caption: "Darbar E Aalia Khari Sharif" },
+    { src: "/photos/cities/mirpurajk/mangla-dam.jpg", caption: "Mangla Dam" },
+    { src: "/photos/cities/mirpurajk/ramkot-fort.jpg", caption: "Ramkot Fort" },
+  ],
+  "muzaffarabad": [
+    { src: "/photos/cities/muzaffarabad/domel-confluence.jpg", caption: "Domel Confluence" },
+    { src: "/photos/cities/muzaffarabad/patrind-dam.jpg", caption: "Patrind Dam" },
+    { src: "/photos/cities/muzaffarabad/pir-chinasi.jpg", caption: "Pir Chinasi" },
+    { src: "/photos/cities/muzaffarabad/red-fort-rutta-qila.jpg", caption: "Red Fort (rutta Qila)" },
+    { src: "/photos/cities/muzaffarabad/subri-langarpura-lake.webp", caption: "Subri (langarpura) Lake" },
+  ],
+  "palandri": [
+    { src: "/photos/cities/palandri/darbar-e-alia-nerian-sharif.jpg", caption: "Darbar E Alia Nerian Sharif" },
+    { src: "/photos/cities/palandri/garatapar-waterfall.jpg", caption: "Garatapar Waterfall" },
+    { src: "/photos/cities/palandri/nagaishwar.jpg", caption: "Nagaishwar" },
+    { src: "/photos/cities/palandri/pallandri-fort-baral-fort.jpg", caption: "Pallandri Fort (baral Fort)" },
+  ],
 };
 
 export function destPhotos(id: string): Photo[] {

@@ -14,6 +14,7 @@ const SRC_SINDH = path.join(ROOT, "SINDH", "SINDH");
 const SRC_KPK = path.join(ROOT, "KPK", "KPK");
 const SRC_BALOCH = path.join(ROOT, "BALOCHISTAN", "Balochistan");
 const SRC_OTHER = path.join(ROOT, "OTHER CITIES");
+const SRC_AJK = path.join(ROOT, "AJK");
 const OUT_PUBLIC = path.join(ROOT, "public", "photos");
 const OUT_MANIFEST = path.join(ROOT, "src", "lib", "photos.ts");
 
@@ -147,6 +148,19 @@ const OTHER_DEST_IDS = {
   "Swat & Kalam": "swat",
 };
 
+// "AJK" folder name (as on disk) -> Azad Kashmir origin city id in data.ts.
+const AJK_IDS = {
+  Athmuqam: "athmuqam",
+  Bagh: "bagh",
+  Bhimber: "bhimber",
+  "Forward Kahuta": "forwardkahuta",
+  "Hattian Bala": "hattianbala",
+  Kotli: "kotli",
+  "Mirpur (AJK)": "mirpurajk",
+  Muzaffarabad: "muzaffarabad",
+  Palandri: "palandri",
+};
+
 // Skip these source photos entirely (e.g. a place that turned out not to exist).
 const SKIP_SRC = new Set(["/photos/cities/daska/daska-fort-kot-daska.jpg"]);
 
@@ -154,6 +168,7 @@ const SKIP_SRC = new Set(["/photos/cities/daska/daska-fort-kot-daska.jpg"]);
 const CAPTION_OVERRIDES = {
   "/photos/cities/kohat/tanda-wildlife-par.jpg": "Tanda Wildlife Park",
   "/photos/cities/mingora/mingora-bazaa.jpg": "Mingora Bazaar",
+  "/photos/cities/athmuqam/kutton-jagran-waterfal.jpg": "Kutton (Jagran) Waterfall",
 };
 
 const slug = (s) =>
@@ -261,6 +276,7 @@ cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_CITY, CITY_IDS, "cities"));
 cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_SINDH, SINDH_IDS, "cities"));
 cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_KPK, KPK_IDS, "cities"));
 cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_BALOCH, BALOCH_IDS, "cities"));
+cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_AJK, AJK_IDS, "cities"));
 
 const stringify = (obj) =>
   "{\n" +
