@@ -27,6 +27,9 @@
 # raw photo source folders (imported into /public/photos via scripts/import-photos.mjs)
 /PUNJAB
 /D2G (9 DESTINATIONS)
+/SINDH
+/KPK
+/BALOCHISTAN
 /*.zip
 .dev-server.log
 

@@ -10,6 +10,9 @@ import path from "node:path";
 const ROOT = process.cwd();
 const SRC_DEST = path.join(ROOT, "D2G (9 DESTINATIONS)", "D2G (9 DESTINATIONS)");
 const SRC_CITY = path.join(ROOT, "PUNJAB");
+const SRC_SINDH = path.join(ROOT, "SINDH", "SINDH");
+const SRC_KPK = path.join(ROOT, "KPK", "KPK");
+const SRC_BALOCH = path.join(ROOT, "BALOCHISTAN", "Balochistan");
 const OUT_PUBLIC = path.join(ROOT, "public", "photos");
 const OUT_MANIFEST = path.join(ROOT, "src", "lib", "photos.ts");
 
@@ -76,6 +79,51 @@ const CITY_IDS = {
   Wazirabad: "wazirabad",
 };
 
+// Sindh folder name (as on disk) -> origin city id in data.ts
+const SINDH_IDS = {
+  DADU: "dadu",
+  Hyderabad: "hyderabad",
+  ISLAMABAD: "islamabad",
+  Jacobabad: "jacobabad",
+  Kandhkot: "kandhkot",
+  Karachi: "karachi",
+  Khairpur: "khairpur",
+  Larkana: "larkana",
+  "Mirpur Khas": "mirpurkhas",
+  Nawabshah: "nawabshah",
+  Shikarpur: "shikarpur",
+  Sukkur: "sukkur",
+  "Tando Adam": "tandoadam",
+  "Tando Allahyar": "tandoallahyar",
+  Thatta: "thatta",
+};
+
+// KPK folder name (as on disk) -> origin city id in data.ts
+const KPK_IDS = {
+  Abbottabad: "abbottabad",
+  Bannu: "bannu",
+  Charsadda: "charsadda",
+  "Dera Ismail Khan": "dikhan",
+  Haripur: "haripur",
+  Kohat: "kohat",
+  Mansehra: "mansehra",
+  Mardan: "mardan",
+  Mingora: "mingora",
+  Nowshera: "nowshera",
+  Peshawar: "peshawar",
+  Swabi: "swabi",
+};
+
+// Balochistan folder name (as on disk) -> origin city id in data.ts
+const BALOCH_IDS = {
+  Chaman: "chaman",
+  Gwadar: "gwadar",
+  Khuzdar: "khuzdar",
+  Quetta: "quetta",
+  Sibi: "sibi",
+  Turbat: "turbat",
+};
+
 const slug = (s) =>
   s
     .toLowerCase()
@@ -121,7 +169,7 @@ function buildMap(srcRoot, idMap, kind) {
   const out = {};
   for (const [folder, id] of Object.entries(idMap)) {
     if (!fs.existsSync(path.join(srcRoot, folder))) {
-      console.warn(`! missing folder: ${folder}`);
+      console.warn(`! missing folder: ${folder} (keeping any existing photos)`);
       continue;
     }
     out[id] = importFolder(srcRoot, folder, id, kind);
@@ -129,10 +177,43 @@ function buildMap(srcRoot, idMap, kind) {
   return out;
 }
 
+// Load the already-generated manifest so a run with only SOME raw source folders
+// present (they're gitignored and ephemeral) MERGES rather than wipes the rest.
+// Only ids we actually re-import below are overwritten; everyone else is kept.
+async function loadExisting() {
+  if (!fs.existsSync(OUT_MANIFEST)) return { dest: {}, city: {} };
+  const ts = fs.readFileSync(OUT_MANIFEST, "utf8");
+  const js = ts
+    .replace(/export interface Photo \{[\s\S]*?\}\r?\n/, "")
+    .replace(/: Record<string, Photo\[\]>/g, "")
+    .replace(/: Photo\[\]/g, "")
+    .replace(/: string \| undefined/g, "")
+    .replace(/\(id: string\)/g, "(id)");
+  const tmp = path.join(ROOT, "scripts", ".photos.existing.mjs");
+  fs.writeFileSync(tmp, js);
+  try {
+    const mod = await import("file://" + tmp.replace(/\\/g, "/") + "?t=" + process.hrtime.bigint());
+    return { dest: mod.DESTINATION_PHOTOS ?? {}, city: mod.CITY_PHOTOS ?? {} };
+  } finally {
+    fs.rmSync(tmp, { force: true });
+  }
+}
+
+const existing = await loadExisting();
+
 console.log("Importing destination photos...");
-const destPhotos = buildMap(SRC_DEST, DEST_IDS, "destinations");
+const destPhotos = {
+  ...existing.dest,
+  ...buildMap(SRC_DEST, DEST_IDS, "destinations"),
+};
 console.log("Importing city photos...");
-const cityPhotos = buildMap(SRC_CITY, CITY_IDS, "cities");
+const cityPhotos = {
+  ...existing.city,
+  ...buildMap(SRC_CITY, CITY_IDS, "cities"),
+  ...buildMap(SRC_SINDH, SINDH_IDS, "cities"),
+  ...buildMap(SRC_KPK, KPK_IDS, "cities"),
+  ...buildMap(SRC_BALOCH, BALOCH_IDS, "cities"),
+};
 
 const stringify = (obj) =>
   "{\n" +

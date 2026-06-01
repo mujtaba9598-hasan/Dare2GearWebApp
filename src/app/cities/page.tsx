@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ORIGINS } from "@/lib/data";
 import { cityPlaces } from "@/lib/city-attractions";
+import { cityHero } from "@/lib/photos";
 import { MapPinIcon, ArrowRightIcon, CompassIcon } from "@/components/icons";
 
 export const metadata: Metadata = {
@@ -55,22 +56,40 @@ export default function CitiesPage() {
             <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {group.cities.map((c) => {
                 const count = cityPlaces(c.id).length;
+                const hero = cityHero(c.id);
                 return (
                   <Link
                     key={c.id}
                     href={`/cities/${c.id}`}
-                    className="group flex items-center justify-between gap-3 rounded-2xl border border-line bg-surface p-5 transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-md hover:shadow-slate-200/60"
+                    className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-surface transition-all hover:-translate-y-0.5 hover:border-brand-300 hover:shadow-lg hover:shadow-slate-200/60"
                   >
-                    <div>
-                      <h3 className="flex items-center gap-1.5 font-display text-base font-bold text-ink">
-                        <MapPinIcon className="h-4 w-4 text-brand-600" />
-                        {c.name}
-                      </h3>
-                      <p className="mt-1 text-xs text-muted">
-                        {count} {count === 1 ? "place" : "places"} to see
-                      </p>
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      {hero ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={hero}
+                          alt={c.name}
+                          loading="lazy"
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-brand-50 to-brand-100">
+                          <CompassIcon className="h-8 w-8 text-brand-300" />
+                        </div>
+                      )}
                     </div>
-                    <ArrowRightIcon className="h-4 w-4 text-brand-600 transition-transform group-hover:translate-x-0.5" />
+                    <div className="flex flex-1 items-center justify-between gap-3 p-5">
+                      <div>
+                        <h3 className="flex items-center gap-1.5 font-display text-base font-bold text-ink">
+                          <MapPinIcon className="h-4 w-4 text-brand-600" />
+                          {c.name}
+                        </h3>
+                        <p className="mt-1 text-xs text-muted">
+                          {count} {count === 1 ? "place" : "places"} to see
+                        </p>
+                      </div>
+                      <ArrowRightIcon className="h-4 w-4 shrink-0 text-brand-600 transition-transform group-hover:translate-x-0.5" />
+                    </div>
                   </Link>
                 );
               })}
