@@ -24,6 +24,11 @@ const EXPLORE: NavMenu = {
     { label: "Skardu", href: "/destinations/skardu" },
     { label: "Swat & Kalam", href: "/destinations/swat" },
     { label: "Fairy Meadows", href: "/destinations/fairymeadows" },
+    // Azad Kashmir city pages
+    { label: "Muzaffarabad (AJK)", href: "/cities/muzaffarabad" },
+    { label: "Mirpur (AJK)", href: "/cities/mirpurajk" },
+    { label: "Bagh (AJK)", href: "/cities/bagh" },
+    { label: "Kotli (AJK)", href: "/cities/kotli" },
   ],
 };
 
