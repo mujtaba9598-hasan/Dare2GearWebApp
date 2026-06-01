@@ -550,7 +550,6 @@ export const CITY_PLACES: Record<string, CityPlace[]> = {
   ],
   daska: [
     { name: "Shahab Masjid", note: "Mughal-era mosque, one of Daska's iconic historical sites.", category: "religious" },
-    { name: "Daska Fort (Kot Daska)", note: "Old mud-fort site from the Mughal/Afghan-invasion era.", category: "fort" },
     { name: "Shaheedan Wala Qabrastan", note: "Burial site of 19 Lancers martyrs of the 1965 war.", category: "historical" },
   ],
   ahmadpureast: [
