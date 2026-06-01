@@ -45,9 +45,21 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 - Day-trip threshold = `DAY_TRIP_KM = 100` (one-way) in `planner.ts`.
 - Nearby cities drawn from existing ORIGINS that have `cityPlaces`, within budget.
 
+### Hosting — migrated to Cloudflare (LIVE)
+- Netlify free **bandwidth exceeded** (photo-heavy site). Moved to **Cloudflare
+  Workers static assets** via `wrangler.jsonc` (`assets.directory: ./out`),
+  build `npm run build`, deploy `npx wrangler deploy`. Unlimited bandwidth,
+  root domain (no basePath). `.node-version`=20.
+- **`package-lock.json` NOT committed** (gitignored): Cloudflare `npm ci`
+  rejected the Windows-built lock over `@emnapi/*` Linux optional deps; without
+  a lock it runs `npm install` and resolves fine. Trade-off: no build caching.
+- Auto-deploys on push to main, same as before. `netlify.toml` left but unused.
+
 ### Pending / next session
 - 4 destinations still on scenery placeholders (no real photos): `panjpeer`,
   `leepa`, `gangachoti`, `pirchinasi`.
+- Optional: compress photos (~126 MB; 16 MB `mianwali/namal-lake.png`) for
+  faster loads. Optional: custom domain (e.g. dare2gear.pk) in Cloudflare.
 - Old TODOs: verify `baboonvalley`/`nooritop` coords; compress 16 MB
   `mianwali/namal-lake.png`.
 - New cities (AJK, Ziarat, Kund Malir, AJK destinations) use the great-circle
