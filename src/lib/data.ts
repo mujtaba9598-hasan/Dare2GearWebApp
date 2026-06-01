@@ -117,6 +117,14 @@ export const ORIGINS: OriginCity[] = [
 
   // --- Azad Kashmir ---
   { id: "mirpurajk", name: "Mirpur (AJK)", province: "Azad Kashmir", lat: 33.1478, lng: 73.7517 },
+  { id: "muzaffarabad", name: "Muzaffarabad", province: "Azad Kashmir", lat: 34.37, lng: 73.4711 },
+  { id: "kotli", name: "Kotli", province: "Azad Kashmir", lat: 33.5156, lng: 73.9022 },
+  { id: "bagh", name: "Bagh", province: "Azad Kashmir", lat: 33.98, lng: 73.77 },
+  { id: "bhimber", name: "Bhimber", province: "Azad Kashmir", lat: 32.975, lng: 74.079 },
+  { id: "palandri", name: "Palandri", province: "Azad Kashmir", lat: 33.7167, lng: 73.6896 },
+  { id: "hattianbala", name: "Hattian Bala", province: "Azad Kashmir", lat: 34.17, lng: 73.74 },
+  { id: "athmuqam", name: "Athmuqam", province: "Azad Kashmir", lat: 34.5847, lng: 73.905 },
+  { id: "forwardkahuta", name: "Forward Kahuta", province: "Azad Kashmir", lat: 33.85, lng: 74.083 },
 
   // --- Additional cities (population list, 2026) ---
   { id: "mingora", name: "Mingora", province: "KPK", lat: 34.7795, lng: 72.3614 },

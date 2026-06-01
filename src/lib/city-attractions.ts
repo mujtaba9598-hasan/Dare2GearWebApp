@@ -442,6 +442,54 @@ export const CITY_PLACES: Record<string, CityPlace[]> = {
     { name: "Darbar-e-Aalia Khari Sharif", note: "Revered Sufi shrine complex near Mirpur.", category: "shrine" },
     { name: "Chakswari Bazaar", note: "Market for local handicrafts and traditional clothing.", category: "bazaar" },
   ],
+  muzaffarabad: [
+    { name: "Red Fort (Rutta Qila)", note: "16th-century Chak-era riverside fort on the Neelum, later expanded by the Mughals.", category: "fort" },
+    { name: "Pir Chinasi", note: "Hilltop shrine of Sayed Hussain Shah Bukhari at 2,900m, famed for paragliding and sweeping views.", category: "shrine" },
+    { name: "Domel Confluence", note: "Striking point where the emerald Neelum meets the silt-laden Jhelum River.", category: "nature" },
+    { name: "Subri (Langarpura) Lake", note: "Calm lake on the city's edge popular for boating and picnics.", category: "lake" },
+    { name: "Patrind Dam", note: "Scenic hydropower reservoir on the Jhelum, a popular day-trip spot.", category: "lake" },
+  ],
+  kotli: [
+    { name: "Throchi Fort", note: "Hilltop Mughal-era fort (c.1460), called the 'crown of Kotli'.", category: "fort" },
+    { name: "Gulpur Waterfall", note: "50-foot crystal-clear cascade with views over the Poonch valley.", category: "nature" },
+    { name: "Saarda Point", note: "Viewpoint minutes from the city, famed for sunsets over the Poonch River.", category: "viewpoint" },
+    { name: "Teenda Valley", note: "Tranquil green meadows and breezy vantage points near Kotli city.", category: "nature" },
+  ],
+  bagh: [
+    { name: "Ganga Choti", note: "Iconic 3,000m+ peak reached on meadow-and-forest trails, Bagh's highest landmark.", category: "viewpoint" },
+    { name: "Las Danna", note: "Pine-forested ridge ~15km away, the breezy 'rooftop of Bagh'.", category: "nature" },
+    { name: "Pir Kanthi", note: "Quiet, less-crowded mountain with breathtaking views over the Bagh valleys.", category: "viewpoint" },
+    { name: "Dhirkot", note: "Green hill town in Bagh district, a cool pine-clad retreat.", category: "town" },
+  ],
+  bhimber: [
+    { name: "Baghsar Fort", note: "Mughal hill fort in Samahni Valley where Emperor Jahangir is said to have died.", category: "fort" },
+    { name: "Baghsar Lake", note: "Serene half-km lake at 975m drawing migratory geese and ducks.", category: "lake" },
+    { name: "Samahni Valley", note: "Lush 35km valley of waterfalls, streams and pine forest, 17km from Bhimber.", category: "nature" },
+  ],
+  palandri: [
+    { name: "Pallandri Fort (Baral Fort)", note: "Historic hill fort overlooking the Sudhanoti district town.", category: "fort" },
+    { name: "Garatapar Waterfall", note: "Wide cascade tumbling over rocks near Tarar Khel.", category: "nature" },
+    { name: "Darbar-e-Alia Nerian Sharif", note: "Mountain-set Sufi shrine at Tarar Khel, a major pilgrimage site.", category: "shrine" },
+    { name: "Nagaishwar", note: "Scenic 2,006m spot known for its colourful landscape and calm climate.", category: "viewpoint" },
+  ],
+  hattianbala: [
+    { name: "Zalzal Lake", note: "Lake formed by 2005-earthquake landslides near Chikar; clear waters good for fishing.", category: "lake" },
+    { name: "Leepa Valley", note: "Terraced red-rice valley near the LoC, famed for apples, cherries and walnuts.", category: "nature" },
+    { name: "Chinari", note: "Hill station on the Jhelum River, 9km out on the Chakothi road.", category: "viewpoint" },
+    { name: "Chikar", note: "Lush meadow hill station 18km away on the Sudhan Gali road.", category: "nature" },
+  ],
+  athmuqam: [
+    { name: "Upper Neelum", note: "Village high above Athmuqam with panoramic views over the Neelum Valley.", category: "viewpoint" },
+    { name: "Kutton (Jagran) Waterfall", note: "Popular waterfall in the side Jagran Valley off the Neelum road.", category: "nature" },
+    { name: "Dhani Noseri Waterfall", note: "One of the Neelum Valley's largest waterfalls, in the lower valley.", category: "nature" },
+    { name: "Athmuqam Bazaar", note: "Riverside district-HQ market, the gateway town to upper Neelum.", category: "bazaar" },
+  ],
+  forwardkahuta: [
+    { name: "Neel Fairy Meadows (Neel Fari)", note: "Panoramic alpine meadow at the foot of Bedori Peak.", category: "nature" },
+    { name: "Haji Pir Pass (Darra Haji Peer)", note: "Historic high mountain pass on the LoC near Kahuta.", category: "viewpoint" },
+    { name: "Sharo Dahara", note: "Quiet green hill area near Forward Kahuta, popular for nature walks.", category: "nature" },
+    { name: "Hillian Waterfall", note: "Scenic waterfall set amid the district's forested hills.", category: "nature" },
+  ],
 
   // --- Additional cities (2026) ---
   mingora: [
