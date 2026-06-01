@@ -13,6 +13,7 @@ const SRC_CITY = path.join(ROOT, "PUNJAB");
 const SRC_SINDH = path.join(ROOT, "SINDH", "SINDH");
 const SRC_KPK = path.join(ROOT, "KPK", "KPK");
 const SRC_BALOCH = path.join(ROOT, "BALOCHISTAN", "Balochistan");
+const SRC_OTHER = path.join(ROOT, "OTHER CITIES");
 const OUT_PUBLIC = path.join(ROOT, "public", "photos");
 const OUT_MANIFEST = path.join(ROOT, "src", "lib", "photos.ts");
 
@@ -124,6 +125,28 @@ const BALOCH_IDS = {
   Turbat: "turbat",
 };
 
+// "OTHER CITIES" folder name (as on disk) -> DESTINATION id in data.ts.
+// These are tourist destinations, not origin cities. Some already have photos
+// from the original 9-destinations batch; the union merge keeps both sets.
+const OTHER_DEST_IDS = {
+  "Chitral & Kalash": "chitral",
+  "Deosai Plains": "deosai",
+  "Fairy Meadows": "fairymeadows",
+  Gilgit: "gilgit",
+  "Gorakh Hill": "gorakh",
+  KHAPLU: "khaplu",
+  "Khunjerab Pass": "khunjerab",
+  MURREE: "murree",
+  "NALTAR VALLEY": "naltar",
+  "Naran & Kaghan": "naran",
+  "Nathia Gali": "nathiagali",
+  "Neelum Valley": "neelum",
+  "NOORI TOP": "nooritop",
+  "RAATI GALI": "raatigali",
+  "Rawalakot (Pearl Valley)": "rawalakot",
+  "Swat & Kalam": "swat",
+};
+
 // Skip these source photos entirely (e.g. a place that turned out not to exist).
 const SKIP_SRC = new Set(["/photos/cities/daska/daska-fort-kot-daska.jpg"]);
 
@@ -176,6 +199,19 @@ function importFolder(srcRoot, folder, id, kind) {
   return photos;
 }
 
+// Union new photos into a base map per id, de-duping by src path. New photos are
+// appended after existing ones, so already-imported (and caption-fixed) shots are
+// preserved and only genuinely new spots get added. Never removes anything.
+function mergePhotoMaps(base, add) {
+  const out = { ...base };
+  for (const [id, photos] of Object.entries(add)) {
+    const existing = out[id] ?? [];
+    const seen = new Set(existing.map((p) => p.src));
+    out[id] = [...existing, ...photos.filter((p) => !seen.has(p.src))];
+  }
+  return out;
+}
+
 function buildMap(srcRoot, idMap, kind) {
   const out = {};
   for (const [folder, id] of Object.entries(idMap)) {
@@ -212,19 +248,19 @@ async function loadExisting() {
 
 const existing = await loadExisting();
 
+// Each source is union-merged into the running map: missing folders keep their
+// committed photos, present folders add any new spots without dropping old ones.
 console.log("Importing destination photos...");
-const destPhotos = {
-  ...existing.dest,
-  ...buildMap(SRC_DEST, DEST_IDS, "destinations"),
-};
+let destPhotos = existing.dest;
+destPhotos = mergePhotoMaps(destPhotos, buildMap(SRC_DEST, DEST_IDS, "destinations"));
+destPhotos = mergePhotoMaps(destPhotos, buildMap(SRC_OTHER, OTHER_DEST_IDS, "destinations"));
+
 console.log("Importing city photos...");
-const cityPhotos = {
-  ...existing.city,
-  ...buildMap(SRC_CITY, CITY_IDS, "cities"),
-  ...buildMap(SRC_SINDH, SINDH_IDS, "cities"),
-  ...buildMap(SRC_KPK, KPK_IDS, "cities"),
-  ...buildMap(SRC_BALOCH, BALOCH_IDS, "cities"),
-};
+let cityPhotos = existing.city;
+cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_CITY, CITY_IDS, "cities"));
+cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_SINDH, SINDH_IDS, "cities"));
+cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_KPK, KPK_IDS, "cities"));
+cityPhotos = mergePhotoMaps(cityPhotos, buildMap(SRC_BALOCH, BALOCH_IDS, "cities"));
 
 const stringify = (obj) =>
   "{\n" +
