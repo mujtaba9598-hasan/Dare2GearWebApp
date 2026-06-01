@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { MountainIcon } from "./icons";
 import { FooterContact } from "./footer-contact";
 
 export function Footer() {
@@ -8,14 +7,13 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white">
-                <MountainIcon className="h-5 w-5" />
-              </span>
-              <span className="font-display text-lg font-bold tracking-tight">
-                Dare<span className="text-brand-600">2</span>Gear
-              </span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="Dare2Gear — Pakistan Adventure Planner"
+              width={639}
+              height={640}
+              className="h-28 w-auto sm:h-32"
+            />
             <p className="mt-4 text-sm leading-relaxed text-muted">
               Plan smarter trips across Pakistan. Tell us your budget and we work
               out the fuel, stays and food — then show you exactly how far you can go.

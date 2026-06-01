@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { RENTAL_CATEGORIES, SERVICES } from "@/lib/catalog";
 import {
-  MountainIcon,
   ArrowRightIcon,
   BedIcon,
   ChevronDownIcon,
@@ -91,14 +90,15 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-30 border-b border-line/80 bg-surface/80 backdrop-blur-md">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
-        <Link href="/" className="flex items-center gap-2.5 group">
-          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white shadow-sm transition-colors group-hover:bg-brand-700">
-            <MountainIcon className="h-5 w-5" />
-          </span>
-          <span className="font-display text-lg font-bold tracking-tight">
-            Dare<span className="text-brand-600">2</span>Gear
-          </span>
+      <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 sm:px-8">
+        <Link href="/" className="group flex items-center" aria-label="Dare2Gear — Pakistan Adventure Planner home">
+          <img
+            src="/logo.png"
+            alt="Dare2Gear — Pakistan Adventure Planner"
+            width={639}
+            height={640}
+            className="h-14 w-auto sm:h-16 transition-transform duration-200 group-hover:scale-105"
+          />
         </Link>
 
         {/* Desktop menus */}
