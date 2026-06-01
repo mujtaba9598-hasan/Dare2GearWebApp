@@ -51,6 +51,44 @@ keys + Esc).
 
 ---
 
+## 🔒 Restricted regions — Balochistan is OFF (how to turn it back ON)
+
+For safety reasons, **Balochistan is hidden from every part of the site that
+*recommends or promotes* a place** — silently, with **no on-screen warning**.
+It is **not deleted**, just switched off behind one flag.
+
+**The single switch** lives in `src/lib/data.ts`:
+
+```ts
+export const RESTRICTED_PROVINCES: ReadonlySet<string> = new Set(["Balochistan"]);
+```
+
+**To re-enable Balochistan later (when the situation improves):**
+change that line to an **empty set** and redeploy —
+
+```ts
+export const RESTRICTED_PROVINCES: ReadonlySet<string> = new Set([]);
+```
+
+That one edit instantly brings everything back. Then `npm run build`, commit, push
+(Netlify auto-deploys). To restrict a different province instead, just put its name
+in the set (e.g. `new Set(["KPK"])`).
+
+| Surface | While restricted |
+|---|---|
+| Budget planner recommendations | Balochistan **never suggested** |
+| Budget planner "start from" dropdown | Balochistan cities **not listed** |
+| `/destinations` explore gallery + home featured | Kund Malir **hidden** |
+| Destination guide pages | Balochistan guide **not built** (404 on direct hit) |
+| `/cities` browse + city detail pages | **KEPT** — Quetta, Gwadar, etc. stay searchable |
+| Any-to-any `/trip` calculator | **KEPT** — e.g. Karachi → Quetta still gives a rough distance/cost only |
+
+> Driven by helpers `isRestrictedProvince / isRestrictedOrigin / isRestrictedDestination`
+> in `src/lib/data.ts`. Currently the only Balochistan destination is `kundmalir`
+> (Kund Malir, region "Balochistan Coast").
+
+---
+
 ## 🆕 First-time setup on a new machine (READ THIS FIRST)
 
 The repo contains **only source code (~37 files)**. Dependencies (`node_modules`,
@@ -156,6 +194,9 @@ per-person). Shown in the form hint and results.
 
 ## 📜 Build log (latest first)
 
+- **2026-06-01** — **Balochistan restricted** from all automated discovery (security), reversible via `RESTRICTED_PROVINCES` in `data.ts`; cities kept for manual search. See "🔒 Restricted regions" above.
+- **2026-06-01** — Real photos for **Sindh/KPK/Balochistan cities** (148 photos, 33 cities); `/cities` cards now show photo thumbnails; importer is now merge-safe.
+- **2026-06-01** — Added **8 AJK origin cities** (Muzaffarabad, Kotli, Bagh, Bhimber, Palandri, Hattian Bala, Athmuqam, Forward Kahuta) with researched spots.
 - **2026-05-31** — Fuel prices updated (Petrol 381.78, eff. 30 May, per OGRA/PSO); weekly auto-update routine.
 - **2026-05-31** — **Real OSRM road distances + drive times** replace the straight-line estimate; +21 cities (81 total).
 - **2026-05-31** — **Any-to-any trip planner** (`/trip`) added as a separate feature; nav "Plan" dropdown.

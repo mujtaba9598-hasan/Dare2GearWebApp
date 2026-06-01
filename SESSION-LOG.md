@@ -4,6 +4,41 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 
 ---
 
+## Session — 2026-06-01 (part 2)
+
+**Summary:** Added 8 AJK cities, imported real photos for Sindh/KPK/Balochistan
+cities, gave `/cities` cards photo thumbnails, and **restricted Balochistan**
+from all automated discovery (security) in a reversible way.
+
+### Shipped
+- **8 new AJK origin cities** (Muzaffarabad, Kotli, Bagh, Bhimber, Palandri,
+  Hattian Bala, Athmuqam, Forward Kahuta) + researched "places to see".
+  Skipped Mirpur (=`mirpurajk`) & Rawalakot (already a destination).
+- **148 real photos** for 33 existing Sindh/KPK/Balochistan cities. Importer
+  (`scripts/import-photos.mjs`) now **merges** into the manifest instead of
+  regenerating from scratch (ephemeral source folders no longer wipe entries).
+- `/cities` cards now show a **real photo thumbnail** via `cityHero()`.
+- Removed the **Daska Fort** spot + photo (no such fort exists).
+
+### 🔒 Balochistan restriction (READ — important + reversible)
+- Balochistan is hidden from everything that **recommends/promotes** a place
+  (budget planner, explore gallery, home featured, destination guide pages) —
+  **silently, no on-screen warning** (per user: a warning could stir tensions).
+- **Kept manual:** `/cities` browse + Balochistan city pages stay searchable;
+  the any-to-any `/trip` calculator still does e.g. Karachi → Quetta with a
+  **rough distance/cost only** (no other services).
+- **The switch:** `RESTRICTED_PROVINCES` in `src/lib/data.ts`. **To re-enable
+  later:** change `new Set(["Balochistan"])` → `new Set([])`, build, commit,
+  push. Full details + table in **README "🔒 Restricted regions"**.
+
+### Pending / next session
+- README counts are slightly stale now (says 81 cities / 221 photos; actually
+  **89 cities**, **369 photos**, 79 cities-with-photos). Refresh when convenient.
+- Earlier follow-ups still open: verify `baboonvalley` & `nooritop` coords;
+  compress `mianwali/namal-lake.png` (~16 MB).
+
+---
+
 ## Session — 2026-06-01
 
 **Summary:** Replaced internet placeholder images with the user's own photos
