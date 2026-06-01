@@ -3,7 +3,15 @@
 import { useEffect, useMemo, useState } from "react";
 import type { Destination } from "@/lib/data";
 import { ORIGINS } from "@/lib/data";
-import { roadDistanceKm, getOrigin } from "@/lib/planner";
+import {
+  roadDistanceKm,
+  roadMinutesBetween,
+  getOrigin,
+  defaultRouteForMonth,
+  hasBabusarOption,
+  type RouteChoice,
+} from "@/lib/planner";
+import { CorridorToggle } from "./corridor-toggle";
 import {
   tollEstimate,
   bikeRouteNote,
@@ -76,10 +84,18 @@ export function GettingThere({ destination }: { destination: Destination }) {
   const [weather, setWeather] = useState<Weather | null>(null);
   const [weatherErr, setWeatherErr] = useState(false);
   const [roadState, setRoadState] = useState<"idle" | "loading" | "ready">("idle");
+  const [route, setRoute] = useState<RouteChoice>(() => defaultRouteForMonth(new Date().getMonth()));
 
   const origin = getOrigin(originId);
-  const distance = useMemo(() => roadDistanceKm(origin, destination), [origin, destination]);
-  const driveHours = Math.round((distance / SPEED[destination.terrain]) * 10) / 10;
+  const showCorridor = hasBabusarOption(destination.id);
+  const distance = useMemo(
+    () => roadDistanceKm(origin, destination, route),
+    [origin, destination, route],
+  );
+  const driveHours = useMemo(() => {
+    const min = roadMinutesBetween(origin, destination, route);
+    return min > 0 ? Math.round((min / 60) * 10) / 10 : Math.round((distance / SPEED[destination.terrain]) * 10) / 10;
+  }, [origin, destination, route, distance]);
   const toll = tollEstimate(distance);
   const cc = bikeCcGuidance(destination);
   const permit = permitNote(destination);
@@ -149,6 +165,12 @@ export function GettingThere({ destination }: { destination: Destination }) {
           ))}
         </select>
       </label>
+
+      {showCorridor && (
+        <div className="mt-4">
+          <CorridorToggle route={route} onChange={setRoute} />
+        </div>
+      )}
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
         {/* Route + map */}

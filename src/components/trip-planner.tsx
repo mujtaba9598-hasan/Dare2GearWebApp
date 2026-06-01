@@ -5,9 +5,12 @@ import {
   ALL_PLACES,
   getVehicle,
   planPointToPoint,
+  defaultRouteForMonth,
+  type RouteChoice,
   type TripResult,
 } from "@/lib/planner";
 import { VEHICLES, HOTEL_TIER_LABELS, type HotelTier } from "@/lib/data";
+import { CorridorToggle } from "./corridor-toggle";
 import { pkr, km } from "@/lib/format";
 import { waLink } from "@/lib/contact";
 import {
@@ -79,10 +82,11 @@ export function TripPlanner() {
   const [people, setPeople] = useState(2);
   const [days, setDays] = useState(5);
   const [hotelTier, setHotelTier] = useState<HotelTier>("standard");
+  const [route, setRoute] = useState<RouteChoice>(() => defaultRouteForMonth(new Date().getMonth()));
 
   const result: TripResult | null = useMemo(
-    () => planPointToPoint({ fromId, toId, vehicleId, kmPerLiter: mileage, people, days, hotelTier }),
-    [fromId, toId, vehicleId, mileage, people, days, hotelTier],
+    () => planPointToPoint({ fromId, toId, vehicleId, kmPerLiter: mileage, people, days, hotelTier, route }),
+    [fromId, toId, vehicleId, mileage, people, days, hotelTier, route],
   );
 
   function onVehicle(id: string) {
@@ -191,6 +195,12 @@ export function TripPlanner() {
                 </span>
               )}
             </div>
+
+            {result.babusarAvailable && (
+              <div className="mt-4">
+                <CorridorToggle route={route} onChange={setRoute} />
+              </div>
+            )}
 
             <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
               <Stat icon={<RouteIcon className="h-5 w-5" />} label="One-way" value={km(result.distanceKm)} />

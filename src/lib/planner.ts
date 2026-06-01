@@ -21,6 +21,24 @@ import { cityPlaces } from "./city-attractions";
 // Real road distances + drive times (OSRM/OpenStreetMap), precomputed offline by
 // scripts/generate-road-distances.ts. Indexed by place id.
 import roadData from "@/data/road-distances.json";
+// Corridor routing — keeps northern trips on real Pakistani roads (via the
+// Islamabad / GT-Road corridor) instead of impossible lines across the India
+// border. See corridors.ts for the why and the validated legs.
+import {
+  ISLAMABAD_ID,
+  corridorLeg,
+  hasBabusarOption,
+  isBabusarSeason,
+  macroOfRegion,
+  macroOfProvince,
+  defaultRouteForMonth,
+  type Macro,
+  type Leg,
+  type RouteChoice,
+} from "./corridors";
+
+export type { RouteChoice } from "./corridors";
+export { hasBabusarOption, defaultRouteForMonth, isBabusarSeason };
 
 /** A one-way trip at or under this distance is treated as a same-day round trip:
  * no overnight hotel — just fuel and a day's food. */
@@ -39,14 +57,101 @@ function matrixCell(grid: (number | null)[][], aId: string, bId: string): number
   return v == null ? null : v;
 }
 
-/** Real one-way driving distance (km) between any two places, from the matrix. */
-export function roadDistanceBetween(a: GeoPoint, b: GeoPoint): number | null {
+/** Raw matrix one-way driving distance (km) — direct route, no corridor logic. */
+function matrixKm(a: GeoPoint, b: GeoPoint): number | null {
   return matrixCell(roadData.km as (number | null)[][], a.id, b.id);
 }
 
-/** Real one-way driving time (minutes) between any two places, from the matrix. */
-export function roadMinutesBetween(a: GeoPoint, b: GeoPoint): number | null {
+/** Raw matrix one-way driving time (minutes) — direct route, no corridor logic. */
+function matrixMin(a: GeoPoint, b: GeoPoint): number | null {
   return matrixCell(roadData.min as (number | null)[][], a.id, b.id);
+}
+
+// ---------------------------------------------------------------------------
+// Corridor-aware distance. Northern regions (Gilgit-Baltistan, Azad Kashmir,
+// northern KP) connect to the country only through the Islamabad corridor, so
+// any cross-region trip that touches the north is composed as
+//   origin → Islamabad  +  Islamabad → destination (validated leg).
+// This eliminates the impossible "via Jammu / across India" shortcuts.
+// ---------------------------------------------------------------------------
+const PLACE_MACRO: Record<string, Macro> = {};
+DESTINATIONS.forEach((d) => {
+  PLACE_MACRO[d.id] = macroOfRegion(d.region);
+});
+ORIGINS.forEach((o) => {
+  // Destinations win if an id somehow overlaps; cities map by province.
+  if (PLACE_MACRO[o.id] === undefined) PLACE_MACRO[o.id] = macroOfProvince(o.province);
+});
+
+function macroOf(id: string): Macro {
+  return PLACE_MACRO[id] ?? "PLAINS";
+}
+
+interface Measured extends Leg {
+  /** true when the value came from a great-circle estimate, not real road data */
+  estimated: boolean;
+}
+
+/** Resolve an optional route choice to a concrete one (Babusar in summer,
+ *  Besham otherwise) using the current month. */
+function resolveRoute(route?: RouteChoice): RouteChoice {
+  return route ?? defaultRouteForMonth(new Date().getMonth());
+}
+
+/** Direct (non-corridor) distance: real matrix where present, else a
+ *  great-circle estimate. Safe for plains↔plains and within-region pairs. */
+function directMeasure(a: GeoPoint, b: GeoPoint): Measured {
+  const km = matrixKm(a, b);
+  if (km != null && km > 0) {
+    const min = matrixMin(a, b);
+    return { km, min: min != null && min > 0 ? min : Math.round((km / 45) * 60), estimated: false };
+  }
+  const est = Math.round(haversineKm(a, b) * 1.45);
+  return { km: est, min: Math.round((est / 40) * 60), estimated: true };
+}
+
+/** Distance from a place to the Islamabad hub. Northern destinations use their
+ *  validated corridor leg; everything else uses the real origin→Islamabad road
+ *  distance (a route that never crosses the India border). */
+function hubMeasure(g: GeoPoint, route: RouteChoice): Measured {
+  if (g.id === ISLAMABAD_ID) return { km: 0, min: 0, estimated: false };
+  const leg = corridorLeg(g.id, route);
+  if (leg) return { ...leg, estimated: false };
+  const isb = geoById(ISLAMABAD_ID);
+  const km = matrixCell(roadData.km as (number | null)[][], g.id, ISLAMABAD_ID);
+  if (km != null && km > 0) {
+    const min = matrixCell(roadData.min as (number | null)[][], g.id, ISLAMABAD_ID);
+    return { km, min: min != null && min > 0 ? min : Math.round((km / 50) * 60), estimated: false };
+  }
+  const est = isb ? Math.round(haversineKm(g, isb) * 1.45) : 0;
+  return { km: est, min: Math.round((est / 50) * 60), estimated: true };
+}
+
+/** The one true distance function: real Pakistani road distance + drive time
+ *  between any two places, routed through the Islamabad corridor when the trip
+ *  crosses into (or between) the northern regions. */
+function corridorMeasure(a: GeoPoint, b: GeoPoint, route: RouteChoice): Measured {
+  if (a.id === b.id) return { km: 0, min: 0, estimated: false };
+  const ra = macroOf(a.id);
+  const rb = macroOf(b.id);
+  const touchesNorth = ra !== "PLAINS" || rb !== "PLAINS";
+  // Plains↔plains, or two places in the SAME northern region → direct routing
+  // is already on real Pakistani roads (no India crossing).
+  if (!touchesNorth || ra === rb) return directMeasure(a, b);
+  // Cross-region trip touching the north → go through the Islamabad hub.
+  const la = hubMeasure(a, route);
+  const lb = hubMeasure(b, route);
+  return { km: la.km + lb.km, min: la.min + lb.min, estimated: la.estimated || lb.estimated };
+}
+
+/** Corridor-aware one-way driving distance (km) between any two places. */
+export function roadDistanceBetween(a: GeoPoint, b: GeoPoint, route?: RouteChoice): number {
+  return corridorMeasure(a, b, resolveRoute(route)).km;
+}
+
+/** Corridor-aware one-way driving time (minutes) between any two places. */
+export function roadMinutesBetween(a: GeoPoint, b: GeoPoint, route?: RouteChoice): number {
+  return corridorMeasure(a, b, resolveRoute(route)).min;
 }
 
 export interface PlanInput {
@@ -58,6 +163,8 @@ export interface PlanInput {
   /** override the preset mileage (km/l) — optional */
   kmPerLiter?: number;
   hotelTier: HotelTier;
+  /** Besham vs Babusar KKH corridor for Gilgit-Baltistan; defaults to in-season. */
+  route?: RouteChoice;
 }
 
 export interface CostBreakdown {
@@ -146,37 +253,21 @@ function geoById(id: string): GeoPoint | undefined {
   return ORIGINS.find((o) => o.id === id) ?? DESTINATIONS.find((d) => d.id === id);
 }
 
-/** One-way road distance (km) between two places, using the real matrix where
- * available and a great-circle × 1.45 estimate as a fallback (for newer places
- * not yet in the OSRM matrix — e.g. AJK cities, Ziarat, Kund Malir). */
-function roadOrEstimateKm(a: GeoPoint, b: GeoPoint): number {
-  const real = roadDistanceBetween(a, b);
-  if (real != null && real > 0) return real;
-  return Math.round(haversineKm(a, b) * 1.45);
+/** One-way road distance (km) between two places — corridor-aware. */
+function roadOrEstimateKm(a: GeoPoint, b: GeoPoint, route?: RouteChoice): number {
+  return roadDistanceBetween(a, b, route);
 }
 
-/** One-way road distance (km). Uses the real OSRM matrix; falls back to a
- * great-circle × terrain estimate only if a pair is missing from the matrix. */
-export function roadDistanceKm(origin: GeoPoint, dest: Destination): number {
-  const real = roadDistanceBetween(origin, dest);
-  if (real != null && real > 0) return real;
-  const straight = haversineKm(origin, dest);
-  const factor =
-    dest.terrain === "highway" ? 1.35 : dest.terrain === "mixed" ? 1.5 : 1.65;
-  return Math.round(straight * factor);
+/** One-way road distance (km), corridor-aware (routes northern trips via the
+ *  Islamabad corridor). Optional `route` picks the Besham vs Babusar KKH
+ *  corridor for Gilgit-Baltistan; defaults to the in-season choice. */
+export function roadDistanceKm(origin: GeoPoint, dest: Destination, route?: RouteChoice): number {
+  return roadDistanceBetween(origin, dest, route);
 }
 
-/** Average driving speed (km/h) including stops, by terrain — fallback only. */
-function avgSpeed(dest: Destination): number {
-  return dest.terrain === "highway" ? 55 : dest.terrain === "mixed" ? 42 : 32;
-}
-
-/** One-way driving time (hours). Uses the real OSRM matrix; falls back to
- * distance ÷ terrain speed if the pair is missing. */
-function roadDriveHours(origin: GeoPoint, dest: Destination): number {
-  const min = roadMinutesBetween(origin, dest);
-  if (min != null && min > 0) return Math.round((min / 60) * 10) / 10;
-  return Math.round((roadDistanceKm(origin, dest) / avgSpeed(dest)) * 10) / 10;
+/** One-way driving time (hours), corridor-aware. */
+function roadDriveHours(origin: GeoPoint, dest: Destination, route?: RouteChoice): number {
+  return Math.round((roadMinutesBetween(origin, dest, route) / 60) * 10) / 10;
 }
 
 const round = (n: number) => Math.round(n);
@@ -197,7 +288,7 @@ function planDestination(
   vehiclesNeeded: number,
   dest: Destination,
 ): DestinationPlan {
-  const distanceKm = roadDistanceKm(origin, dest);
+  const distanceKm = roadDistanceKm(origin, dest, input.route);
   const roundTripKm = distanceKm * 2;
   // Every vehicle in the convoy drives the full route and burns its own fuel.
   const litersPerVehicle = roundTripKm / kmPerLiter;
@@ -224,7 +315,7 @@ function planDestination(
 
   const total = fuel + hotel + food + misc;
 
-  const drivingHoursOneWay = roadDriveHours(origin, dest);
+  const drivingHoursOneWay = roadDriveHours(origin, dest, input.route);
   // A day trip needs just 1 day; otherwise travel both ways at ~9 driving hours/day
   // plus at least 1 full day to enjoy.
   const travelDays = Math.ceil((drivingHoursOneWay * 2) / 9);
@@ -307,6 +398,8 @@ export interface TripInput {
   people: number;
   days: number;
   hotelTier: HotelTier;
+  /** Besham vs Babusar KKH corridor for Gilgit-Baltistan; defaults to in-season. */
+  route?: RouteChoice;
 }
 
 export interface TripResult {
@@ -326,42 +419,38 @@ export interface TripResult {
   total: number;
   /** ≤ DAY_TRIP_KM one-way — same-day return, no overnight stay. */
   isDayTrip: boolean;
-  /** true when distance came from the great-circle estimate, not the OSRM matrix. */
+  /** true when distance came from the great-circle estimate, not road data. */
   estimated: boolean;
+  /** the KKH corridor actually used (Besham / Babusar). */
+  route: RouteChoice;
+  /** true when the destination offers a summer Babusar Top shortcut. */
+  babusarAvailable: boolean;
 }
 
 export function getPlace(id: string): TripPlace | undefined {
   return ALL_PLACES.find((p) => p.id === id);
 }
 
-/** Full cost for a specific A→B trip, using the real road matrix. */
+/** Full cost for a specific A→B trip, corridor-aware (routes northern trips via
+ *  the Islamabad corridor so impossible cross-border routes never appear). */
 export function planPointToPoint(input: TripInput): TripResult | null {
   const from = getPlace(input.fromId);
   const to = getPlace(input.toId);
   if (!from || !to || from.id === to.id) return null;
 
-  const fi = ROAD_INDEX[from.id];
-  const ti = ROAD_INDEX[to.id];
-  const matrixKm =
-    fi !== undefined && ti !== undefined
-      ? ((roadData.km as (number | null)[][])[fi]?.[ti] ?? null)
-      : null;
-  const driveMin =
-    fi !== undefined && ti !== undefined
-      ? ((roadData.min as (number | null)[][])[fi]?.[ti] ?? null)
-      : null;
+  const ga = geoById(from.id);
+  const gb = geoById(to.id);
+  if (!ga || !gb) return null;
 
-  // Fall back to a great-circle estimate for places not yet in the OSRM matrix
-  // (e.g. AJK cities, Ziarat, Kund Malir) so the calculator always answers.
-  let estimated = false;
-  let distanceKm = matrixKm;
-  if (distanceKm == null || distanceKm <= 0) {
-    const ga = geoById(from.id);
-    const gb = geoById(to.id);
-    if (!ga || !gb) return null;
-    distanceKm = Math.round(haversineKm(ga, gb) * 1.45);
-    estimated = true;
-  }
+  const route = resolveRoute(input.route);
+  const measured = corridorMeasure(ga, gb, route);
+  const distanceKm = measured.km;
+  const driveMin = measured.min;
+  const estimated = measured.estimated;
+  // A Babusar shortcut only exists when the destination is a Gilgit-Baltistan
+  // place reached via Chilas AND the trip actually crosses into the north.
+  const babusarAvailable =
+    hasBabusarOption(to.id) && macroOf(from.id) !== macroOf(to.id);
 
   const vehicle = getVehicle(input.vehicleId);
   const kmPerLiter =
@@ -384,9 +473,7 @@ export function planPointToPoint(input: TripInput): TripResult | null {
   const total = subtotal + buffer;
 
   const driveHoursOneWay =
-    driveMin != null && driveMin > 0
-      ? Math.round((driveMin / 60) * 10) / 10
-      : Math.round((distanceKm / 45) * 10) / 10;
+    driveMin > 0 ? Math.round((driveMin / 60) * 10) / 10 : Math.round((distanceKm / 45) * 10) / 10;
 
   return {
     from,
@@ -405,6 +492,8 @@ export function planPointToPoint(input: TripInput): TripResult | null {
     total,
     isDayTrip,
     estimated,
+    route,
+    babusarAvailable,
   };
 }
 
@@ -417,7 +506,7 @@ function planCityTrip(
   fuelType: VehicleModel["fuel"],
   city: OriginCity,
 ): CityTrip {
-  const distanceKm = roadOrEstimateKm(origin, city);
+  const distanceKm = roadOrEstimateKm(origin, city, input.route);
   const roundTripKm = distanceKm * 2;
   const liters = (roundTripKm / kmPerLiter) * vehiclesNeeded;
   const fuel = round(liters * FUEL_PRICES[fuelType]);
