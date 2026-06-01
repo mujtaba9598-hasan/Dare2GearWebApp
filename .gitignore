@@ -54,3 +54,7 @@ next-env.d.ts
 
 # claude code local settings
 .claude/
+
+# Lock file omitted: Cloudflare runs `npm install` (npm ci rejects the
+# cross-platform @emnapi optional deps when the lock is built on Windows).
+/package-lock.json
