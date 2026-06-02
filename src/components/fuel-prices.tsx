@@ -19,9 +19,9 @@ const ITEMS = [
 /** Compact strip — used at the top of the planner. */
 export function FuelPriceBar() {
   return (
-    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm">
-      <span className="flex items-center gap-1.5 font-semibold text-ink">
-        <FuelIcon className="h-4 w-4 text-brand-600" />
+    <div className="flex flex-wrap items-center gap-x-5 gap-y-2 rounded-xl border-2 border-amber-400 border-l-8 bg-amber-100 px-4 py-3 text-sm shadow-sm shadow-amber-200/60">
+      <span className="flex items-center gap-1.5 font-bold text-amber-900">
+        <FuelIcon className="h-4 w-4 text-amber-600" />
         Fuel prices
       </span>
       {ITEMS.map((it) => (
