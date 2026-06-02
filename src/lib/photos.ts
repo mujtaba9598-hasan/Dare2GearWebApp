@@ -168,6 +168,16 @@ export const DESTINATION_PHOTOS: Record<string, Photo[]> = {
     { src: "/photos/destinations/swat/malam-jabba.jpg", caption: "Malam Jabba" },
     { src: "/photos/destinations/swat/ushu-forest.jpg", caption: "Ushu Forest" },
   ],
+  // --- Manually added: real images that live outside the one-shot importer's
+  // source folders. Edit here (not via import-photos.mjs) when adding more.
+  "panjpeer": [
+    { src: "/destinations/panjpeer/hero.jpg", caption: "Panjpeer Rocks" },
+    { src: "/destinations/panjpeer/narh-waterfall.jpg", caption: "Narh Waterfall" },
+    { src: "/destinations/panjpeer/viewpoint.jpg", caption: "Sunrise Viewpoint" },
+  ],
+  "leepa": [
+    { src: "/photos/cities/hattianbala/leepa-valley.jpg", caption: "Leepa Valley" },
+  ],
 };
 
 export const CITY_PHOTOS: Record<string, Photo[]> = {
