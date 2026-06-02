@@ -1,6 +1,6 @@
 "use client";
 
-import { useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { searchItems, type SearchItem } from "@/lib/search-index";
 import { SearchIcon, MapPinIcon, CompassIcon, CloseIcon } from "./icons";
@@ -64,11 +64,24 @@ export function SiteSearch({
   const [active, setActive] = useState(0);
   const listId = useId();
   const activeLinkRef = useRef<HTMLAnchorElement>(null);
-  const blurTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   const results = useMemo(() => rankItems(items, query), [items, query]);
   const showPanel = open && query.trim().length > 0;
   const compact = variant === "compact";
+
+  // Close the panel on a click outside — robustly, without a blur timer that
+  // could otherwise swallow a click on a result before it navigates.
+  useEffect(() => {
+    if (!open) return;
+    const onDocDown = (e: PointerEvent) => {
+      if (rootRef.current && !rootRef.current.contains(e.target as Node)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("pointerdown", onDocDown);
+    return () => document.removeEventListener("pointerdown", onDocDown);
+  }, [open]);
 
   const handleChange = (value: string) => {
     setQuery(value);
@@ -104,7 +117,7 @@ export function SiteSearch({
   };
 
   return (
-    <div className={`relative w-full ${compact ? "" : "max-w-xl"}`}>
+    <div ref={rootRef} className={`relative w-full ${compact ? "" : "max-w-xl"}`}>
       <div className="relative">
         <SearchIcon
           className={`pointer-events-none absolute top-1/2 -translate-y-1/2 text-muted ${
@@ -126,9 +139,6 @@ export function SiteSearch({
           }
           onChange={(e) => handleChange(e.target.value)}
           onFocus={() => setOpen(true)}
-          onBlur={() => {
-            blurTimer.current = setTimeout(() => setOpen(false), 120);
-          }}
           onKeyDown={handleKeyDown}
           className={`w-full rounded-xl border border-line bg-surface text-ink outline-none transition-colors placeholder:text-muted/80 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 ${
             compact
@@ -158,9 +168,6 @@ export function SiteSearch({
         <div
           id={listId}
           role="listbox"
-          onMouseDown={() => {
-            if (blurTimer.current) clearTimeout(blurTimer.current);
-          }}
           className={`absolute top-full z-50 mt-2 overflow-hidden rounded-2xl border border-line bg-surface shadow-xl shadow-slate-200/60 ${
             compact ? "right-0 w-80 max-w-[85vw]" : "left-0 right-0"
           }`}
