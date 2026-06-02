@@ -185,6 +185,36 @@ export function ResultsView({
         </div>
       )}
 
+      {/* Affordable, but need more days — realism nudge */}
+      {result.needMoreDays.length > 0 && (
+        <div className="mt-10">
+          <div className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50/70 p-4">
+            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-amber-100 text-amber-700">
+              <CalendarIcon className="h-5 w-5" />
+            </span>
+            <p className="text-sm leading-relaxed text-amber-900">
+              These fit your <strong>{pkr(input.budget)}</strong> budget, but{" "}
+              <strong>{input.days} days isn&apos;t enough</strong> for them by{" "}
+              {result.vehicle.class === "bike" ? "bike" : result.vehicle.class === "suv" ? "4x4" : "car"}.
+              Long mountain trips mean riding a few hundred km a day, resting overnight, then
+              exploring once you arrive. <strong>Add the days shown</strong> and they become
+              comfortable, safe trips.
+            </p>
+          </div>
+          <h3 className="mt-6 font-display text-xl font-bold text-ink">
+            Worth it — with a few more days
+          </h3>
+          <p className="mt-1 text-sm text-muted">
+            Each card shows the realistic day count (travel each way + time to actually see it).
+          </p>
+          <div className="mt-5 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {result.needMoreDays.map((plan) => (
+              <DestinationCard key={plan.destination.id} plan={plan} />
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Closer to home — nearby cities worth a short / day trip */}
       {result.nearby.length > 0 && (
         <div className="mt-10">

@@ -185,6 +185,12 @@ export interface DestinationPlan {
   vehiclesNeeded: number;
   drivingHoursOneWay: number;
   minDaysNeeded: number;
+  /** realistic days each way (vehicle-aware: bikes ride fewer hours/day) */
+  travelDaysOneWay: number;
+  /** days to actually explore the place once there */
+  sightseeingDays: number;
+  /** how many MORE days than the user picked this realistically needs (0 if ok) */
+  extraDaysNeeded: number;
   /** ≤ DAY_TRIP_KM one-way — a same-day return, no overnight stay. */
   isDayTrip: boolean;
   costs: CostBreakdown;
@@ -228,6 +234,8 @@ export interface PlanResult {
   recommended: DestinationPlan[];
   feasible: DestinationPlan[];
   stretch: DestinationPlan[];
+  /** within budget but realistically need more days than the user picked */
+  needMoreDays: DestinationPlan[];
   all: DestinationPlan[];
   /** nearby cities worth a short/day trip, closest first, within budget */
   nearby: CityTrip[];
@@ -316,13 +324,24 @@ function planDestination(
   const total = fuel + hotel + food + misc;
 
   const drivingHoursOneWay = roadDriveHours(origin, dest, input.route);
-  // A day trip needs just 1 day; otherwise travel both ways at ~9 driving hours/day
-  // plus at least 1 full day to enjoy.
-  const travelDays = Math.ceil((drivingHoursOneWay * 2) / 9);
-  const minDaysNeeded = isDayTrip ? 1 : Math.max(2, travelDays + 1);
+  // Realistic days: bikes can't safely ride as many hours/day as a car in the
+  // mountains, so they need more travel days. A car/SUV does ~9 driving h/day;
+  // a bike ~6. Plus real days to actually SEE the place (more for big northern
+  // valleys with several lakes/forts to visit).
+  const dailyDriveHours = vehicle.class === "bike" ? 6 : 9;
+  const roundTripDriveHours = drivingHoursOneWay * 2;
+  const travelDaysOneWay = Math.max(1, Math.ceil(drivingHoursOneWay / dailyDriveHours));
+  const travelDaysRoundTrip = Math.max(1, Math.ceil(roundTripDriveHours / dailyDriveHours));
+  const sightseeingFloor = dest.tier === "low" ? 1 : 2;
+  const sightseeingDays = Math.min(
+    3,
+    Math.max(sightseeingFloor, Math.ceil(dest.attractions.length / 4)),
+  );
+  const minDaysNeeded = isDayTrip ? 1 : Math.max(2, travelDaysRoundTrip + sightseeingDays);
 
   const withinBudget = total <= input.budget;
   const enoughDays = input.days >= minDaysNeeded;
+  const extraDaysNeeded = Math.max(0, minDaysNeeded - input.days);
   const feasible = withinBudget && enoughDays;
   const budgetUsed = total / input.budget;
 
@@ -336,13 +355,20 @@ function planDestination(
     else if (budgetUsed < 0.4) score -= 6; // leaves lots unused — maybe aim higher
   }
 
+  const rideWord = vehicle.class === "bike" ? "bike" : vehicle.class === "suv" ? "4x4" : "car";
+  const dayPlural = (n: number) => (n === 1 ? "day" : "days");
+  const daysAdvice =
+    `on a ${rideWord} this realistically needs about ${minDaysNeeded} days ` +
+    `(~${travelDaysOneWay} ${dayPlural(travelDaysOneWay)} each way + ${sightseeingDays} to explore)` +
+    `${extraDaysNeeded > 0 ? ` — add ${extraDaysNeeded} ${dayPlural(extraDaysNeeded)}` : ""}`;
+
   let note: string | undefined;
   if (!withinBudget && !enoughDays) {
-    note = `Over budget by Rs ${(total - input.budget).toLocaleString()} and needs ${minDaysNeeded}+ days.`;
+    note = `Over budget by Rs ${(total - input.budget).toLocaleString()}, and ${daysAdvice}.`;
   } else if (!withinBudget) {
     note = `Over budget by Rs ${(total - input.budget).toLocaleString()}.`;
   } else if (!enoughDays) {
-    note = `Doable on budget but realistically needs ${minDaysNeeded}+ days.`;
+    note = `Fits your budget, but ${daysAdvice}.`;
   } else if (isDayTrip) {
     note = "Short day trip — visit and drive back the same day (no overnight stay).";
   }
@@ -355,6 +381,9 @@ function planDestination(
     vehiclesNeeded,
     drivingHoursOneWay: Math.round(drivingHoursOneWay * 10) / 10,
     minDaysNeeded,
+    travelDaysOneWay,
+    sightseeingDays,
+    extraDaysNeeded,
     isDayTrip,
     costs: { fuel, hotel, food, misc, total },
     withinBudget,
@@ -419,6 +448,13 @@ export interface TripResult {
   total: number;
   /** ≤ DAY_TRIP_KM one-way — same-day return, no overnight stay. */
   isDayTrip: boolean;
+  /** realistic days for this trip (vehicle-aware travel + time to explore) */
+  recommendedDays: number;
+  travelDaysOneWay: number;
+  sightseeingDays: number;
+  /** how many more days than picked it realistically needs (0 if ok) */
+  extraDaysNeeded: number;
+  enoughDays: boolean;
   /** true when distance came from the great-circle estimate, not road data. */
   estimated: boolean;
   /** the KKH corridor actually used (Besham / Babusar). */
@@ -475,6 +511,16 @@ export function planPointToPoint(input: TripInput): TripResult | null {
   const driveHoursOneWay =
     driveMin > 0 ? Math.round((driveMin / 60) * 10) / 10 : Math.round((distanceKm / 45) * 10) / 10;
 
+  // Realistic days, vehicle-aware: bikes ride ~6 driving h/day in the mountains,
+  // cars/4x4 ~9; plus time to actually explore (more for a destination than a city).
+  const dailyDriveHours = vehicle.class === "bike" ? 6 : 9;
+  const travelDaysOneWay = Math.max(1, Math.ceil(driveHoursOneWay / dailyDriveHours));
+  const travelDaysRoundTrip = Math.max(1, Math.ceil((driveHoursOneWay * 2) / dailyDriveHours));
+  const sightseeingDays = to.kind === "destination" ? 2 : 1;
+  const recommendedDays = isDayTrip ? 1 : Math.max(2, travelDaysRoundTrip + sightseeingDays);
+  const enoughDays = input.days >= recommendedDays;
+  const extraDaysNeeded = Math.max(0, recommendedDays - input.days);
+
   return {
     from,
     to,
@@ -491,6 +537,11 @@ export function planPointToPoint(input: TripInput): TripResult | null {
     buffer,
     total,
     isDayTrip,
+    recommendedDays,
+    travelDaysOneWay,
+    sightseeingDays,
+    extraDaysNeeded,
+    enoughDays,
     estimated,
     route,
     babusarAvailable,
@@ -573,9 +624,15 @@ export function planTrip(input: PlanInput): PlanResult {
 
   const feasible = all.filter((p) => p.feasible);
   const recommended = feasible.slice(0, 3);
-  // "stretch": just out of reach — slightly over budget or needs a couple more days
+  // Affordable but realistically need more days than picked — surfaced with a
+  // clear "add N days" suggestion instead of being wrongly shown as doable.
+  const needMoreDays = all
+    .filter((p) => p.withinBudget && !p.isDayTrip && !p.enoughDays)
+    .sort((a, b) => a.extraDaysNeeded - b.extraDaysNeeded || b.score - a.score)
+    .slice(0, 6);
+  // "stretch": just out of budget reach (days handled by needMoreDays above).
   const stretch = all
-    .filter((p) => !p.feasible && (p.budgetUsed <= 1.4 || p.minDaysNeeded <= input.days + 2))
+    .filter((p) => !p.withinBudget && p.budgetUsed <= 1.4)
     .slice(0, 3);
 
   // Max reach: how far one-way you could drive spending ~45% of budget on fuel.
@@ -597,6 +654,7 @@ export function planTrip(input: PlanInput): PlanResult {
     recommended,
     feasible,
     stretch,
+    needMoreDays,
     all,
     nearby,
   };

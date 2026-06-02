@@ -194,6 +194,32 @@ export function TripPlanner() {
                   Short day trip (≤100 km) — no overnight stay, fuel + food only
                 </span>
               )}
+              {!result.isDayTrip && !result.enoughDays && (
+                <div className="mt-3 flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 p-3">
+                  <CalendarIcon className="mt-0.5 h-4 w-4 shrink-0 text-amber-600" />
+                  <p className="text-xs leading-relaxed text-amber-900">
+                    <strong>{days} days may be too few</strong> by{" "}
+                    {getVehicle(vehicleId).class === "bike"
+                      ? "bike"
+                      : getVehicle(vehicleId).class === "suv"
+                        ? "4x4"
+                        : "car"}
+                    . This trip realistically needs about{" "}
+                    <strong>{result.recommendedDays} days</strong> (~{result.travelDaysOneWay}{" "}
+                    each way + {result.sightseeingDays} to explore)
+                    {result.extraDaysNeeded > 0 ? (
+                      <>
+                        {" "}— consider adding{" "}
+                        <strong>
+                          {result.extraDaysNeeded} {result.extraDaysNeeded === 1 ? "day" : "days"}
+                        </strong>
+                      </>
+                    ) : null}
+                    . On a bike you stop overnight after a few hundred km, then explore once
+                    you arrive.
+                  </p>
+                </div>
+              )}
             </div>
 
             {result.babusarAvailable && (
