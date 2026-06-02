@@ -24,7 +24,7 @@ const EXPLORE: NavMenu = {
   items: [
     { label: "All destinations", href: "/destinations" },
     { label: "Starting cities", href: "/cities" },
-    { heading: "Top 10 cities" },
+    { heading: "Top 10 places to see" },
     { label: "Hunza Valley", href: "/destinations/hunza", tag: "GB" },
     { label: "Skardu", href: "/destinations/skardu", tag: "GB" },
     { label: "Fairy Meadows", href: "/destinations/fairymeadows", tag: "GB" },
