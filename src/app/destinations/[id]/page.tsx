@@ -12,6 +12,7 @@ import {
 import { destPhotos, destHero } from "@/lib/photos";
 import { HotelCard } from "@/components/hotel-card";
 import { GettingThere } from "@/components/getting-there";
+import { BikerPracticality } from "@/components/biker-practicality";
 import { PhotoGallery } from "@/components/photo-gallery";
 import {
   MapPinIcon,
@@ -168,6 +169,9 @@ export default async function DestinationDetail({
             </div>
           </section>
         )}
+
+        {/* Biker practicality & vehicle recommendation */}
+        <BikerPracticality destination={d} />
 
         {/* Dangerous tracks */}
         {content.tracks && content.tracks.length > 0 && (
