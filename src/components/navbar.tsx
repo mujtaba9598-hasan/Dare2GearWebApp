@@ -11,23 +11,29 @@ import {
   CloseIcon,
 } from "./icons";
 
-type NavItem = { label: string; href: string };
+type NavLink = { label: string; href: string; tag?: string };
+type NavHeading = { heading: string };
+type NavItem = NavLink | NavHeading;
 type NavMenu = { label: string; items: NavItem[] };
+
+const isHeading = (item: NavItem): item is NavHeading => "heading" in item;
 
 const EXPLORE: NavMenu = {
   label: "Explore",
   items: [
     { label: "All destinations", href: "/destinations" },
     { label: "Starting cities", href: "/cities" },
-    { label: "Hunza", href: "/destinations/hunza" },
-    { label: "Skardu", href: "/destinations/skardu" },
-    { label: "Swat & Kalam", href: "/destinations/swat" },
-    { label: "Fairy Meadows", href: "/destinations/fairymeadows" },
-    // Azad Kashmir city pages
-    { label: "Muzaffarabad (AJK)", href: "/cities/muzaffarabad" },
-    { label: "Mirpur (AJK)", href: "/cities/mirpurajk" },
-    { label: "Bagh (AJK)", href: "/cities/bagh" },
-    { label: "Kotli (AJK)", href: "/cities/kotli" },
+    { heading: "Top 10 cities" },
+    { label: "Hunza Valley", href: "/destinations/hunza", tag: "GB" },
+    { label: "Skardu", href: "/destinations/skardu", tag: "GB" },
+    { label: "Fairy Meadows", href: "/destinations/fairymeadows", tag: "GB" },
+    { label: "Neelum Valley", href: "/destinations/neelum", tag: "AJK" },
+    { label: "Swat Valley", href: "/destinations/swat", tag: "KPK" },
+    { label: "Naran Kaghan", href: "/destinations/naran", tag: "KPK" },
+    { label: "Deosai Plains", href: "/destinations/deosai", tag: "GB" },
+    { label: "Khunjerab Pass", href: "/destinations/khunjerab", tag: "GB" },
+    { label: "Naltar Valley", href: "/destinations/naltar", tag: "GB" },
+    { label: "Shigar Valley", href: "/destinations/shigar", tag: "GB" },
   ],
 };
 
@@ -70,15 +76,27 @@ function DesktopDropdown({ menu }: { menu: NavMenu }) {
       {/* pt-2 keeps the panel touching the button so hover doesn't drop */}
       <div className="invisible absolute left-1/2 top-full z-40 -translate-x-1/2 pt-2 opacity-0 transition-all group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
         <div className="w-56 rounded-2xl border border-line bg-surface p-2 shadow-xl shadow-slate-200/60">
-          {menu.items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className="block rounded-lg px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-canvas hover:text-brand-700"
-            >
-              {item.label}
-            </Link>
-          ))}
+          {menu.items.map((item) =>
+            isHeading(item) ? (
+              <p
+                key={item.heading}
+                className="px-3 pb-1 pt-3 text-xs font-bold uppercase tracking-wider text-brand-600"
+              >
+                {item.heading}
+              </p>
+            ) : (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium text-ink transition-colors hover:bg-canvas hover:text-brand-700"
+              >
+                {item.label}
+                {item.tag && (
+                  <span className="text-xs font-semibold text-muted">{item.tag}</span>
+                )}
+              </Link>
+            ),
+          )}
         </div>
       </div>
     </div>
@@ -147,16 +165,30 @@ export function Navbar() {
               <div key={m.label}>
                 <p className="font-display text-sm font-bold text-ink">{m.label}</p>
                 <div className="mt-2 grid gap-1">
-                  {m.items.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setOpen(false)}
-                      className="rounded-lg px-3 py-2 text-sm text-muted transition-colors hover:bg-canvas hover:text-brand-700"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
+                  {m.items.map((item) =>
+                    isHeading(item) ? (
+                      <p
+                        key={item.heading}
+                        className="px-3 pb-0.5 pt-2 text-xs font-bold uppercase tracking-wider text-brand-600"
+                      >
+                        {item.heading}
+                      </p>
+                    ) : (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setOpen(false)}
+                        className="flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm text-muted transition-colors hover:bg-canvas hover:text-brand-700"
+                      >
+                        {item.label}
+                        {item.tag && (
+                          <span className="text-xs font-semibold text-muted/80">
+                            {item.tag}
+                          </span>
+                        )}
+                      </Link>
+                    ),
+                  )}
                 </div>
               </div>
             ))}
