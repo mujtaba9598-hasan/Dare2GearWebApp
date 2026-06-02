@@ -147,7 +147,7 @@ export const DESTINATION_PHOTOS: Record<string, Photo[]> = {
   ],
   "neelum": [
     { src: "/photos/destinations/neelum/arang-kel.jpg", caption: "Arang Kel" },
-    { src: "/photos/destinations/neelum/baboon-meadows-baboon-valley.jpg", caption: "Baboon Meadows (baboon Valley)" },
+    { src: "/photos/destinations/neelum/baboon-meadows-baboon-valley.jpg", caption: "Bashoo Meadows (Bashoo Valley)" },
     { src: "/photos/destinations/neelum/keran.jpg", caption: "Keran" },
     { src: "/photos/destinations/neelum/ratti-gali-lake.jpg", caption: "Ratti Gali Lake" },
     { src: "/photos/destinations/neelum/sharda.jpg", caption: "Sharda" },
@@ -176,7 +176,31 @@ export const DESTINATION_PHOTOS: Record<string, Photo[]> = {
     { src: "/destinations/panjpeer/viewpoint.jpg", caption: "Sunrise Viewpoint" },
   ],
   "leepa": [
-    { src: "/photos/cities/hattianbala/leepa-valley.jpg", caption: "Leepa Valley" },
+    { src: "/photos/destinations/leepa/reshian-gali.jpg", caption: "Reshian Gali" },
+    { src: "/photos/destinations/leepa/dao-khun.jpg", caption: "Dao Khun" },
+    { src: "/photos/destinations/leepa/chananian.jpg", caption: "Chananian" },
+    { src: "/photos/destinations/leepa/leepa-bazaar.jpg", caption: "Leepa Bazaar" },
+    { src: "/photos/destinations/leepa/naullishaw.jpg", caption: "Naullishaw" },
+  ],
+  "dudipatsar": [
+    { src: "/photos/destinations/dudipatsar/dudipatsar-001.jpg", caption: "" },
+    { src: "/photos/destinations/dudipatsar/dudipatsar-002.jpg", caption: "" },
+    { src: "/photos/destinations/dudipatsar/dudipatsar-003.jpg", caption: "" },
+    { src: "/photos/destinations/dudipatsar/dudipatsar-004.jpg", caption: "" },
+  ],
+  "broghil": [
+    { src: "/photos/destinations/broghil/broghil-001.jpg", caption: "" },
+    { src: "/photos/destinations/broghil/broghil-002.jpg", caption: "" },
+    { src: "/photos/destinations/broghil/broghil-003.jpg", caption: "" },
+    { src: "/photos/destinations/broghil/broghil-004.jpg", caption: "" },
+  ],
+  "shimshal": [
+    { src: "/photos/destinations/shimshal/shimshal-001.jpg", caption: "" },
+    { src: "/photos/destinations/shimshal/shimshal-002.jpg", caption: "" },
+    { src: "/photos/destinations/shimshal/shimshal-003.jpg", caption: "" },
+    { src: "/photos/destinations/shimshal/shimshal-004.jpg", caption: "" },
+    { src: "/photos/destinations/shimshal/shimshal-005.jpg", caption: "" },
+    { src: "/photos/destinations/shimshal/shimshal-006.jpg", caption: "" },
   ],
 };
 

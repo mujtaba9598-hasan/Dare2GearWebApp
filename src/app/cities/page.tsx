@@ -4,7 +4,7 @@ import { ORIGINS } from "@/lib/data";
 import { cityPlaces } from "@/lib/city-attractions";
 import { cityHero } from "@/lib/photos";
 import { MapPinIcon, ArrowRightIcon, CompassIcon } from "@/components/icons";
-import { CitySearch } from "@/components/city-search";
+import { SiteSearch } from "@/components/city-search";
 
 export const metadata: Metadata = {
   title: "Starting Cities — What to See | Dare2Gear",
@@ -49,13 +49,7 @@ export default function CitiesPage() {
           </p>
 
           <div className="mt-8">
-            <CitySearch
-              cities={ORIGINS.map((o) => ({
-                id: o.id,
-                name: o.name,
-                province: o.province,
-              }))}
-            />
+            <SiteSearch />
           </div>
         </div>
       </section>

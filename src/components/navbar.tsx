@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { RENTAL_CATEGORIES, SERVICES } from "@/lib/catalog";
+import { SiteSearch } from "./city-search";
 import {
   ArrowRightIcon,
   BedIcon,
@@ -120,7 +121,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop menus */}
-        <div className="hidden items-center gap-7 lg:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           {MENUS.map((m) => (
             <DesktopDropdown key={m.label} menu={m} />
           ))}
@@ -128,6 +129,11 @@ export function Navbar() {
 
         {/* Right cluster */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Global search — desktop */}
+          <div className="hidden lg:block lg:w-48 xl:w-60">
+            <SiteSearch variant="compact" />
+          </div>
+
           <Link
             href="/list-your-property"
             className="inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-amber-300 bg-amber-50 px-3.5 py-2 text-sm font-semibold text-amber-700 shadow-sm transition-colors hover:bg-amber-100 sm:px-4"
@@ -161,6 +167,8 @@ export function Navbar() {
       {open && (
         <div className="border-t border-line bg-surface lg:hidden">
           <div className="mx-auto max-w-7xl space-y-5 px-5 py-5 sm:px-8">
+            {/* Global search — mobile */}
+            <SiteSearch variant="compact" onNavigate={() => setOpen(false)} />
             {MENUS.map((m) => (
               <div key={m.label}>
                 <p className="font-display text-sm font-bold text-ink">{m.label}</p>

@@ -251,8 +251,9 @@ export interface RouteAccess {
   carCanFinish: boolean;
   /** Where you leave your own vehicle before the jeep leg. */
   lastSafeParking?: string;
-  /** Local jeep fare for the final leg, PKR. Round trip unless noted. */
-  jeepFare?: { min: number; max: number; note?: string };
+  /** Qualitative note about the jeep leg (what it covers) — NO price; jeep
+   *  fares are never fixed and must be agreed locally on the spot. */
+  jeepNote?: string;
   /** Season-specific caution shown with the recommendation. */
   seasonal?: string;
 }
@@ -265,7 +266,7 @@ const ACCESS: Record<string, Partial<RouteAccess>> = {
     jeepRequired: true,
     carCanFinish: false,
     lastSafeParking: "Raikot Bridge (Karakoram Highway)",
-    jeepFare: { min: 10000, max: 12000, note: "round trip to Tato, then a 3–4 hr trek" },
+    jeepNote: "jeep to Tato, then a 3–4 hr trek to the meadows",
     seasonal: "The Raikot jeep track is snow-blocked roughly Nov–Apr.",
   },
   baboonvalley: {
@@ -273,14 +274,14 @@ const ACCESS: Record<string, Partial<RouteAccess>> = {
     jeepRequired: true,
     carCanFinish: false,
     lastSafeParking: "the last metalled roadhead before the valley",
-    jeepFare: { min: 6000, max: 9000 },
+    jeepNote: "local 4x4 for the unpaved final stretch",
   },
   nooritop: {
     minBikeCc: 150,
     jeepRequired: true,
     carCanFinish: false,
     lastSafeParking: "Naran / Sharan roadhead",
-    jeepFare: { min: 8000, max: 12000, note: "muddy & rocky — 4x4 only" },
+    jeepNote: "muddy & rocky — 4x4 only",
     seasonal: "Rain turns the top to deep mud; July–Sept is safest.",
   },
   naltar: {
@@ -288,21 +289,21 @@ const ACCESS: Record<string, Partial<RouteAccess>> = {
     jeepRequired: true,
     carCanFinish: false,
     lastSafeParking: "Nomal village (off the KKH near Gilgit)",
-    jeepFare: { min: 6000, max: 9000, note: "rough jeep track up from Nomal" },
+    jeepNote: "rough jeep track up from Nomal",
   },
   raatigali: {
     minBikeCc: 150,
     jeepRequired: true,
     carCanFinish: false,
     lastSafeParking: "Dowarian (Neelum Valley road)",
-    jeepFare: { min: 7000, max: 11000, note: "jeep to the lake car-park, then a short trek" },
+    jeepNote: "jeep to the lake car-park, then a short trek",
   },
   deosai: {
     minBikeCc: 150,
     jeepRequired: false,
     carCanFinish: false,
     lastSafeParking: "Skardu (or Chilim check-post)",
-    jeepFare: { min: 12000, max: 18000, note: "full-day 4x4 hire across the plains" },
+    jeepNote: "full-day 4x4 hire across the plains",
     seasonal: "The plateau is only open roughly Jul–Sep; snow-bound otherwise.",
   },
   leepa: {
@@ -316,7 +317,7 @@ const ACCESS: Record<string, Partial<RouteAccess>> = {
     jeepRequired: true,
     carCanFinish: false,
     lastSafeParking: "Astore town / Tarashing",
-    jeepFare: { min: 8000, max: 13000, note: "for the Rama Lake / Nanga Parbat side" },
+    jeepNote: "for the Rama Lake / Nanga Parbat side",
   },
   khaplu: { minBikeCc: 150, jeepRequired: false, carCanFinish: true },
   chitral: {
@@ -331,7 +332,7 @@ const ACCESS: Record<string, Partial<RouteAccess>> = {
     jeepRequired: false,
     carCanFinish: false,
     lastSafeParking: "Wahi Pandhi",
-    jeepFare: { min: 5000, max: 8000, note: "4x4 recommended for the final plateau climb" },
+    jeepNote: "4x4 recommended for the final plateau climb",
   },
 };
 
@@ -344,6 +345,14 @@ export function routeAccess(d: Destination): RouteAccess {
         ? { minBikeCc: 125, jeepRequired: false, carCanFinish: true }
         : { minBikeCc: 150, jeepRequired: true, carCanFinish: false };
   return { ...base, ...ACCESS[d.id] };
+}
+
+/** The single best-fit vehicle for a route — used to tag the recommended pick. */
+export function recommendedVehicle(d: Destination): { kind: VehicleKind; cc: BikeCc } {
+  const access = routeAccess(d);
+  const kind: VehicleKind =
+    access.jeepRequired || !access.carCanFinish || d.terrain === "rough" ? "suv" : "car";
+  return { kind, cc: access.minBikeCc };
 }
 
 export interface VehicleInput {
@@ -452,12 +461,8 @@ export function assessVehicle(d: Destination, input: VehicleInput): VehicleVerdi
   let recommendation: string;
   if (suggestJeep) {
     const parkAt = access.lastSafeParking ?? "the last roadhead";
-    const fare = access.jeepFare
-      ? ` Local jeep fare is roughly PKR ${access.jeepFare.min.toLocaleString("en-PK")}–${access.jeepFare.max.toLocaleString(
-          "en-PK",
-        )}${access.jeepFare.note ? ` (${access.jeepFare.note})` : ""}.`
-      : "";
-    recommendation = `Park at ${parkAt} and hire a local 4x4 jeep for the last leg.${fare}`;
+    const leg = access.jeepNote ? ` (${access.jeepNote})` : "";
+    recommendation = `Park at ${parkAt} and hire a local 4x4 jeep for the last leg${leg}. Jeep fares are not fixed — agree the rate on the spot before you set off.`;
   } else if (level === "warn") {
     recommendation = "Consider a higher-cc bike or a 4x4 — or hire a local jeep for the hard section.";
   } else if (level === "moderate") {

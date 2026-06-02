@@ -160,7 +160,7 @@ export const CONTENT: Record<string, DestinationContent> = {
       { name: "Arang Kel", blurb: "A storybook meadow village reached by chairlift and a steep climb above Kel.", category: "valley" },
       { name: "Ratti Gali Lake", blurb: "An alpine lake of intense blues, a jeep-plus-trek above Dowarian.", category: "lake" },
       { name: "Taobat", blurb: "The last village of the valley, deep toward the Shounter pass.", category: "town" },
-      { name: "Baboon Meadows (Baboon Valley)", blurb: "A high alpine meadow at ~12,600 ft above Keran and Jagran, reached by a steep hike to Baboon Top — vast meadows ringed by snow peaks.", category: "trek" },
+      { name: "Bashoo Meadows (Bashoo Valley)", blurb: "A high alpine meadow at ~12,600 ft above Keran and Jagran, reached by a steep hike to Bashoo Top — vast meadows ringed by snow peaks.", category: "trek" },
     ],
     tracks: [
       {
@@ -476,6 +476,56 @@ export const CONTENT: Record<string, DestinationContent> = {
       { name: "Sudhan Gali", blurb: "A green forested pass on the way to Bagh and the gateway to Ganga Choti.", category: "valley" },
       { name: "Tatta Pani", blurb: "Natural hot springs beside the Poonch river.", category: "viewpoint" },
       { name: "Ganga Choti", blurb: "A popular summit hike above Bagh with panoramic Kashmir views.", category: "trek" },
+    ],
+  },
+
+  dudipatsar: {
+    hero: "/photos/destinations/dudipatsar/dudipatsar-001.jpg",
+    tagline: "A 3,800m emerald lake ringed by snow peaks above the Kaghan Valley.",
+    gallery: [
+      "/photos/destinations/dudipatsar/dudipatsar-001.jpg",
+      "/photos/destinations/dudipatsar/dudipatsar-002.jpg",
+      "/photos/destinations/dudipatsar/dudipatsar-003.jpg",
+    ],
+    spots: [
+      { name: "Dudipatsar Lake", blurb: "A deep emerald glacial lake at ~3,800m, ringed by snow-streaked peaks — the centrepiece of the trek.", category: "lake" },
+      { name: "Besal", blurb: "The roadhead camp on the Naran–Babusar road where the jeep ride ends and the trek begins.", category: "town" },
+      { name: "Wildflower Meadows", blurb: "The trail climbs through alpine meadows carpeted with summer wildflowers along the Pursra stream.", category: "valley" },
+      { name: "Alpine Trek", blurb: "A steep 4–6 hour day-trek from Besal — moderately tough and best in clear weather.", category: "trek" },
+    ],
+  },
+
+  broghil: {
+    hero: "/photos/destinations/broghil/broghil-001.jpg",
+    tagline: "Yak pastures and Wakhi villages on the remote Afghan Pamir border.",
+    gallery: [
+      "/photos/destinations/broghil/broghil-001.jpg",
+      "/photos/destinations/broghil/broghil-002.jpg",
+      "/photos/destinations/broghil/broghil-003.jpg",
+    ],
+    spots: [
+      { name: "Karombar Lake", blurb: "One of the world's highest lakes (~4,300m) — a vivid blue sheet on the Broghil–Ishkoman watershed.", category: "lake" },
+      { name: "Qalandar Uween Lake", blurb: "A serene high-altitude lake amid the Broghil wetlands and yak pastures.", category: "lake" },
+      { name: "Yak Pastures", blurb: "Vast summer grazing meadows where Wakhi herders bring their yak herds.", category: "valley" },
+      { name: "Wakhi Villages", blurb: "Scattered stone-and-mud hamlets of the Wakhi people, among Pakistan's most isolated communities.", category: "town" },
+      { name: "Broghil Pass", blurb: "The 3,800m pass into the Afghan Wakhan corridor — historic gateway across the Hindu Kush.", category: "viewpoint" },
+    ],
+  },
+
+  shimshal: {
+    hero: "/photos/destinations/shimshal/shimshal-001.jpg",
+    tagline: "Hunza's highest village and a mountaineers' road carved into cliffs.",
+    gallery: [
+      "/photos/destinations/shimshal/shimshal-001.jpg",
+      "/photos/destinations/shimshal/shimshal-002.jpg",
+      "/photos/destinations/shimshal/shimshal-003.jpg",
+    ],
+    spots: [
+      { name: "Shimshal Village", blurb: "A 3,100m Wakhi village famed for producing many of Pakistan's top high-altitude climbers.", category: "town" },
+      { name: "Cliff Jeep Road", blurb: "The dramatic ~50km track from the KKH, hand-cut into sheer gorge walls — a white-knuckle drive.", category: "viewpoint" },
+      { name: "Shimshal Pass", blurb: "A high summer-pasture plateau (~4,700m) of lakes and grazing grounds, a multi-day trek above the village.", category: "trek" },
+      { name: "Pamir Pastures", blurb: "Wide alpine pastures where Shimshali families graze yaks and sheep through the summer.", category: "valley" },
+      { name: "Minglik Sar Views", blurb: "The trek base for the 6,050m Minglik Sar — a popular first 6,000m climb.", category: "viewpoint" },
     ],
   },
 };

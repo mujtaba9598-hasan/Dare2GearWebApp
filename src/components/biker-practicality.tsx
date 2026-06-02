@@ -6,6 +6,7 @@ import {
   bikerPracticality,
   routeAccess,
   assessVehicle,
+  recommendedVehicle,
   parkingMapsLink,
   type BikerSignal,
   type SignalLevel,
@@ -98,6 +99,8 @@ export function BikerPracticality({ destination }: { destination: Destination })
   const signals = bikerPracticality(d);
   const access = routeAccess(d);
 
+  const rec = recommendedVehicle(d);
+
   const [kind, setKind] = useState<VehicleKind>("bike");
   const [cc, setCc] = useState<BikeCc>(125);
   const [pillion, setPillion] = useState(false);
@@ -114,10 +117,10 @@ export function BikerPracticality({ destination }: { destination: Destination })
     <section className="mt-12">
       <h2 className="flex items-center gap-2 font-display text-2xl font-bold text-ink sm:text-3xl">
         <BikeIcon className="h-7 w-7 text-brand-600" />
-        Biker practicality &amp; vehicle fit
+        Route practicality &amp; vehicle fit
       </h2>
       <p className="mt-1 text-sm text-muted">
-        How hard is the ride to {d.name}, and is your vehicle up to it? Pick your
+        How hard is the trip to {d.name}, and is your vehicle up to it? Pick your
         ride to get a suitability score and a smart recommendation.
       </p>
 
@@ -133,17 +136,33 @@ export function BikerPracticality({ destination }: { destination: Destination })
                   key={k.value}
                   type="button"
                   onClick={() => setKind(k.value)}
-                  className={`flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border py-2.5 text-sm font-semibold transition-colors ${
+                  className={`relative flex cursor-pointer items-center justify-center gap-1.5 rounded-xl border py-2.5 text-sm font-semibold transition-colors ${
                     kind === k.value
                       ? "border-brand-500 bg-brand-50 text-brand-700"
                       : "border-line text-muted hover:border-brand-300 hover:text-ink"
                   }`}
                 >
+                  {k.value === rec.kind && (
+                    <span className="absolute -top-2 right-1 rounded-full bg-brand-600 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white shadow-sm">
+                      Best
+                    </span>
+                  )}
                   {k.icon}
                   {k.label}
                 </button>
               ))}
             </div>
+            <p className="mt-2 text-xs text-muted">
+              Recommended for this route:{" "}
+              <span className="font-semibold text-brand-700">
+                {rec.kind === "suv"
+                  ? "SUV / 4x4"
+                  : rec.kind === "car"
+                    ? "Car"
+                    : "Bike"}
+              </span>
+              {" "}· bikes {rec.cc === 250 ? "250cc+" : `${rec.cc}cc+`}
+            </p>
 
             {kind === "bike" && (
               <div className="mt-4">
@@ -154,12 +173,17 @@ export function BikerPracticality({ destination }: { destination: Destination })
                       key={c}
                       type="button"
                       onClick={() => setCc(c)}
-                      className={`cursor-pointer rounded-full border px-3.5 py-1.5 text-sm font-semibold tabular-nums transition-colors ${
+                      className={`relative cursor-pointer rounded-full border px-3.5 py-1.5 text-sm font-semibold tabular-nums transition-colors ${
                         cc === c
                           ? "border-brand-500 bg-brand-50 text-brand-700"
                           : "border-line text-muted hover:border-brand-300 hover:text-ink"
                       }`}
                     >
+                      {c === rec.cc && (
+                        <span className="absolute -top-2 -right-1 rounded-full bg-brand-600 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-white shadow-sm">
+                          Best
+                        </span>
+                      )}
                       {c === 250 ? "250cc+" : `${c}cc`}
                     </button>
                   ))}
@@ -254,9 +278,10 @@ export function BikerPracticality({ destination }: { destination: Destination })
               {access.seasonal}
             </p>
           )}
-          {verdict.suggestJeep && access.jeepFare && (
+          {verdict.suggestJeep && (
             <p className="mt-2 text-xs text-muted">
-              Jeep fares are crowd-sourced estimates — confirm locally before you ride.
+              We don&apos;t quote jeep fares — they aren&apos;t fixed. Agree the rate
+              with the driver on the spot before you set off.
             </p>
           )}
         </div>
