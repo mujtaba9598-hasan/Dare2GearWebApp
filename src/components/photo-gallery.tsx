@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Photo } from "@/lib/photos";
+import { resolveSpot, type SpotContext } from "@/lib/spots";
+import { SpotDetailModal } from "./spot-detail-modal";
 import { CloseIcon, ArrowLeftIcon, ArrowRightIcon } from "./icons";
 
 function ZoomInIcon({ className }: { className?: string }) {
@@ -32,11 +34,26 @@ const STEP = 0.5;
 export function PhotoGallery({
   photos,
   altPrefix,
+  parentId,
+  parentKind,
 }: {
   photos: Photo[];
   altPrefix: string;
+  /** When set, captions become clickable and open a per-spot detail. */
+  parentId?: string;
+  parentKind?: "destination" | "city";
 }) {
   const [open, setOpen] = useState<number | null>(null);
+  const [spot, setSpot] = useState<SpotContext | null>(null);
+  const spotsEnabled = Boolean(parentId && parentKind);
+
+  const openSpot = useCallback(
+    (caption: string) => {
+      if (!parentId || !parentKind) return;
+      setSpot(resolveSpot(parentId, parentKind, caption));
+    },
+    [parentId, parentKind],
+  );
   const [scale, setScale] = useState(1);
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const drag = useRef<{ x: number; y: number; ox: number; oy: number } | null>(null);
@@ -122,14 +139,28 @@ export function PhotoGallery({
                 />
               </div>
             </button>
-            {p.caption && (
-              <figcaption className="bg-ink px-3 py-2 text-center text-sm font-semibold text-white">
-                {p.caption}
-              </figcaption>
-            )}
+            {p.caption &&
+              (spotsEnabled ? (
+                <button
+                  type="button"
+                  onClick={() => openSpot(p.caption)}
+                  className="flex w-full items-center justify-center gap-1.5 bg-ink px-3 py-2 text-center text-sm font-semibold text-white transition-colors hover:bg-brand-700"
+                  aria-label={`See details & vehicle guide for ${p.caption}`}
+                >
+                  {p.caption}
+                  <ArrowRightIcon className="h-3.5 w-3.5 opacity-70" />
+                </button>
+              ) : (
+                <figcaption className="bg-ink px-3 py-2 text-center text-sm font-semibold text-white">
+                  {p.caption}
+                </figcaption>
+              ))}
           </figure>
         ))}
       </div>
+
+      {/* Per-spot detail modal (opened from a caption) */}
+      <SpotDetailModal spot={spot} onClose={() => setSpot(null)} />
 
       {/* Lightbox */}
       {current && (
@@ -240,9 +271,24 @@ export function PhotoGallery({
               className="px-4 py-4 text-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <p className="inline-block rounded-full bg-ink px-4 py-1.5 text-sm font-semibold text-white">
-                {current.caption}
-              </p>
+              {spotsEnabled ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    const cap = current.caption;
+                    close();
+                    openSpot(cap);
+                  }}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-ink transition-colors hover:bg-brand-50"
+                >
+                  {current.caption} — details &amp; vehicle guide
+                  <ArrowRightIcon className="h-3.5 w-3.5 text-brand-600" />
+                </button>
+              ) : (
+                <p className="inline-block rounded-full bg-ink px-4 py-1.5 text-sm font-semibold text-white">
+                  {current.caption}
+                </p>
+              )}
             </div>
           )}
         </div>

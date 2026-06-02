@@ -337,7 +337,11 @@ function planDestination(
     3,
     Math.max(sightseeingFloor, Math.ceil(dest.attractions.length / 4)),
   );
-  const minDaysNeeded = isDayTrip ? 1 : Math.max(2, travelDaysRoundTrip + sightseeingDays);
+  // Far-flung north (Gilgit-Baltistan, Ghanche, expedition-tier) realistically
+  // can't be done in under ~6 days — long approach + several days to explore.
+  const remoteFarNorth = /gilgit-baltistan|ghanche/i.test(dest.region) || dest.tier === "high";
+  const daysFloor = isDayTrip ? 1 : remoteFarNorth ? 6 : 2;
+  const minDaysNeeded = isDayTrip ? 1 : Math.max(daysFloor, travelDaysRoundTrip + sightseeingDays);
 
   const withinBudget = total <= input.budget;
   const enoughDays = input.days >= minDaysNeeded;
@@ -517,7 +521,12 @@ export function planPointToPoint(input: TripInput): TripResult | null {
   const travelDaysOneWay = Math.max(1, Math.ceil(driveHoursOneWay / dailyDriveHours));
   const travelDaysRoundTrip = Math.max(1, Math.ceil((driveHoursOneWay * 2) / dailyDriveHours));
   const sightseeingDays = to.kind === "destination" ? 2 : 1;
-  const recommendedDays = isDayTrip ? 1 : Math.max(2, travelDaysRoundTrip + sightseeingDays);
+  // Far-flung north needs ~6 days minimum (look up the destination's region).
+  const toDest = DESTINATIONS.find((d) => d.id === to.id);
+  const remoteFarNorth =
+    !!toDest && (/gilgit-baltistan|ghanche/i.test(toDest.region) || toDest.tier === "high");
+  const daysFloor = isDayTrip ? 1 : remoteFarNorth ? 6 : 2;
+  const recommendedDays = isDayTrip ? 1 : Math.max(daysFloor, travelDaysRoundTrip + sightseeingDays);
   const enoughDays = input.days >= recommendedDays;
   const extraDaysNeeded = Math.max(0, recommendedDays - input.days);
 

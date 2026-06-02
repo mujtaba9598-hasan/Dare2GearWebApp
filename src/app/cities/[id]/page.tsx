@@ -84,7 +84,12 @@ export default async function CityDetail({
               Real shots of {city.name}&apos;s landmarks — tap any photo to zoom in.
             </p>
             <div className="mt-6">
-              <PhotoGallery photos={photos} altPrefix={city.name} />
+              <PhotoGallery
+                photos={photos}
+                altPrefix={city.name}
+                parentId={id}
+                parentKind="city"
+              />
             </div>
           </section>
         )}

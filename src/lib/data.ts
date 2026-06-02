@@ -635,14 +635,14 @@ export const FUEL_PRICE_META = {
 export const HOTEL_RATES: Record<HotelTier, number> = {
   cheap: 1000,
   standard: 1500,
-  luxury: 3500,
+  luxury: 2000,
 };
 
 /** PKR per person per day, before per-destination cost factor. */
 export const FOOD_RATES: Record<HotelTier, number> = {
   cheap: 1000,
   standard: 1500,
-  luxury: 3000,
+  luxury: 2000,
 };
 
 export const HOTEL_TIER_LABELS: Record<HotelTier, string> = {

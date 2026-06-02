@@ -165,8 +165,17 @@ export default async function DestinationDetail({
               Real shots from {d.name} — tap any photo to zoom in.
             </p>
             <div className="mt-6">
-              <PhotoGallery photos={photos} altPrefix={d.name} />
+              <PhotoGallery
+                photos={photos}
+                altPrefix={d.name}
+                parentId={d.id}
+                parentKind="destination"
+              />
             </div>
+            <p className="mt-3 text-xs text-muted">
+              Tip: tap a photo&apos;s name to see that exact spot&apos;s road difficulty and which
+              vehicle / bike suits it.
+            </p>
           </section>
         )}
 
