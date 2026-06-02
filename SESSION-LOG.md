@@ -4,6 +4,63 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 
 ---
 
+## Session — 2026-06-02
+
+**Summary:** Global search, a route-practicality / vehicle-fit system, 3 new
+northern destinations, and several UI fixes. Destinations **25 → 28**.
+
+### Shipped
+- **Global Smart Search** — new `src/lib/search-index.ts` indexes **everything**:
+  every city (all provinces), every destination, and **every spot inside them**
+  (lakes, valleys, passes, viewpoints, treks, villages, off-road/danger tracks,
+  city attractions). Component renamed `CitySearch → SiteSearch`
+  (`src/components/city-search.tsx`) with prefix-first live autocomplete,
+  keyboard nav, highlight, and type chips (City / Trip / Lake / Pass…). Mounted
+  in the **/cities hero** and in the **nav bar** (compact on desktop, full-width
+  in the mobile drawer).
+- **Route practicality & vehicle fit** — new `src/lib/biker.ts` +
+  `src/components/biker-practicality.tsx` on **every destination page**:
+  - 11 readiness signals (road, dangerous patches, steep climbs, off-road, fuel
+    / network / mechanic / puncture coverage, weather, rider fatigue, rest
+    stops), all derived from terrain / region / season / en-route towns.
+  - Interactive recommender: pick **bike cc / car / 4x4 + pillion + luggage** →
+    0–100 suitability score, auto-warnings, **last safe parking** (Google Maps
+    link) and a park-&-hire-jeep recommendation for 4x4-only approaches.
+  - **No jeep-fare numbers** — per user, fares aren't fixed; the system says to
+    **agree the rate on the spot**. `RouteAccess.jeepNote` carries only a
+    qualitative description, never a price.
+  - Recommended vehicle type + cc tagged with a **"Best"** badge.
+  - Per-place access data hand-authored for the off-road spots (Fairy Meadows,
+    Baboon Valley, Noori Top, Naltar, Raati Gali, Deosai, Astore, Leepa,
+    Gorakh…); everything else uses terrain-derived defaults.
+- **3 new destinations** (full guide pages): **Broghil Valley** (Upper Chitral),
+  **Dudipatsar Lake** (Kaghan), **Shimshal Valley** (Hunza) — data + CONTENT +
+  real photo galleries from the user's `new locations/` upload.
+- **Leepa Valley photos** — 5 real named spot photos (Reshian Gali, Dao Khun,
+  Chananian, Leepa Bazaar, Naullishaw) wired in; **Panjpeer** 3 real photos
+  wired earlier this session. Both off the scenery placeholders now.
+- **Bike rename** — generic bike (40 km/L) → **"Touring Bike 250cc" @ 30 km/L**
+  (`bike-other`).
+- **Nav Explore menu** restructured: All destinations, Starting cities, then a
+  **"Top 10 places to see"** heading + 10 destinations tagged **GB / AJK / KPK**.
+- **Fuel price bar** restyled bolder (amber-100 fill, amber-400 border + left
+  accent stripe) while keeping text dark/readable.
+
+### Decisions / notes
+- `src/lib/photos.ts` is now **hand-edited** for places outside the importer's
+  source roots (panjpeer, leepa, broghil, dudipatsar, shimshal) — the raw
+  importer folders were deleted, so the one-shot importer no longer round-trips
+  these. Manual additions are marked with a comment.
+- **Baboon Valley ≠ Bashoo Valley** — they are *separate* places. A mid-session
+  rename of Baboon→Bashoo was **reverted**. Bashoo Valley is **not yet** in the
+  dataset (needs region / coords / photos to add as a new destination).
+
+### Pending / told user
+- New destinations (broghil, dudipatsar, shimshal) + baboonvalley/nooritop use
+  **approximate coords** — refine for exact planner distances.
+- **Bashoo Valley** to be added as a separate destination once coords/photos
+  arrive.
+
 ## Session — 2026-06-01 (part 3)
 
 **Summary:** Big content + planner-feature batch. Cities **90**, destinations
