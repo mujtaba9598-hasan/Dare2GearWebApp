@@ -147,7 +147,7 @@ export const DESTINATION_PHOTOS: Record<string, Photo[]> = {
   ],
   "neelum": [
     { src: "/photos/destinations/neelum/arang-kel.jpg", caption: "Arang Kel" },
-    { src: "/photos/destinations/neelum/baboon-meadows-baboon-valley.jpg", caption: "Bashoo Meadows (Bashoo Valley)" },
+    { src: "/photos/destinations/neelum/baboon-meadows-baboon-valley.jpg", caption: "Baboon Meadows (Baboon Valley)" },
     { src: "/photos/destinations/neelum/keran.jpg", caption: "Keran" },
     { src: "/photos/destinations/neelum/ratti-gali-lake.jpg", caption: "Ratti Gali Lake" },
     { src: "/photos/destinations/neelum/sharda.jpg", caption: "Sharda" },

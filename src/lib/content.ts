@@ -160,7 +160,7 @@ export const CONTENT: Record<string, DestinationContent> = {
       { name: "Arang Kel", blurb: "A storybook meadow village reached by chairlift and a steep climb above Kel.", category: "valley" },
       { name: "Ratti Gali Lake", blurb: "An alpine lake of intense blues, a jeep-plus-trek above Dowarian.", category: "lake" },
       { name: "Taobat", blurb: "The last village of the valley, deep toward the Shounter pass.", category: "town" },
-      { name: "Bashoo Meadows (Bashoo Valley)", blurb: "A high alpine meadow at ~12,600 ft above Keran and Jagran, reached by a steep hike to Bashoo Top — vast meadows ringed by snow peaks.", category: "trek" },
+      { name: "Baboon Meadows (Baboon Valley)", blurb: "A high alpine meadow at ~12,600 ft above Keran and Jagran, reached by a steep hike to Baboon Top — vast meadows ringed by snow peaks.", category: "trek" },
     ],
     tracks: [
       {

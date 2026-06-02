@@ -478,7 +478,7 @@ export const DESTINATIONS: Destination[] = [
   },
   {
     id: "baboonvalley",
-    name: "Bashoo Valley",
+    name: "Baboon Valley",
     region: "Gilgit-Baltistan",
     lat: 36.0,
     lng: 74.0,
