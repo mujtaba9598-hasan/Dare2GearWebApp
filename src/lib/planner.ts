@@ -307,12 +307,12 @@ function planDestination(
   // just one day's food. Otherwise stay per person per night (≈ Rs 1,500 standard).
   const isDayTrip = distanceKm <= DAY_TRIP_KM;
   const nights = isDayTrip ? 0 : Math.max(1, input.days - 1);
-  const hotel = isDayTrip
-    ? 0
-    : round(HOTEL_RATES[input.hotelTier] * dest.costFactor * nights * input.people);
+  // Flat per-person-per-day rates (no remote premium): cheap 1000 / standard
+  // 1500 / luxury 2000, for both stay and food. Scales with people and days.
+  const hotel = isDayTrip ? 0 : round(HOTEL_RATES[input.hotelTier] * nights * input.people);
 
   const foodDays = isDayTrip ? 1 : input.days;
-  const food = round(FOOD_RATES[input.hotelTier] * dest.costFactor * input.people * foodDays);
+  const food = round(FOOD_RATES[input.hotelTier] * input.people * foodDays);
 
   // misc = tolls/permits (per 100km, per vehicle) + per-person activities + 10% buffer
   const tolls = round((roundTripKm / 100) * 150 * vehiclesNeeded);
@@ -504,9 +504,10 @@ export function planPointToPoint(input: TripInput): TripResult | null {
   // ≤ 100 km one-way is a same-day round trip: no hotel, just a day's food.
   const isDayTrip = distanceKm <= DAY_TRIP_KM;
   const nights = isDayTrip ? 0 : Math.max(1, input.days - 1);
-  const hotel = isDayTrip ? 0 : round(HOTEL_RATES[input.hotelTier] * to.costFactor * nights * input.people);
+  // Flat per-person-per-day rates (no remote premium) — same as the budget planner.
+  const hotel = isDayTrip ? 0 : round(HOTEL_RATES[input.hotelTier] * nights * input.people);
   const foodDays = isDayTrip ? 1 : input.days;
-  const food = round(FOOD_RATES[input.hotelTier] * to.costFactor * input.people * foodDays);
+  const food = round(FOOD_RATES[input.hotelTier] * input.people * foodDays);
   const tolls = round((roundTripKm / 100) * 150 * vehiclesNeeded);
   const subtotal = fuelRoundTrip + hotel + food + tolls;
   const buffer = round(subtotal * 0.1);

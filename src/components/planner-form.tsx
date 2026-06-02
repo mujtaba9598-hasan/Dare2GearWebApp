@@ -338,7 +338,7 @@ export function PlannerForm() {
                     <span className="text-sm font-bold capitalize text-ink">{title}</span>
                     <span className="text-xs text-muted">{desc}</span>
                     <span className="mt-1 text-xs font-semibold text-brand-700">
-                      ~{pkrCompact(HOTEL_RATES[tier])}/room·night
+                      {pkrCompact(HOTEL_RATES[tier])}/person·night
                     </span>
                   </button>
                 );
