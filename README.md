@@ -5,7 +5,9 @@
 - **🎁 Budget planner** (`/planner`) — *"I have Rs X, where can I go?"* → ranked destinations you can afford, with full cost breakdown.
 - **🗺️ Plan a specific trip** (`/trip`) — any place → any place (e.g. Hunza → Karachi) with real road distance, drive time, fuel, stay, food and total.
 
-Plus **28 destination guides**, 90+ starting-city pages, a **global smart search** (cities, destinations + every spot — lakes, valleys, passes, tracks…), a **route-practicality & vehicle-fit system** (pick your bike cc / car / 4x4 → suitability score, warnings, last-safe-parking + jeep advice), nearby-city day-trip suggestions, route intelligence (weather, tolls, docs), rentals/services catalogs, and live OGRA fuel prices.
+Plus **28 destination guides**, 90+ starting-city pages, a **global smart search** (cities, destinations + every spot — lakes, valleys, passes, tracks…), a **route-practicality & vehicle-fit system** (pick your bike cc / car / 4x4 → suitability score, warnings, last-safe-parking + jeep advice), **per-spot vehicle guides** (tap a photo's name for that exact spot's road difficulty + recommended ride), **realistic vehicle-aware day planning** (bikes need more days; far north has a 6-day floor), nearby-city day-trip suggestions, route intelligence (weather, tolls, docs), rentals/services catalogs, and live OGRA fuel prices.
+
+> **Cost model:** food & stay are flat **per-person-per-day** rates — cheap Rs 1000, standard Rs 1500, luxury Rs 2000 (each, for both meals and lodging) — scaling with people × days, no per-destination premium. Edit in `src/lib/data.ts` (`HOTEL_RATES` / `FOOD_RATES`).
 
 | | |
 |---|---|

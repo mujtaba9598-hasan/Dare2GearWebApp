@@ -4,6 +4,49 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 
 ---
 
+## Session — 2026-06-03
+
+**Summary:** Search fix, realistic trip-day planning, per-spot detail panels,
+and a flat per-person cost model.
+
+### Shipped
+- **Search click fix** — dropdown results now navigate on click for partial
+  queries (e.g. "Sialkot"/"Sialkot Fort" after typing "SIA"). Replaced the
+  fragile blur-timer close in `city-search.tsx` with click-outside detection.
+- **Realistic, vehicle-aware trip days** (`planner.ts`):
+  - Bikes ride ~6 driving h/day in the mountains, cars/4x4 ~9 → long rides need
+    more travel days (Sialkot/Lahore → Skardu by bike ≈ 3 days each way).
+  - Sightseeing days scale with the destination (1–3).
+  - **6-day minimum** for the far-flung north (Gilgit-Baltistan / Ghanche /
+    expedition-tier) in BOTH the budget planner and `/trip`. (User confirmed
+    "keep" after a brief "remove".)
+  - New `needMoreDays` bucket + a "Worth it — with a few more days" section in
+    results, with an "add N days" nudge. `/trip` shows the same advisory.
+- **Per-spot detail panel** — clicking a photo's **caption** (e.g. "Basho
+  Valley") opens a focused modal (`spot-detail-modal.tsx`) with that spot's OWN
+  vehicle/cc recommendation + practicality, computed for the spot (terrain
+  derived from its category + parent via `lib/spots.ts`), not the whole region.
+  Wired into `photo-gallery.tsx` (captions become buttons when `parentId` +
+  `parentKind` are passed); enabled on destination AND city pages. Clicking the
+  **photo** still zooms as before.
+- **Flat per-person cost model** — food & stay now bill the flat per-person-
+  per-day tier rate with **no remote cost-factor premium**: cheap **1000**,
+  standard **1500**, luxury **2000** (each, for both meals and lodging), scaling
+  only with people × days. e.g. 2 luxury travellers = Rs 4000 food + Rs 4000
+  stay/day anywhere. (`HOTEL_RATES`/`FOOD_RATES` luxury 3500/3000 → 2000/2000;
+  removed `* costFactor` from hotel/food in `planDestination` &
+  `planPointToPoint`.) Planner tier label fixed to "/person·night".
+
+### Notes
+- `dest.costFactor` / `TripPlace.costFactor` are no longer applied to lodging or
+  food (kept on the type; unused in cost now). Reintroduce as an explicit line
+  item if a remote premium is wanted again.
+- Deleted the `new locations/` raw upload folder after its 19 images were copied
+  into `public/photos/destinations/{broghil,dudipatsar,shimshal,leepa}` and
+  committed.
+
+---
+
 ## Session — 2026-06-02
 
 **Summary:** Global search, a route-practicality / vehicle-fit system, 3 new
