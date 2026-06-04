@@ -60,10 +60,10 @@ export default function Home() {
               <SparklesIcon className="h-3.5 w-3.5" />
               Smart travel budget planner for Pakistan
             </span>
-            <h1 className="mt-5 text-balance font-display text-4xl font-extrabold leading-[1.05] text-ink sm:text-5xl lg:text-6xl">
-              Tell us your budget and vehicle.<br />
-              We&apos;ll tell you{" "}
-              <span className="text-brand-600">how far you can go.</span>
+            <h1 className="mt-5 text-balance font-display text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl">
+              <span className="text-black">Tell us your budget and vehicle.</span>
+              <br />
+              <span className="text-brand-600">We&apos;ll tell you how far you can go.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted">
               Dare2Gear turns the cash in your pocket into a real trip plan —
