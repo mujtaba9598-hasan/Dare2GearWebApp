@@ -61,7 +61,7 @@ export default function Home() {
               Smart travel budget planner for Pakistan
             </span>
             <h1 className="mt-5 text-balance font-display text-4xl font-extrabold leading-[1.05] text-ink sm:text-5xl lg:text-6xl">
-              Tell us your budget and riding vehicle.<br />
+              Tell us your budget and vehicle.<br />
               We&apos;ll tell you{" "}
               <span className="text-brand-600">how far you can go.</span>
             </h1>
