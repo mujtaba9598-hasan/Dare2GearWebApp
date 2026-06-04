@@ -4,6 +4,45 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 
 ---
 
+## Session — 2026-06-05
+
+**Summary:** Small homepage copy/colour tweaks + realism fixes to the original,
+and a **separate dark-theme redesign fork** taken to a live landing page.
+
+### Shipped (original app — `Dare2GearWebApp`)
+- **Hero heading copy** — "Tell us your budget." → **"Tell us your budget and
+  vehicle."**; later dropped "riding" → final wording "budget and vehicle".
+- **Hero heading colours** — line 1 ("Tell us your budget and vehicle.") set to
+  **black**; line 2 ("We'll tell you how far you can go.") now **fully green**
+  (`text-brand-600`).
+- **Hero paragraph trimmed** — removed the "from a short trip to a neighbouring
+  town to the peaks of Hunza and Fairy Meadows." clause (earlier "short hop" had
+  been changed to "short trip"). Now: "…your money can take you — Whatever's in
+  your pocket, we'll turn it into a trip."
+- **Honda CB 150F mileage** `data.ts` — **40 → 35 km/l** (realistic for touring
+  / northern roads).
+- **Per-destination min-day floors** `planner.ts` — added `DEST_MIN_DAYS`
+  override on top of the generic 6-day far-north floor: **Hunza 7**, **Skardu
+  8** days (other northern spots stay at 6). Applies in both the budget planner
+  and `/trip`.
+
+### Redesign fork (separate project — NOT this repo)
+- Created `Downloads/d2g-redesign` as an **independent copy** (own git history,
+  own GitHub repo `Dare2GearRedesign`, own host). The original is untouched.
+- Re-skinned the **landing page only** to a dark + lime "adventure touring" look
+  from supplied mockups (`image sample 2.jpeg`): grunge hero, interactive
+  planner card, destinations carousel, dark navbar/footer. Real data/photos/links.
+- Deployed to **GitHub Pages**:
+  https://mujtaba9598-hasan.github.io/Dare2GearRedesign/ (Actions workflow,
+  `basePath=/Dare2GearRedesign`, slim repo — only landing assets tracked).
+- Full details + limitations live in that repo's `README.md`.
+
+### Pending
+- Redesign: light theme (Sample 1) + working toggle; inner pages; image
+  optimisation. Original app continues on Cloudflare Workers as before.
+
+---
+
 ## Session — 2026-06-03
 
 **Summary:** Search fix, realistic trip-day planning, per-spot detail panels,
