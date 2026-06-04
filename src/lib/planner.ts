@@ -44,6 +44,14 @@ export { hasBabusarOption, defaultRouteForMonth, isBabusarSeason };
  * no overnight hotel — just fuel and a day's food. */
 export const DAY_TRIP_KM = 100;
 
+/** Per-destination minimum-day floors. A few far places need more than the
+ * generic 6-day far-north floor — long approach plus serious exploration time.
+ * Keyed by destination id; falls back to the generic floor when absent. */
+const DEST_MIN_DAYS: Record<string, number> = {
+  hunza: 7, // Karimabad — distant, and worth several days to explore properly
+  skardu: 8, // long approach + lakes/deserts/Deosai need real exploring time
+};
+
 const ROAD_INDEX: Record<string, number> = {};
 roadData.ids.forEach((id, i) => {
   ROAD_INDEX[id] = i;
@@ -340,7 +348,8 @@ function planDestination(
   // Far-flung north (Gilgit-Baltistan, Ghanche, expedition-tier) realistically
   // can't be done in under ~6 days — long approach + several days to explore.
   const remoteFarNorth = /gilgit-baltistan|ghanche/i.test(dest.region) || dest.tier === "high";
-  const daysFloor = isDayTrip ? 1 : remoteFarNorth ? 6 : 2;
+  const farNorthFloor = DEST_MIN_DAYS[dest.id] ?? 6;
+  const daysFloor = isDayTrip ? 1 : remoteFarNorth ? farNorthFloor : 2;
   const minDaysNeeded = isDayTrip ? 1 : Math.max(daysFloor, travelDaysRoundTrip + sightseeingDays);
 
   const withinBudget = total <= input.budget;
@@ -526,7 +535,8 @@ export function planPointToPoint(input: TripInput): TripResult | null {
   const toDest = DESTINATIONS.find((d) => d.id === to.id);
   const remoteFarNorth =
     !!toDest && (/gilgit-baltistan|ghanche/i.test(toDest.region) || toDest.tier === "high");
-  const daysFloor = isDayTrip ? 1 : remoteFarNorth ? 6 : 2;
+  const farNorthFloor = (toDest && DEST_MIN_DAYS[toDest.id]) ?? 6;
+  const daysFloor = isDayTrip ? 1 : remoteFarNorth ? farNorthFloor : 2;
   const recommendedDays = isDayTrip ? 1 : Math.max(daysFloor, travelDaysRoundTrip + sightseeingDays);
   const enoughDays = input.days >= recommendedDays;
   const extraDaysNeeded = Math.max(0, recommendedDays - input.days);

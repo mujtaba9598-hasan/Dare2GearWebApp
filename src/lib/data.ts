@@ -587,7 +587,7 @@ export const VEHICLES: VehicleModel[] = [
   { id: "cg125", name: "Honda CG 125", class: "bike", kmPerLiter: 40, fuel: "petrol", seats: 2 },
   { id: "ybr125", name: "Yamaha YBR 125", class: "bike", kmPerLiter: 42, fuel: "petrol", seats: 2 },
   { id: "gs150", name: "Suzuki GS 150", class: "bike", kmPerLiter: 40, fuel: "petrol", seats: 2 },
-  { id: "cb150", name: "Honda CB 150F", class: "bike", kmPerLiter: 40, fuel: "petrol", seats: 2 },
+  { id: "cb150", name: "Honda CB 150F", class: "bike", kmPerLiter: 35, fuel: "petrol", seats: 2 },
   { id: "bike-other", name: "Touring Bike 250cc", class: "bike", kmPerLiter: 30, fuel: "petrol", seats: 2 },
 
   // Cars
