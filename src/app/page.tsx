@@ -70,9 +70,7 @@ export default function Home() {
               fuel, hotels and food all worked out for you. Province to province
               or city to city, a quick day trip or a long northern adventure,
               it tells you exactly where in Pakistan your money can take you —
-              from a short trip to a neighbouring town to the peaks of Hunza and
-              Fairy Meadows. Whatever&apos;s in your pocket, we&apos;ll turn it
-              into a trip.
+              Whatever&apos;s in your pocket, we&apos;ll turn it into a trip.
             </p>
 
             <div className="mt-7 flex flex-wrap items-center gap-3">
