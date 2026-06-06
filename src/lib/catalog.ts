@@ -36,7 +36,7 @@ export const RENTAL_CATEGORIES: RentalCategory[] = [
   {
     slug: "bikes",
     title: "Bikes for rent",
-    navLabel: "Bikes for rent",
+    navLabel: "Rental Bikes",
     tagline: "150cc+ touring-ready bikes, serviced for the north.",
     intro:
       "Affordable, trip-ready motorcycles for your northern Pakistan adventure — serviced, checked and delivered to your route.",
@@ -51,7 +51,7 @@ export const RENTAL_CATEGORIES: RentalCategory[] = [
   {
     slug: "camping",
     title: "Camping gear",
-    navLabel: "Camping gear",
+    navLabel: "Camping Gears",
     tagline: "Tents, sleeping bags, stoves and everything to sleep under the stars.",
     intro:
       "Skip the hotel bill — camp instead. Rent a full camping kit and cook your own food on the road.",
@@ -66,7 +66,7 @@ export const RENTAL_CATEGORIES: RentalCategory[] = [
   {
     slug: "gadgets",
     title: "Bike gadgets",
-    navLabel: "Bike gadgets",
+    navLabel: "Riding Gadgets",
     tagline: "Kit your ride for fog, glare and long hauls.",
     intro:
       "Upgrade your bike for the mountains — better visibility, protection and luggage for the long ride.",
@@ -81,7 +81,7 @@ export const RENTAL_CATEGORIES: RentalCategory[] = [
   {
     slug: "accessories",
     title: "Travel accessories",
-    navLabel: "Accessories",
+    navLabel: "Touring Accessories",
     tagline: "The little things that make a long trip comfortable.",
     intro:
       "Small but essential gear that makes a big difference on a long journey.",
@@ -99,7 +99,7 @@ export const SERVICES: ServiceOffering[] = [
   {
     slug: "photographer",
     title: "Travel photographer",
-    navLabel: "Photographer",
+    navLabel: "Travel Photographer",
     tagline: "Take a photographer along for reels, TikToks and a full photo shoot.",
     intro:
       "Bring a photographer/videographer on your trip to capture it properly — social-ready reels, TikTok videos and a complete photo shoot of your journey.",
@@ -114,7 +114,7 @@ export const SERVICES: ServiceOffering[] = [
   {
     slug: "expert-advice",
     title: "Expert trip advice",
-    navLabel: "Expert advice",
+    navLabel: "Expert Touring Advice",
     tagline: "One-on-one guidance from people who know the routes.",
     intro:
       "Get tailored advice on routes, timing, safety, bike choice and how to cut your costs — from people who actually ride and travel the north.",
@@ -130,7 +130,7 @@ export const SERVICES: ServiceOffering[] = [
   {
     slug: "discounts",
     title: "Partner discounts & perks",
-    navLabel: "Partner discounts",
+    navLabel: "Partner Discounts",
     tagline: "Book through Dare2Gear and save on food, gear and rentals.",
     intro:
       "When you plan and book your trip with Dare2Gear, you unlock perks with our partners along the way.",
