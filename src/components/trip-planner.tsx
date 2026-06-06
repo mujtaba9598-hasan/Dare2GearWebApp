@@ -11,6 +11,7 @@ import {
 } from "@/lib/planner";
 import { VEHICLES, HOTEL_TIER_LABELS, type HotelTier } from "@/lib/data";
 import { CorridorToggle } from "./corridor-toggle";
+import { TollBreakdown } from "./toll-breakdown";
 import { pkr, km } from "@/lib/format";
 import { waLink } from "@/lib/contact";
 import {
@@ -262,13 +263,21 @@ export function TripPlanner() {
               </dl>
               <p className="mt-3 text-xs text-muted">
                 Fuel uses one-way {pkr(result.fuelOneWay)} (×2 for the return).{" "}
-                {result.tollsRoundTrip > 0
-                  ? `Toll is ${pkr(result.tollsOneWay)} one way · ${pkr(result.tollsRoundTrip)} round trip (motorways only).`
-                  : "No toll — bikes ride the toll-free national highways (motorways don't allow bikes)."}{" "}
                 {result.estimated
                   ? "Distance is an approximate straight-line estimate for this route; costs are estimates."
                   : "Distances & drive times are real road routes; costs are estimates."}
               </p>
+
+              <div className="mt-4 border-t border-line pt-4">
+                <h4 className="mb-3 font-display text-sm font-bold text-ink">Toll tax</h4>
+                <TollBreakdown toll={result.tollBreakdown} />
+                {result.tollBreakdown.roundTripWithTag > 0 && (
+                  <p className="mt-2 text-xs text-muted">
+                    Motorway / expressway sections only. Without an M-Tag you&apos;re charged
+                    double at the e-tag plazas. The total above uses the With-M-Tag toll.
+                  </p>
+                )}
+              </div>
               <a
                 href={waLink(`Hi Dare2Gear! I want to plan a trip from ${result.from.name} to ${result.to.name} (${people} people, ${days} days). Estimated ${pkr(result.total)}. Can you help?`)}
                 target="_blank"

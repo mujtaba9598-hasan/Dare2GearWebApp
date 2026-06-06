@@ -350,16 +350,26 @@ function routeSplit(a: GeoPoint, b: GeoPoint, route: RouteChoice): RouteSplit {
   };
 }
 
+// Vehicles without an M-Tag are charged double toll at the e-tag motorway plazas
+// (NHA/FWO policy). M-Tag is the normal, mandatory case, so it's what the trip
+// totals assume; the without-tag figure is shown alongside as the penalty cost.
+const NO_MTAG_MULTIPLIER = 2;
+
 export interface TripTolls {
-  /** one-way toll for the whole convoy, PKR */
-  oneWay: number;
-  /** round-trip toll — paid in both directions, PKR */
-  roundTrip: number;
+  /** one-way toll with M-Tag (the normal, mandatory case), PKR */
+  oneWayWithTag: number;
+  /** one-way toll without M-Tag — double-charged at e-tag plazas, PKR */
+  oneWayWithoutTag: number;
+  /** round-trip toll with M-Tag, PKR */
+  roundTripWithTag: number;
+  /** round-trip toll without M-Tag, PKR */
+  roundTripWithoutTag: number;
 }
 
 /** Realistic toll for a trip: motorway km charged per km, mountain km free bar a
  *  fixed expressway/tunnel allowance. Bikes pay nothing. Scales with the number
- *  of vehicles in the convoy. Returns one-way and round-trip separately. */
+ *  of vehicles in the convoy. Returns one-way / round-trip, each with and without
+ *  an M-Tag (no tag = double toll on the motorways). */
 export function tripTolls(
   a: GeoPoint,
   b: GeoPoint,
@@ -367,12 +377,20 @@ export function tripTolls(
   vehicleClass: VehicleModel["class"],
   vehiclesNeeded = 1,
 ): TripTolls {
-  if (vehicleClass === "bike") return { oneWay: 0, roundTrip: 0 };
+  if (vehicleClass === "bike") {
+    return { oneWayWithTag: 0, oneWayWithoutTag: 0, roundTripWithTag: 0, roundTripWithoutTag: 0 };
+  }
   const split = routeSplit(a, b, resolveRoute(route));
   let perVehicle = split.plainsKm * MOTORWAY_TOLL_PER_KM;
   if (split.viaHub) perVehicle += corridorExpresswayToll(split.northMacro);
-  const oneWay = round(perVehicle * vehiclesNeeded);
-  return { oneWay, roundTrip: oneWay * 2 };
+  const oneWayWithTag = round(perVehicle * vehiclesNeeded);
+  const oneWayWithoutTag = round(oneWayWithTag * NO_MTAG_MULTIPLIER);
+  return {
+    oneWayWithTag,
+    oneWayWithoutTag,
+    roundTripWithTag: oneWayWithTag * 2,
+    roundTripWithoutTag: oneWayWithoutTag * 2,
+  };
 }
 
 export function getVehicle(id: string): VehicleModel {
@@ -411,7 +429,7 @@ function planDestination(
 
   // misc = tolls (motorways only — bikes ride the toll-free national roads)
   // + per-person activities + 10% buffer
-  const tolls = tripTolls(origin, dest, input.route, vehicle.class, vehiclesNeeded).roundTrip;
+  const tolls = tripTolls(origin, dest, input.route, vehicle.class, vehiclesNeeded).roundTripWithTag;
   const activities = round(input.people * 1500);
   const subtotal = fuel + hotel + food + tolls + activities;
   const buffer = round(subtotal * 0.1);
@@ -544,12 +562,10 @@ export interface TripResult {
   fuelRoundTrip: number;
   hotel: number;
   food: number;
-  /** round-trip toll (== tollsRoundTrip; kept for back-compat) */
+  /** round-trip toll with M-Tag — the figure folded into `total` */
   tolls: number;
-  /** one-way toll (motorways only; bikes = 0) */
-  tollsOneWay: number;
-  /** round-trip toll — paid in both directions */
-  tollsRoundTrip: number;
+  /** full toll breakdown: one-way / round-trip × with / without M-Tag */
+  tollBreakdown: TripTolls;
   buffer: number;
   total: number;
   /** ≤ DAY_TRIP_KM one-way — same-day return, no overnight stay. */
@@ -611,7 +627,7 @@ export function planPointToPoint(input: TripInput): TripResult | null {
   const foodDays = isDayTrip ? 1 : input.days;
   const food = round(FOOD_RATES[input.hotelTier] * input.people * foodDays);
   const tollBreakdown = tripTolls(ga, gb, input.route, vehicle.class, vehiclesNeeded);
-  const tolls = tollBreakdown.roundTrip;
+  const tolls = tollBreakdown.roundTripWithTag;
   const subtotal = fuelRoundTrip + hotel + food + tolls;
   const buffer = round(subtotal * 0.1);
   const total = subtotal + buffer;
@@ -648,8 +664,7 @@ export function planPointToPoint(input: TripInput): TripResult | null {
     hotel,
     food,
     tolls,
-    tollsOneWay: tollBreakdown.oneWay,
-    tollsRoundTrip: tollBreakdown.roundTrip,
+    tollBreakdown,
     buffer,
     total,
     isDayTrip,
@@ -685,7 +700,7 @@ function planCityTrip(
   const foodDays = isDayTrip ? 1 : input.days;
   const food = round(FOOD_RATES[input.hotelTier] * input.people * foodDays);
 
-  const tolls = tripTolls(origin, city, input.route, vehicleClass, vehiclesNeeded).roundTrip;
+  const tolls = tripTolls(origin, city, input.route, vehicleClass, vehiclesNeeded).roundTripWithTag;
   const activities = round(input.people * 1000);
   const subtotal = fuel + hotel + food + tolls + activities;
   const buffer = round(subtotal * 0.1);

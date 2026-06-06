@@ -13,6 +13,7 @@ import {
   type RouteChoice,
 } from "@/lib/planner";
 import { CorridorToggle } from "./corridor-toggle";
+import { TollBreakdown } from "./toll-breakdown";
 import {
   bikeRouteNote,
   bikeCcGuidance,
@@ -251,23 +252,12 @@ export function GettingThere({ destination }: { destination: Destination }) {
 
         {/* Tolls */}
         <Card icon={<WalletIcon className="h-5 w-5" />} title="Toll estimate (rough)">
-          <div className="grid grid-cols-2 gap-3">
-            <div className="rounded-lg bg-canvas p-3">
-              <p className="text-xs text-muted">Motorway (car/SUV)</p>
-              <p className="font-display text-lg font-bold text-ink">~{pkr(toll.oneWay)}</p>
-              <p className="mt-1 text-xs text-muted">one way · ~{pkr(toll.roundTrip)} round trip</p>
-            </div>
-            <div className="rounded-lg bg-canvas p-3">
-              <p className="text-xs text-muted">GT Road / bikes</p>
-              <p className="font-display text-lg font-bold text-ink">Toll-free</p>
-              <p className="mt-1 text-xs text-muted">
-                Bikes can&apos;t use motorways; national highways are largely toll-free.
-              </p>
-            </div>
-          </div>
+          <p className="mb-3 text-xs text-muted">For a car / SUV (cars &amp; four-wheelers).</p>
+          <TollBreakdown toll={toll} />
           <p className="mt-2 text-xs text-muted">
-            Rough estimate — tolls apply to the motorway / expressway sections only
-            (cars &amp; four-wheelers). Bikes ride the toll-free national highways.
+            Rough estimate — tolls apply to the motorway / expressway sections only.
+            Without an M-Tag you&apos;re charged double at the e-tag plazas. Bikes ride the
+            toll-free national highways.
           </p>
         </Card>
 
