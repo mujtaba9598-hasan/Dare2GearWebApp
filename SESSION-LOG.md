@@ -4,6 +4,51 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 
 ---
 
+## Session — 2026-06-06
+
+**Summary:** Copy/label renames across the site + a realistic, motorway-only
+toll model (bikes toll-free), with one-way and round-trip shown separately.
+
+### Shipped
+- **Hotel classes renamed** (`data.ts` `HOTEL_TIER_LABELS`): Cheap → **Economy**,
+  Standard → **Premium**, Luxury unchanged. Homepage value-prop bullet "Cheap to
+  luxury" → "Economy to luxury". Internal keys (`cheap/standard/luxury`) and all
+  pricing untouched.
+- **Two planners renamed**: Budget planner → **Smart Trip Planner**, Specific
+  trip → **Custom Trip Planner** — navbar "Plan" dropdown + the `/planner`
+  eyebrow and `/trip` badge.
+- **Rentals & Gear menu** (`catalog.ts` `navLabel`): **Rental Bikes / Camping
+  Gears / Riding Gadgets / Touring Accessories** (Overview unchanged).
+- **Services menu** (`catalog.ts` `navLabel`): **Travel Photographer / Expert
+  Touring Advice / Partner Discounts** (Overview unchanged). Slugs/URLs and page
+  `title`s unchanged in both menus.
+- **Realistic toll model** (`planner.ts`): tolls now apply to the **motorway /
+  plains portion only** at **Rs 4/km** (car class-1), reusing the corridor route
+  split — `origin → Islamabad` = tolled motorway, `Islamabad → north` = toll-free
+  KKH plus a fixed **expressway/tunnel allowance** (GB/Kaghan Rs 1,500, AJK
+  Rs 600). **Bikes pay nothing** (banned from motorways; national highways
+  toll-free). New `tripTolls()` returns **one-way + round-trip**; wired into the
+  budget planner, nearby city trips, `/trip` results, and the destination
+  "Getting there" panel. Dropped the old flat Rs 1.5/km (planner) and Rs 1.8/km
+  (`route-info.ts`) estimates.
+
+### Key decisions
+- **Toll only on motorways/expressways**, never the whole distance — bikes can't
+  use motorways (M-5 etc.) and national highways are largely toll-free.
+- Rate calibrated against a real Karachi → Skardu breakdown: 1,419 km motorway ×
+  Rs 4 + Rs 1,500 Hazara/tunnels = **~Rs 7,176 one-way / Rs 14,352 round trip**,
+  squarely inside the user's stated Rs 6,000–9,500 one-way range.
+
+### Pending (carried over)
+- Redesign fork: light theme (Sample 1) + toggle, inner pages, image optimisation.
+- **Domain transfer** blocked until **2026-06-09** (4-day hold; see
+  `DOMAIN-TRANSFER-README.md`).
+- **Logo** not yet generated/wired into header + favicon.
+- Verify approx coords for `baboonvalley` / `nooritop`; compress
+  `mianwali/namal-lake.png` (~16 MB).
+
+---
+
 ## Session — 2026-06-05
 
 **Summary:** Small homepage copy/colour tweaks + realism fixes to the original,
