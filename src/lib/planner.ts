@@ -288,6 +288,93 @@ function roadDriveHours(origin: GeoPoint, dest: Destination, route?: RouteChoice
 
 const round = (n: number) => Math.round(n);
 
+// ---------------------------------------------------------------------------
+// Toll model. Tolls are charged on motorways / expressways only — i.e. the plains
+// corridor a trip drives on its way up the country. Mountain / KKH / national-
+// highway km are toll-free, apart from a fixed expressway + tunnel allowance for
+// the climb into the north (Hazara Expressway, tunnels, section tolls).
+//
+// e.g. Karachi → Skardu ≈ 1400 km of motorway (Karachi → Islamabad) + ~740 km of
+// KKH mountain road (Islamabad → Skardu). Only the motorway km, plus the Hazara
+// Expressway allowance, carry tolls — matching the real ~Rs 6,000–9,500 one-way.
+//
+// Bikes pay nothing at all: they're banned from the motorways (M-5 etc.) and ride
+// the toll-free national highways instead.
+// ---------------------------------------------------------------------------
+const MOTORWAY_TOLL_PER_KM = 4; // blended car class-1 motorway rate, PKR per km
+
+/** Fixed one-way expressway + tunnel toll for climbing into the north through the
+ *  Islamabad corridor: Hazara Expressway + KKH tunnels for Gilgit-Baltistan and
+ *  the Kaghan side; the Murree-expressway side for Azad Kashmir. */
+function corridorExpresswayToll(northMacro: Macro): number {
+  if (northMacro === "GB" || northMacro === "KPN") return 1500;
+  if (northMacro === "AJK") return 600;
+  return 0;
+}
+
+interface RouteSplit {
+  /** motorway / plains km that actually carry tolls */
+  plainsKm: number;
+  /** mountain / KKH / national-highway km (toll-free) */
+  mountainKm: number;
+  /** macro region of the northern end — drives the expressway/tunnel allowance */
+  northMacro: Macro;
+  /** true when the trip climbs into the north via the Islamabad corridor */
+  viaHub: boolean;
+}
+
+/** Split a route into its tolled (motorway/plains) and toll-free (mountain) parts,
+ *  reusing the exact corridor routing the distance engine uses. */
+function routeSplit(a: GeoPoint, b: GeoPoint, route: RouteChoice): RouteSplit {
+  const ra = macroOf(a.id);
+  const rb = macroOf(b.id);
+  const touchesNorth = ra !== "PLAINS" || rb !== "PLAINS";
+  if (!touchesNorth) {
+    // plains ↔ plains: the whole drive is motorway / GT-road plains.
+    return { plainsKm: directMeasure(a, b).km, mountainKm: 0, northMacro: "PLAINS", viaHub: false };
+  }
+  if (ra === rb) {
+    // two places in the SAME northern region: all mountain road, toll-free.
+    return { plainsKm: 0, mountainKm: directMeasure(a, b).km, northMacro: rb, viaHub: false };
+  }
+  // cross-region via the Islamabad hub: the plains endpoint's hub leg is the
+  // tolled motorway portion; the northern endpoint's hub leg is mountain road.
+  const la = hubMeasure(a, route);
+  const lb = hubMeasure(b, route);
+  const aNorth = ra !== "PLAINS";
+  return {
+    plainsKm: aNorth ? lb.km : la.km,
+    mountainKm: aNorth ? la.km : lb.km,
+    northMacro: aNorth ? ra : rb,
+    viaHub: true,
+  };
+}
+
+export interface TripTolls {
+  /** one-way toll for the whole convoy, PKR */
+  oneWay: number;
+  /** round-trip toll — paid in both directions, PKR */
+  roundTrip: number;
+}
+
+/** Realistic toll for a trip: motorway km charged per km, mountain km free bar a
+ *  fixed expressway/tunnel allowance. Bikes pay nothing. Scales with the number
+ *  of vehicles in the convoy. Returns one-way and round-trip separately. */
+export function tripTolls(
+  a: GeoPoint,
+  b: GeoPoint,
+  route: RouteChoice | undefined,
+  vehicleClass: VehicleModel["class"],
+  vehiclesNeeded = 1,
+): TripTolls {
+  if (vehicleClass === "bike") return { oneWay: 0, roundTrip: 0 };
+  const split = routeSplit(a, b, resolveRoute(route));
+  let perVehicle = split.plainsKm * MOTORWAY_TOLL_PER_KM;
+  if (split.viaHub) perVehicle += corridorExpresswayToll(split.northMacro);
+  const oneWay = round(perVehicle * vehiclesNeeded);
+  return { oneWay, roundTrip: oneWay * 2 };
+}
+
 export function getVehicle(id: string): VehicleModel {
   return VEHICLES.find((v) => v.id === id) ?? VEHICLES[0];
 }
@@ -322,8 +409,9 @@ function planDestination(
   const foodDays = isDayTrip ? 1 : input.days;
   const food = round(FOOD_RATES[input.hotelTier] * input.people * foodDays);
 
-  // misc = tolls/permits (per 100km, per vehicle) + per-person activities + 10% buffer
-  const tolls = round((roundTripKm / 100) * 150 * vehiclesNeeded);
+  // misc = tolls (motorways only — bikes ride the toll-free national roads)
+  // + per-person activities + 10% buffer
+  const tolls = tripTolls(origin, dest, input.route, vehicle.class, vehiclesNeeded).roundTrip;
   const activities = round(input.people * 1500);
   const subtotal = fuel + hotel + food + tolls + activities;
   const buffer = round(subtotal * 0.1);
@@ -456,7 +544,12 @@ export interface TripResult {
   fuelRoundTrip: number;
   hotel: number;
   food: number;
+  /** round-trip toll (== tollsRoundTrip; kept for back-compat) */
   tolls: number;
+  /** one-way toll (motorways only; bikes = 0) */
+  tollsOneWay: number;
+  /** round-trip toll — paid in both directions */
+  tollsRoundTrip: number;
   buffer: number;
   total: number;
   /** ≤ DAY_TRIP_KM one-way — same-day return, no overnight stay. */
@@ -517,7 +610,8 @@ export function planPointToPoint(input: TripInput): TripResult | null {
   const hotel = isDayTrip ? 0 : round(HOTEL_RATES[input.hotelTier] * nights * input.people);
   const foodDays = isDayTrip ? 1 : input.days;
   const food = round(FOOD_RATES[input.hotelTier] * input.people * foodDays);
-  const tolls = round((roundTripKm / 100) * 150 * vehiclesNeeded);
+  const tollBreakdown = tripTolls(ga, gb, input.route, vehicle.class, vehiclesNeeded);
+  const tolls = tollBreakdown.roundTrip;
   const subtotal = fuelRoundTrip + hotel + food + tolls;
   const buffer = round(subtotal * 0.1);
   const total = subtotal + buffer;
@@ -554,6 +648,8 @@ export function planPointToPoint(input: TripInput): TripResult | null {
     hotel,
     food,
     tolls,
+    tollsOneWay: tollBreakdown.oneWay,
+    tollsRoundTrip: tollBreakdown.roundTrip,
     buffer,
     total,
     isDayTrip,
@@ -575,6 +671,7 @@ function planCityTrip(
   kmPerLiter: number,
   vehiclesNeeded: number,
   fuelType: VehicleModel["fuel"],
+  vehicleClass: VehicleModel["class"],
   city: OriginCity,
 ): CityTrip {
   const distanceKm = roadOrEstimateKm(origin, city, input.route);
@@ -588,7 +685,7 @@ function planCityTrip(
   const foodDays = isDayTrip ? 1 : input.days;
   const food = round(FOOD_RATES[input.hotelTier] * input.people * foodDays);
 
-  const tolls = round((roundTripKm / 100) * 150 * vehiclesNeeded);
+  const tolls = tripTolls(origin, city, input.route, vehicleClass, vehiclesNeeded).roundTrip;
   const activities = round(input.people * 1000);
   const subtotal = fuel + hotel + food + tolls + activities;
   const buffer = round(subtotal * 0.1);
@@ -618,11 +715,12 @@ export function nearbyCityTrips(
   kmPerLiter: number,
   vehiclesNeeded: number,
   fuelType: VehicleModel["fuel"],
+  vehicleClass: VehicleModel["class"],
 ): CityTrip[] {
   return ORIGINS.filter(
     (c) => c.id !== origin.id && !isRestrictedOrigin(c),
   )
-    .map((c) => planCityTrip(input, origin, kmPerLiter, vehiclesNeeded, fuelType, c))
+    .map((c) => planCityTrip(input, origin, kmPerLiter, vehiclesNeeded, fuelType, vehicleClass, c))
     .filter((t) => t.placesToSee > 0 && t.withinBudget && t.distanceKm > 0)
     .sort((a, b) => a.distanceKm - b.distanceKm)
     .slice(0, 6);
@@ -661,7 +759,7 @@ export function planTrip(input: PlanInput): PlanResult {
   const litersAffordable = fuelBudget / FUEL_PRICES[vehicle.fuel];
   const maxReachKm = round((litersAffordable * kmPerLiter) / (2 * vehiclesNeeded));
 
-  const nearby = nearbyCityTrips(input, origin, kmPerLiter, vehiclesNeeded, vehicle.fuel);
+  const nearby = nearbyCityTrips(input, origin, kmPerLiter, vehiclesNeeded, vehicle.fuel, vehicle.class);
 
   return {
     origin,

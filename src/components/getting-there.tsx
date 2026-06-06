@@ -9,11 +9,11 @@ import {
   getOrigin,
   defaultRouteForMonth,
   hasBabusarOption,
+  tripTolls,
   type RouteChoice,
 } from "@/lib/planner";
 import { CorridorToggle } from "./corridor-toggle";
 import {
-  tollEstimate,
   bikeRouteNote,
   bikeCcGuidance,
   TRAVEL_DOCUMENTS,
@@ -96,7 +96,7 @@ export function GettingThere({ destination }: { destination: Destination }) {
     const min = roadMinutesBetween(origin, destination, route);
     return min > 0 ? Math.round((min / 60) * 10) / 10 : Math.round((distance / SPEED[destination.terrain]) * 10) / 10;
   }, [origin, destination, route, distance]);
-  const toll = tollEstimate(distance);
+  const toll = tripTolls(origin, destination, route, "car");
   const cc = bikeCcGuidance(destination);
   const permit = permitNote(destination);
   const mapsLink = googleMapsDirLink(origin, destination);
@@ -254,17 +254,20 @@ export function GettingThere({ destination }: { destination: Destination }) {
           <div className="grid grid-cols-2 gap-3">
             <div className="rounded-lg bg-canvas p-3">
               <p className="text-xs text-muted">Motorway (car/SUV)</p>
-              <p className="font-display text-lg font-bold text-ink">~{pkr(toll.motorway)}</p>
-              <p className="mt-1 text-xs text-muted">round trip, plains sections</p>
+              <p className="font-display text-lg font-bold text-ink">~{pkr(toll.oneWay)}</p>
+              <p className="mt-1 text-xs text-muted">one way · ~{pkr(toll.roundTrip)} round trip</p>
             </div>
             <div className="rounded-lg bg-canvas p-3">
               <p className="text-xs text-muted">GT Road / bikes</p>
-              <p className="font-display text-lg font-bold text-ink">Minimal</p>
-              <p className="mt-1 text-xs text-muted">{toll.gtRoadNote}</p>
+              <p className="font-display text-lg font-bold text-ink">Toll-free</p>
+              <p className="mt-1 text-xs text-muted">
+                Bikes can&apos;t use motorways; national highways are largely toll-free.
+              </p>
             </div>
           </div>
           <p className="mt-2 text-xs text-muted">
-            Rough estimate only. Bikes must use the GT Road (no motorways).
+            Rough estimate — tolls apply to the motorway / expressway sections only
+            (cars &amp; four-wheelers). Bikes ride the toll-free national highways.
           </p>
         </Card>
 

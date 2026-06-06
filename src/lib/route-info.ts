@@ -5,24 +5,10 @@
 import type { Destination, GeoPoint } from "./data";
 
 // ---------------------------------------------------------------------------
-// Toll estimate (rough). Bikes can't use motorways, so they ride the GT Road /
-// national highways which are largely toll-free.
+// Toll estimates now live in planner.ts (`tripTolls`) — tolls apply to the
+// motorway / expressway portion only, so they need the corridor route split, not
+// just the total distance. Bikes are toll-free (banned from motorways).
 // ---------------------------------------------------------------------------
-export interface TollEstimate {
-  /** rough motorway toll for a car/SUV, PKR */
-  motorway: number;
-  /** GT Road note (mostly free) */
-  gtRoadNote: string;
-}
-
-export function tollEstimate(distanceKm: number): TollEstimate {
-  // ~Rs 1.8/km is a rough blended motorway rate for a car/SUV.
-  const motorway = Math.round((distanceKm * 1.8) / 50) * 50;
-  return {
-    motorway,
-    gtRoadNote: "Largely toll-free — only occasional bridge/section tolls (a few hundred PKR).",
-  };
-}
 
 // ---------------------------------------------------------------------------
 // Bike-legal routing note

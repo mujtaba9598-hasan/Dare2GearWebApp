@@ -244,7 +244,7 @@ export function TripPlanner() {
                   [<FuelIcon key="f" className="h-4 w-4" />, `Fuel (round trip${result.vehiclesNeeded > 1 ? ` ×${result.vehiclesNeeded}` : ""})`, result.fuelRoundTrip],
                   [<BedIcon key="b" className="h-4 w-4" />, "Stay", result.hotel],
                   [<UtensilsIcon key="u" className="h-4 w-4" />, "Food", result.food],
-                  [<WalletIcon key="t" className="h-4 w-4" />, "Tolls", result.tolls],
+                  [<WalletIcon key="t" className="h-4 w-4" />, "Tolls (round trip)", result.tolls],
                   [<WalletIcon key="bu" className="h-4 w-4" />, "Buffer (10%)", result.buffer],
                 ].map(([icon, label, val], i) => (
                   <div key={i} className="flex items-center justify-between">
@@ -262,6 +262,9 @@ export function TripPlanner() {
               </dl>
               <p className="mt-3 text-xs text-muted">
                 Fuel uses one-way {pkr(result.fuelOneWay)} (×2 for the return).{" "}
+                {result.tollsRoundTrip > 0
+                  ? `Toll is ${pkr(result.tollsOneWay)} one way · ${pkr(result.tollsRoundTrip)} round trip (motorways only).`
+                  : "No toll — bikes ride the toll-free national highways (motorways don't allow bikes)."}{" "}
                 {result.estimated
                   ? "Distance is an approximate straight-line estimate for this route; costs are estimates."
                   : "Distances & drive times are real road routes; costs are estimates."}
