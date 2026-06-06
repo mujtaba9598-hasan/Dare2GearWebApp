@@ -168,8 +168,6 @@ export const DESTINATION_PHOTOS: Record<string, Photo[]> = {
     { src: "/photos/destinations/swat/malam-jabba.jpg", caption: "Malam Jabba" },
     { src: "/photos/destinations/swat/ushu-forest.jpg", caption: "Ushu Forest" },
   ],
-  // --- Manually added: real images that live outside the one-shot importer's
-  // source folders. Edit here (not via import-photos.mjs) when adding more.
   "panjpeer": [
     { src: "/destinations/panjpeer/hero.jpg", caption: "Panjpeer Rocks" },
     { src: "/destinations/panjpeer/narh-waterfall.jpg", caption: "Narh Waterfall" },
@@ -201,6 +199,70 @@ export const DESTINATION_PHOTOS: Record<string, Photo[]> = {
     { src: "/photos/destinations/shimshal/shimshal-004.jpg", caption: "" },
     { src: "/photos/destinations/shimshal/shimshal-005.jpg", caption: "" },
     { src: "/photos/destinations/shimshal/shimshal-006.jpg", caption: "" },
+  ],
+  "balakot": [
+    { src: "/photos/destinations/balakot/demanchi-balakot.jpg", caption: "Demanchi Balakot" },
+    { src: "/photos/destinations/balakot/balakot.jpg", caption: "Balakot" },
+  ],
+  "batakundi": [
+    { src: "/photos/destinations/batakundi/batakundi-hotels.jpg", caption: "Batakundi Hotels" },
+    { src: "/photos/destinations/batakundi/batakundi-nust.jpg", caption: "Batakundi Nust" },
+    { src: "/photos/destinations/batakundi/batakundi.jpg", caption: "Batakundi" },
+  ],
+  "battagram": [
+    { src: "/photos/destinations/battagram/allai-district.jpg", caption: "Allai District" },
+    { src: "/photos/destinations/battagram/battagram.jpg", caption: "Battagram" },
+    { src: "/photos/destinations/battagram/battagram-valley.jpg", caption: "Battagram Valley" },
+  ],
+  "goldenvalley": [
+    { src: "/photos/destinations/goldenvalley/gol-national-park.jpg", caption: "Gol National Park" },
+    { src: "/photos/destinations/goldenvalley/golden-valley.jpg", caption: "Golden Valley" },
+    { src: "/photos/destinations/goldenvalley/golden.jpg", caption: "Golden" },
+  ],
+  "haramosh": [
+    { src: "/photos/destinations/haramosh/dobani-peak.jpg", caption: "Dobani Peak" },
+    { src: "/photos/destinations/haramosh/haramosh-valley.jpg", caption: "Haramosh Valley" },
+    { src: "/photos/destinations/haramosh/haramosh-peak.jpg", caption: "Haramosh Peak" },
+    { src: "/photos/destinations/haramosh/kutwal-lake.jpg", caption: "Kutwal Lake" },
+    { src: "/photos/destinations/haramosh/laila-peak.jpg", caption: "Laila Peak" },
+    { src: "/photos/destinations/haramosh/haramosh.jpg", caption: "Haramosh" },
+    { src: "/photos/destinations/haramosh/khaltaro-valley.jpg", caption: "Khaltaro Valley" },
+  ],
+  "ishkoman": [
+    { src: "/photos/destinations/ishkoman/ghizer.jpg", caption: "Ghizer" },
+    { src: "/photos/destinations/ishkoman/ishkoman-valley.jpg", caption: "Ishkoman Valley" },
+    { src: "/photos/destinations/ishkoman/karambar-lake.jpg", caption: "Karambar Lake" },
+  ],
+  "lowaritop": [
+    { src: "/photos/destinations/lowaritop/lowari-pass.jpg", caption: "Lowari Pass" },
+    { src: "/photos/destinations/lowaritop/lawari-pass-top.jpg", caption: "Lawari Pass Top" },
+    { src: "/photos/destinations/lowaritop/lawari-top.jpg", caption: "Lawari Top" },
+    { src: "/photos/destinations/lowaritop/lawari.jpg", caption: "Lawari" },
+  ],
+  "nakyal": [
+    { src: "/photos/destinations/nakyal/fatehpur-thakyala.jpg", caption: "Fatehpur Thakyala" },
+    { src: "/photos/destinations/nakyal/fatehpur.jpg", caption: "Fatehpur" },
+    { src: "/photos/destinations/nakyal/nakyal.jpg", caption: "Nakyal" },
+  ],
+  "pirchinasi": [
+    { src: "/photos/destinations/pirchinasi/lohar-gali.jpg", caption: "Lohar Gali" },
+    { src: "/photos/destinations/pirchinasi/patika.jpg", caption: "Patika" },
+    { src: "/photos/destinations/pirchinasi/pir-chinasi-shrine.jpg", caption: "Pir Chinasi Shrine" },
+    { src: "/photos/destinations/pirchinasi/saral-lake.jpg", caption: "Saral Lake" },
+  ],
+  "siranvalley": [
+    { src: "/photos/destinations/siranvalley/chorr-khanda-gali.jpg", caption: "Chorr Khanda Gali" },
+    { src: "/photos/destinations/siranvalley/khanda-gali.jpg", caption: "Khanda Gali" },
+    { src: "/photos/destinations/siranvalley/siran-waterfall.jpg", caption: "Siran Waterfall" },
+    { src: "/photos/destinations/siranvalley/trekking-to-siran-valley.jpg", caption: "Trekking To Siran Valley" },
+    { src: "/photos/destinations/siranvalley/forest-of-jacha.jpg", caption: "Forest Of Jacha" },
+    { src: "/photos/destinations/siranvalley/siran-valley.jpg", caption: "Siran Valley" },
+  ],
+  "thuipass": [
+    { src: "/photos/destinations/thuipass/bari-lake.jpg", caption: "Bari Lake" },
+    { src: "/photos/destinations/thuipass/thui-pass.jpg", caption: "Thui Pass" },
+    { src: "/photos/destinations/thuipass/yarkhun-lasht.webp", caption: "Yarkhun Lasht" },
+    { src: "/photos/destinations/thuipass/yarkhun-valley.webp", caption: "Yarkhun Valley" },
   ],
 };
 

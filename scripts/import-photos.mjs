@@ -16,6 +16,7 @@ const SRC_BALOCH = path.join(ROOT, "BALOCHISTAN", "Balochistan");
 const SRC_OTHER = path.join(ROOT, "OTHER CITIES");
 const SRC_AJK = path.join(ROOT, "AJK");
 const SRC_KZ = path.join(ROOT, "kund malir & ziarat");
+const SRC_NEWDEST = path.join(ROOT, "New Destinations");
 const OUT_PUBLIC = path.join(ROOT, "public", "photos");
 const OUT_MANIFEST = path.join(ROOT, "src", "lib", "photos.ts");
 
@@ -168,6 +169,22 @@ const KZ_IDS = {
   Ziarat: "ziarat",
 };
 
+// "New Destinations" folder name (as on disk) -> DESTINATION id in data.ts.
+// Pir Chinasi already exists (pirchinasi) — its new photos union-merge in.
+const NEWDEST_DEST_IDS = {
+  balakot: "balakot",
+  batakundi: "batakundi",
+  Battagram: "battagram",
+  "Golden Valley": "goldenvalley",
+  "Haramosh Valley": "haramosh",
+  "Ishkoman Valley": "ishkoman",
+  "lawari top": "lowaritop",
+  nakyal: "nakyal",
+  "Pir Chinasi": "pirchinasi",
+  "siran valley": "siranvalley",
+  "Thui Pass": "thuipass",
+};
+
 // Skip these source photos entirely (e.g. a place that turned out not to exist).
 const SKIP_SRC = new Set(["/photos/cities/daska/daska-fort-kot-daska.jpg"]);
 
@@ -276,6 +293,7 @@ console.log("Importing destination photos...");
 let destPhotos = existing.dest;
 destPhotos = mergePhotoMaps(destPhotos, buildMap(SRC_DEST, DEST_IDS, "destinations"));
 destPhotos = mergePhotoMaps(destPhotos, buildMap(SRC_OTHER, OTHER_DEST_IDS, "destinations"));
+destPhotos = mergePhotoMaps(destPhotos, buildMap(SRC_NEWDEST, NEWDEST_DEST_IDS, "destinations"));
 
 console.log("Importing city photos...");
 let cityPhotos = existing.city;

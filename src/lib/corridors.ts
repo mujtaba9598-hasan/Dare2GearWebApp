@@ -80,13 +80,32 @@ export const CORRIDOR_LEGS: Record<string, CorridorLeg> = {
   gangachoti: { allSeason: { km: 148, min: 109 } },
   pirchinasi: { allSeason: { km: 150, min: 117 } },
   raatigali: { allSeason: { km: 270, min: 251 } },
+  nakyal: { allSeason: { km: 180, min: 170 } },
+
+  // ---- Added 2026-06 ("New Destinations" drop) — researched approximations ---
+  // Gilgit-Baltistan (KKH via Chilas): Besham all-season, Babusar summer shortcut
+  // (~97 km shorter, same as the other GB legs).
+  haramosh: { allSeason: { km: 640, min: 520 }, babusar: { km: 543, min: 440 } },
+  ishkoman: { allSeason: { km: 700, min: 560 }, babusar: { km: 603, min: 480 } },
+  thuipass: { allSeason: { km: 760, min: 620 }, babusar: { km: 663, min: 540 } },
+  // Kaghan / Hazara (KPK, via Mansehra) — single all-season road.
+  balakot: { allSeason: { km: 210, min: 153 } },
+  batakundi: { allSeason: { km: 290, min: 232 } },
+  battagram: { allSeason: { km: 200, min: 150 } },
+  siranvalley: { allSeason: { km: 230, min: 196 } },
+  // Chitral (KPK, via Dir / Lowari) — single all-season road.
+  goldenvalley: { allSeason: { km: 480, min: 460 } },
+  lowaritop: { allSeason: { km: 410, min: 350 } },
 };
 
 /** Map a destination's `region` string to its macro travel region. */
 export function macroOfRegion(region: string): Macro {
   if (/Gilgit-Baltistan|Ghanche|Shigar/.test(region)) return "GB";
   if (/Azad Kashmir/.test(region)) return "AJK";
-  if (/Kaghan|Swat Valley|Galyat/.test(region)) return "KPN";
+  // KPK mountain valleys reached via the northern corridor (Mansehra/Hazara for
+  // Kaghan & Hazara; Dir/Lowari for the Golen & Lowari Chitral spots). "Golen" /
+  // "Lowari" are scoped tokens so existing Chitral/Broghil stay PLAINS.
+  if (/Kaghan|Swat Valley|Galyat|Hazara|Golen|Lowari/.test(region)) return "KPN";
   return "PLAINS";
 }
 
