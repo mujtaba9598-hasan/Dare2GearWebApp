@@ -15,7 +15,7 @@ export default function PlannerPage() {
       <div className="mx-auto max-w-5xl px-5 py-12 sm:px-8 sm:py-16">
         <div className="mb-8 max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-wider text-brand-600">
-            Smart trip planner
+            Smart Trip Planner
           </p>
           <h1 className="mt-2 font-display text-3xl font-bold text-ink sm:text-4xl">
             What can your budget explore?

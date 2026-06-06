@@ -17,7 +17,7 @@ export default function TripPage() {
         <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14">
           <span className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs font-semibold text-brand-700">
             <RouteIcon className="h-3.5 w-3.5" />
-            Plan a specific trip
+            Custom Trip Planner
           </span>
           <h1 className="mt-5 max-w-2xl text-balance font-display text-4xl font-extrabold leading-[1.05] text-ink sm:text-5xl">
             Any place to any place.

@@ -36,7 +36,7 @@ const STEPS = [
 
 const VALUE_PROPS = [
   { icon: <FuelIcon className="h-5 w-5" />, label: "Fuel by real mileage" },
-  { icon: <BedIcon className="h-5 w-5" />, label: "Cheap to luxury stays" },
+  { icon: <BedIcon className="h-5 w-5" />, label: "Economy to luxury stays"},
   { icon: <UtensilsIcon className="h-5 w-5" />, label: "Food estimates" },
   { icon: <RouteIcon className="h-5 w-5" />, label: "Distance & drive time" },
 ];

@@ -57,8 +57,8 @@ const SERVICES_MENU: NavMenu = {
 const PLAN: NavMenu = {
   label: "Plan",
   items: [
-    { label: "Budget planner — where can I go?", href: "/planner" },
-    { label: "Specific trip — any place → any place", href: "/trip" },
+    { label: "Smart Trip Planner — where can I go?", href: "/planner" },
+    { label: "Custom Trip Planner — any place → any place", href: "/trip" },
   ],
 };
 

@@ -646,8 +646,8 @@ export const FOOD_RATES: Record<HotelTier, number> = {
 };
 
 export const HOTEL_TIER_LABELS: Record<HotelTier, string> = {
-  cheap: "Cheap — guesthouses, hostels & camps",
-  standard: "Standard — 3-star hotels",
+  cheap: "Economy — guesthouses, hostels & camps",
+  standard: "Premium — 3-star hotels",
   luxury: "Luxury — resorts & premium stays",
 };
 
