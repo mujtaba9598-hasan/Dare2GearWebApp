@@ -31,6 +31,11 @@ toll model (bikes toll-free), with one-way and round-trip shown separately.
   budget planner, nearby city trips, `/trip` results, and the destination
   "Getting there" panel. Dropped the old flat Rs 1.5/km (planner) and Rs 1.8/km
   (`route-info.ts`) estimates.
+- **M-Tag toll breakdown**: toll display now shows **One Side** and **Round Trip**,
+  each split **With M-Tag / Without M-Tag** (no tag = double toll at e-tag motorway
+  plazas, NHA/FWO policy). New reusable `TollBreakdown` component wired into the
+  destination "Getting there" panel and `/trip` results; trip totals use the
+  With-M-Tag figure. Bikes show a toll-free note.
 
 ### Key decisions
 - **Toll only on motorways/expressways**, never the whole distance — bikes can't
