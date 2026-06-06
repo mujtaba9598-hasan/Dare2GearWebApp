@@ -4,6 +4,44 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 
 ---
 
+## Session — 2026-06-06 (cont.) — 10 new destinations
+
+**Summary:** Added 10 new northern destinations from a folder drop, with photos,
+corridor routing and image compression.
+
+### Shipped
+- **10 new destinations** (`data.ts`, total now **38**): `balakot`, `batakundi`,
+  `battagram`, `goldenvalley` (Golen/Chitral), `haramosh`, `ishkoman`,
+  `lowaritop`, `nakyal`, `siranvalley`, `thuipass`. Researched coords/region/
+  tier/terrain/best-months/blurb/attractions.
+- **Photos** imported via `scripts/import-photos.mjs` (new `New Destinations`
+  folder→id map, gitignored raw source): copied to `public/photos/destinations/
+  <id>/`, captions auto-derived, `photos.ts` regenerated. The importer's
+  `loadExisting` MERGE preserved the hand-edited leepa/panjpeer/broghil/
+  dudipatsar/shimshal galleries (verified). Existing **Pir Chinasi** also got its
+  4 real photos.
+- **Routing** (`corridors.ts`): all 10 route via the Islamabad corridor with
+  researched legs (GB ones — Haramosh/Ishkoman/Thui — get a Babusar summer
+  shortcut). `macroOfRegion` extended with `Hazara` + scoped `Golen`/`Lowari`
+  tokens so existing Chitral/Broghil stay PLAINS. Distances verified sane (e.g.
+  Karachi→Haramosh 1,962 km; none fall back to estimates).
+- **Image optimisation**: oversized new photos downscaled to ≤1600px via sharp —
+  Golden Valley **16 MB → 0.33 MB**, plus batakundi/karambar/lowari/thui.
+
+### Key decisions
+- Corridor legs + coords for the new places are **researched approximations**
+  (lowest confidence: Golden Valley = Golen Gol valley near Chitral Gol; Thui
+  Pass = remote Yarkhun–Ishkoman trekking pass). Routed via hub deterministically
+  rather than re-running `gen:roads`, to avoid churning the whole OSRM matrix and
+  the existing validated distances.
+
+### Pending / next
+- Refine the 10 new corridor legs + coords via `gen:roads` / Google spot-checks.
+- Write long-form guide content for the 10 new places (they have data + photo
+  galleries but not the richer pages older destinations have).
+
+---
+
 ## Session — 2026-06-06
 
 **Summary:** Copy/label renames across the site + a realistic, motorway-only
