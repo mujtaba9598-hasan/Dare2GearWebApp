@@ -528,6 +528,128 @@ export const CONTENT: Record<string, DestinationContent> = {
       { name: "Minglik Sar Views", blurb: "The trek base for the 6,050m Minglik Sar — a popular first 6,000m climb.", category: "viewpoint" },
     ],
   },
+
+  // --- Added 2026-06 (guide content for the "New Destinations" drop) ----------
+  balakot: {
+    hero: "/photos/destinations/balakot/balakot.jpg",
+    tagline: "Riverside gateway to the Kaghan Valley.",
+    gallery: [SCENERY.greenValley, SCENERY.riverBridge],
+    spots: [
+      { name: "Kunhar River", blurb: "The roaring blue-green river the town sits beside — riverside cafés and fresh trout.", category: "valley" },
+      { name: "Demanchi", blurb: "A green ridge viewpoint above Balakot with sweeping views over the valley.", category: "viewpoint" },
+      { name: "Balakot Bazaar", blurb: "The busy gateway bazaar — your last big stock-up before the climb up the Kaghan road.", category: "town" },
+      { name: "Kiwai", blurb: "A popular roadside waterfall stop just up the Kaghan road, famous for trout and pakoras.", category: "viewpoint" },
+    ],
+  },
+
+  batakundi: {
+    hero: "/photos/destinations/batakundi/batakundi.jpg",
+    tagline: "Alpine hamlet past Naran on the road to Babusar.",
+    gallery: [SCENERY.meadow, SCENERY.greenValley],
+    spots: [
+      { name: "Batakundi Village", blurb: "A quiet riverside hamlet ~16km past Naran, lined with hotels and pine slopes.", category: "town" },
+      { name: "Burawai", blurb: "The next stop up the Kunhar toward Babusar — trout farms and camping spots.", category: "valley" },
+      { name: "Lalazar Plateau", blurb: "A flower-carpeted plateau above Batakundi with views toward Malika Parbat.", category: "viewpoint" },
+      { name: "Kunhar River", blurb: "Fast, ice-cold glacial water running the length of the valley — great for riverside camps.", category: "valley" },
+    ],
+  },
+
+  battagram: {
+    hero: "/photos/destinations/battagram/battagram.jpg",
+    tagline: "A green Karakoram Highway valley below the Allai hills.",
+    gallery: [SCENERY.greenValley, SCENERY.riverBridge],
+    spots: [
+      { name: "Battagram Valley", blurb: "A green district-town valley strung along the KKH — a handy stopover heading north.", category: "valley" },
+      { name: "Allai Valley", blurb: "A forested side valley of terraced fields and pine ridges east of the highway.", category: "valley" },
+      { name: "Thakot Bridge", blurb: "The landmark Karakoram Highway bridge over the Indus, just north of Battagram.", category: "viewpoint" },
+      { name: "Karakoram Highway", blurb: "The legendary N-35 corridor — the lifeline road threading up toward Gilgit-Baltistan.", category: "town" },
+    ],
+  },
+
+  goldenvalley: {
+    hero: "/photos/destinations/goldenvalley/golden-valley.jpg",
+    tagline: "The remote Golen (Golden) valley above Chitral.",
+    gallery: [SCENERY.greenValley, SCENERY.karakoram],
+    spots: [
+      { name: "Golen Gol", blurb: "A jeep-track wilderness of glacier streams and high pasture branching off the Mastuj road.", category: "valley" },
+      { name: "Chitral Gol National Park", blurb: "A markhor reserve of alpine forest and meadows right beside Chitral town.", category: "wildlife" },
+      { name: "Koghuzi Turnoff", blurb: "The village where the rough jeep track leaves the main road into the Golen valley.", category: "town" },
+      { name: "Glacier Streams", blurb: "Milky meltwater channels and small falls feeding the valley's hydropower.", category: "valley" },
+    ],
+  },
+
+  haramosh: {
+    hero: "/photos/destinations/haramosh/haramosh-valley.jpg",
+    tagline: "Glacier-walled valley of Kutwal Lake below Haramosh Peak.",
+    gallery: [SCENERY.snowLake, SCENERY.karakoram],
+    spots: [
+      { name: "Kutwal Lake", blurb: "A jewel-blue alpine lake at the valley head, ringed by glaciers — a tough trek beyond Sassi.", category: "lake" },
+      { name: "Haramosh Peak", blurb: "The valley's 7,409m guardian, one of the great Karakoram giants.", category: "viewpoint" },
+      { name: "Dobani Peak", blurb: "A striking pyramid peak (~6,100m) towering over the lower valley.", category: "viewpoint" },
+      { name: "Khaltaro Valley", blurb: "A quiet side valley of meadows and villages branching off Haramosh.", category: "valley" },
+      { name: "Laila Peak", blurb: "A slender, much-photographed spire seen on the trek toward Kutwal.", category: "viewpoint" },
+    ],
+  },
+
+  ishkoman: {
+    hero: "/photos/destinations/ishkoman/ishkoman-valley.jpg",
+    tagline: "A long Ghizer valley climbing toward Karambar Lake.",
+    gallery: [SCENERY.turquoise, SCENERY.greenValley],
+    spots: [
+      { name: "Karambar Lake", blurb: "One of the world's highest large lakes (~4,300m) at the valley's remote head.", category: "lake" },
+      { name: "Ishkoman Village", blurb: "The green main settlement of the valley, a base for treks toward the Afghan frontier.", category: "town" },
+      { name: "Ghizer River", blurb: "The trout-rich river threading the valley, lined with poplar and farmland.", category: "valley" },
+      { name: "Phakora", blurb: "A pretty roadside hamlet and lake on the way up the Ishkoman valley.", category: "valley" },
+    ],
+  },
+
+  lowaritop: {
+    hero: "/photos/destinations/lowaritop/lowari-pass.jpg",
+    tagline: "The snow-prone pass between Dir and Chitral.",
+    gallery: [SCENERY.karakoram, SCENERY.meadow],
+    spots: [
+      { name: "Lowari Pass Top", blurb: "The 3,118m summit of the old pass — green meadows in summer, snow-buried in winter.", category: "viewpoint" },
+      { name: "Lowari Tunnel", blurb: "The long all-weather tunnel below the pass that now keeps Chitral connected year-round.", category: "town" },
+      { name: "Switchback Road", blurb: "The dramatic zig-zag climb of the old top road, a favourite for riders and photographers.", category: "viewpoint" },
+      { name: "Summit Viewpoint", blurb: "Panoramas back over Dir's forests and ahead toward the Chitral valley.", category: "viewpoint" },
+    ],
+  },
+
+  nakyal: {
+    hero: "/photos/destinations/nakyal/nakyal.jpg",
+    tagline: "A green hill tehsil of Kotli near the Line of Control.",
+    gallery: [SCENERY.greenValley, SCENERY.meadow],
+    spots: [
+      { name: "Nakyal Bazaar", blurb: "The lively main bazaar of the tehsil, set among terraced hills.", category: "town" },
+      { name: "Fatehpur Thakyala", blurb: "A nearby town of green ridges and farmland close to the LoC.", category: "town" },
+      { name: "Forested Ridges", blurb: "Pine-clad hills and walking trails around the valley, cool even in summer.", category: "viewpoint" },
+      { name: "LoC Viewpoints", blurb: "High points looking across the Line of Control — keep your CNIC handy near check-posts.", category: "viewpoint" },
+    ],
+  },
+
+  siranvalley: {
+    hero: "/photos/destinations/siranvalley/siran-valley.jpg",
+    tagline: "An off-the-radar pine valley on the Siran River.",
+    gallery: [SCENERY.greenValley, SCENERY.meadow],
+    spots: [
+      { name: "Siran Waterfall", blurb: "A pretty forest waterfall, the valley's best-known stop for a cool break.", category: "viewpoint" },
+      { name: "Khanda Gali", blurb: "A forested ridge / gali with panoramic views over the Siran and Kaghan country.", category: "viewpoint" },
+      { name: "Forest of Jacha", blurb: "Thick pine and fir forest above the river — quiet picnic and camping ground.", category: "valley" },
+      { name: "Chorr Khanda Gali", blurb: "A gentle trek through meadows and woods to a high gali viewpoint.", category: "trek" },
+    ],
+  },
+
+  thuipass: {
+    hero: "/photos/destinations/thuipass/thui-pass.jpg",
+    tagline: "A high Hindu Kush pass linking Yarkhun and Ishkoman.",
+    gallery: [SCENERY.snowLake, SCENERY.karakoram],
+    spots: [
+      { name: "Thui Pass", blurb: "A remote ~4,500m trekking pass over the Hindu Kush divide — for experienced, guided trekkers only.", category: "trek" },
+      { name: "Bari Lake", blurb: "An icy alpine lake near the pass, a classic high camp on the crossing.", category: "lake" },
+      { name: "Yarkhun Valley", blurb: "The upper Chitral valley of stone villages and yak pastures on the Thui's western approach.", category: "valley" },
+      { name: "Yarkhun Lasht", blurb: "Wide high pastures at the head of the Yarkhun, the staging ground for the trek.", category: "valley" },
+    ],
+  },
 };
 
 // ---------------------------------------------------------------------------

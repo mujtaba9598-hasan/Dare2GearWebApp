@@ -12,6 +12,7 @@ import {
 import { destPhotos, destHero } from "@/lib/photos";
 import { HotelCard } from "@/components/hotel-card";
 import { GettingThere } from "@/components/getting-there";
+import { EmergencySection } from "@/components/emergency-section";
 import { BikerPracticality } from "@/components/biker-practicality";
 import { PhotoGallery } from "@/components/photo-gallery";
 import {
@@ -252,6 +253,9 @@ export default async function DestinationDetail({
 
         {/* Getting there — route, weather, tolls, docs (Pillar 2) */}
         <GettingThere destination={d} />
+
+        {/* Emergency & roadside help — police, hospital, puncture, mechanic, 1122 */}
+        <EmergencySection destinationId={d.id} destinationName={d.name} />
 
         {/* Hotels */}
         {hotels.length > 0 && (
