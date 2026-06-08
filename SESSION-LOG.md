@@ -4,6 +4,48 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 
 ---
 
+## Session — 2026-06-09 — new-destination pages + Emergency section
+
+**Summary:** Fixed the 10 new destinations' broken (404) detail pages and added
+an Emergency & roadside-help section to all 38 destination pages. Also deleted
+the redesign fork locally.
+
+### Shipped
+- **404 fix** — the 10 new destinations (added 2026-06-06) had `data.ts` entries
+  + photos but **no `CONTENT[id]`**, and the detail page calls `notFound()` when
+  content is missing → their pages were 404ing. Added full guide content
+  (tagline + "Things to see" spots + gallery) for balakot, batakundi, battagram,
+  goldenvalley, haramosh, ishkoman, lowaritop, nakyal, siranvalley, thuipass.
+  All 10 now render (verified in `out/`).
+- **Emergency & roadside section on all 38** (`emergency-section.tsx` +
+  `src/lib/emergency.ts`, rendered after "Getting there"): one-tap `tel:` call
+  buttons for **Rescue 1122 / Police 15 / Edhi 115** (universal, 24/7) plus
+  nearest **Police, Hospital, Puncture, Mechanic** per destination. Highlighted
+  red. **Static/server-rendered → numbers work OFFLINE** once the page is cached.
+- **Researched numbers** (3 background agents, GB/KPK/AJK+Pjb+Sindh): verified
+  DHQ Gilgit 05811-920253, KATH Mansehra 0997-920094, Ayub Abbottabad
+  0992-9311155, Saidu Swat 0946-9240126, DHQ Athmuqam 05821-920051, Bagh
+  05823-920079, Rawalakot 05824-920090, Kotli 058269-20262, Khaplu 05816-920156.
+- **Redesign fork removed** — local `d2g-redesign` folder deleted; GitHub repo
+  deletion left to the user (token lacked `delete_repo`). See [[redesign-fork]].
+
+### Key decisions
+- **No invented emergency numbers** (safety + the project's no-fake-data rule).
+  Used verified universal lines (1122/15/115) + researched district hospital/
+  police numbers. Medium-confidence ones are tagged `// verify` in
+  `emergency.ts` (AIMS Muzaffarabad, THQ Murree, Hunza AKHS, Skardu RDHS, Johi,
+  Chilas). Informal puncture/mechanic shops have no public numbers → show the
+  nearest town instead.
+- Notes flag remote / **no-local-Rescue-1122** areas (Neelum, Bagh; plus
+  Deosai/Shimshal/Gorakh/Fairy-Meadows-style "no services" caveats).
+
+### Pending / next
+- Call-verify the `// verify` medium-confidence numbers before fully trusting.
+- Optional: longer-form guide content (tracks, hotels, en-route) for the 10 new
+  places; refine their approximate corridor legs/coords via `gen:roads`.
+
+---
+
 ## Session — 2026-06-06 (cont.) — 10 new destinations
 
 **Summary:** Added 10 new northern destinations from a folder drop, with photos,
