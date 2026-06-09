@@ -122,7 +122,15 @@ locally*, not stored in the repo. That's why the download is tiny; nothing is mi
 
 ---
 
-## ☁️ Deploy — Cloudflare Pages (unlimited bandwidth, free)
+## ☁️ Deploy
+
+> 📌 **Current production setup (since 2026-06-09):** the live site `dare2gear.online` is hosted on
+> **Cloudflare Workers** (static assets) and deployed with `npm run build` + `npx wrangler deploy`
+> — no FTP, no VPN, no GitHub deploy step. Analytics (GA4), Search Console, sitemap, robots, and
+> the social share image are all wired up. **See [`CLOUDFLARE-DEPLOYMENT-README.md`](./CLOUDFLARE-DEPLOYMENT-README.md)
+> for the full, authoritative how-it-works guide.** The notes below are the older background.
+
+### (Background) Cloudflare Pages (unlimited bandwidth, free)
 
 The site is a static export, so it hosts anywhere. **Cloudflare Pages** is the
 recommended host because its free tier has **unlimited bandwidth** (ideal for the
