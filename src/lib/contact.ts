@@ -7,7 +7,7 @@ export const CONTACT = {
   /** digits only, international format, for wa.me links */
   whatsappDigits: "923009618442",
   phone: "+92 300 9618442",
-  email: "info@dare2gear.pk",
+  email: "info@dare2gear.online",
 };
 
 /** Build a wa.me link with a pre-filled message. */
