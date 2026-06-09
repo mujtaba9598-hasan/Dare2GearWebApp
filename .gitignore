@@ -46,6 +46,9 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# private accounts/ownership record — never push to GitHub
+/ACCOUNTS.md
+
 # vercel
 .vercel
 
