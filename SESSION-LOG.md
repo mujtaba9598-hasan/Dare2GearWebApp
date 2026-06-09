@@ -4,6 +4,49 @@ A running record of work sessions, decisions, and what's pending. Latest first.
 
 ---
 
+## Session — 2026-06-09 (later) — went LIVE: domain, Cloudflare hosting, Analytics, SEO, email
+
+**Summary:** Took the site from "built but not deployed" to **fully live at
+`https://dare2gear.online`** — migrated hosting to Cloudflare, set up Analytics,
+Search Console, social share previews, and a working email address. No VPN needed
+going forward.
+
+### Shipped
+- **Domain transfer done** — `dare2gear.online` pushed between Hostinger accounts;
+  registration stays at Hostinger.
+- **Hosting migrated to Cloudflare Workers** — `wrangler.jsonc` (static assets + routes
+  for `dare2gear.online/*` + `www`). Deploy = `npm run build` + `npx wrangler deploy`
+  (Cloudflare API, **no FTP, no VPN, no GitHub deploy step**). Live over HTTPS.
+  - *Why:* the Pakistani ISP blocks Hostinger's us-phx server on ALL ports, so Hostinger
+    FTP/File Manager needed a VPN and was unusably slow. Cloudflare's API is reachable
+    without a VPN. Nameservers switched Hostinger → Cloudflare (`olga`/`weston.ns.cloudflare.com`).
+- **Social share card** — `public/og-image.jpg` (1200×630 logo card) + OG/Twitter meta in
+  `src/app/layout.tsx`.
+- **Google Analytics (GA4)** — `G-9ZZB66NWKM`, wired via `next/script` in the root layout.
+- **SEO** — `src/app/sitemap.ts` (135 URLs, Balochistan excluded) + `src/app/robots.ts`;
+  Search Console verified (HTML file `public/googlecbf88d195b5a1eac.html`), sitemap submitted.
+- **Email** — `info@dare2gear.online` via **Titan** (Hostinger), MX/SPF added in Cloudflare DNS;
+  send + receive confirmed. Site contact email changed `.pk` → `.online` (`src/lib/contact.ts`).
+- **Docs** — `CLOUDFLARE-DEPLOYMENT-README.md` (full how-it-works) committed; `ACCOUNTS.md`
+  (logins) saved locally + gitignored.
+
+### Key decisions
+- **Cloudflare, not Hostinger hosting** — only reliable VPN-free path given the ISP block;
+  Hostinger `public_html` kept as a backup only.
+- **Titan mailbox, not forwarding** — mail delivered directly (webmail `web.titan.email`).
+- **Zip-build gotcha:** PowerShell `Compress-Archive` writes backslash paths that Linux can't
+  extract — build deploy zips with Python `zipfile` (forward slashes). (Now moot on Cloudflare.)
+- **Accounts split:** Cloudflare = `mujtaba9598@gmail.com`; Analytics + Search Console =
+  `dare2gear.pk@gmail.com`; Hostinger = `zzcapital`. (See `ACCOUNTS.md`.)
+
+### Pending / next (all optional — user deferred)
+- Cloudflare: turn on "Always Use HTTPS"; rotate the deploy API token.
+- Email: add Titan DKIM (only matters for send deliverability).
+- Analytics: WhatsApp/email/phone click (inquiry) event tracking; delete dup GA property "Dare2Gera".
+- Search Console: link to Analytics; monitor indexing of the 135 pages over 1–3 weeks.
+
+---
+
 ## Session — 2026-06-09 — new-destination pages + Emergency section
 
 **Summary:** Fixed the 10 new destinations' broken (404) detail pages and added
